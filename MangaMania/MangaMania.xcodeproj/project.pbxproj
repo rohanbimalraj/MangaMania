@@ -32,6 +32,10 @@
 		C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */; };
 		C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35512A6029A400A5BFF0 /* CustomFonts.swift */; };
 		C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35532A602D7900A5BFF0 /* Font+Extension.swift */; };
+		C9B6D6CB2A603FA000AC5955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */; };
+		C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */; };
+		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
+		C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6D12A60401900AC5955 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,7 @@
 		C98A354D2A6020EA00A5BFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C98A35512A6029A400A5BFF0 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		C98A35532A602D7900A5BFF0 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */,
+				C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */,
+				C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				C98A354D2A6020EA00A5BFF0 /* Info.plist */,
+				C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */,
 				C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */,
 				C98A354F2A60281A00A5BFF0 /* Views */,
 				C98A354E2A60280400A5BFF0 /* Extensions */,
@@ -180,6 +189,11 @@
 			dependencies = (
 			);
 			name = MangaMania;
+			packageProductDependencies = (
+				C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */,
+				C9B6D6CF2A60401900AC5955 /* FirebaseAuth */,
+				C9B6D6D12A60401900AC5955 /* FirebaseFirestore */,
+			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
 			productType = "com.apple.product-type.application";
@@ -208,6 +222,9 @@
 				Base,
 			);
 			mainGroup = C91DFEDF2A5ED45E00FC657A;
+			packageReferences = (
+				C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = C91DFEE92A5ED45E00FC657A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +259,7 @@
 				C98A35422A6020CD00A5BFF0 /* Montserrat-LightItalic.ttf in Resources */,
 				C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */,
 				C98A35472A6020CD00A5BFF0 /* Montserrat-ThinItalic.ttf in Resources */,
+				C9B6D6CB2A603FA000AC5955 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +417,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rohan..MangaMania;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -429,7 +447,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rohan..MangaMania;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -459,6 +477,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C9B6D6CF2A60401900AC5955 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		C9B6D6D12A60401900AC5955 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C91DFEE02A5ED45E00FC657A /* Project object */;
 }
