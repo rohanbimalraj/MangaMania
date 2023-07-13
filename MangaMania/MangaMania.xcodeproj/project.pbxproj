@@ -11,6 +11,7 @@
 		C91DFEEE2A5ED45E00FC657A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEED2A5ED45E00FC657A /* ContentView.swift */; };
 		C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */; };
 		C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */; };
+		C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		C91DFEED2A5ED45E00FC657A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */,
 				C91DFEED2A5ED45E00FC657A /* ContentView.swift */,
+				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
 				C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */,
 				C91DFEF12A5ED45F00FC657A /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C91DFEEE2A5ED45E00FC657A /* ContentView.swift in Sources */,
+				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
 				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
