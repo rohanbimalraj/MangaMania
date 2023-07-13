@@ -30,6 +30,8 @@
 		C98A354A2A6020CD00A5BFF0 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35382A6020CC00A5BFF0 /* Montserrat-MediumItalic.ttf */; };
 		C98A354B2A6020CD00A5BFF0 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35392A6020CD00A5BFF0 /* Montserrat-Italic.ttf */; };
 		C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */; };
+		C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35512A6029A400A5BFF0 /* CustomFonts.swift */; };
+		C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35532A602D7900A5BFF0 /* Font+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		C98A35392A6020CD00A5BFF0 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		C98A354D2A6020EA00A5BFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C98A35512A6029A400A5BFF0 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		C98A35532A602D7900A5BFF0 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +96,9 @@
 			children = (
 				C98A354D2A6020EA00A5BFF0 /* Info.plist */,
 				C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */,
-				C91DFEED2A5ED45E00FC657A /* ContentView.swift */,
-				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
+				C98A354F2A60281A00A5BFF0 /* Views */,
+				C98A354E2A60280400A5BFF0 /* Extensions */,
+				C98A35502A60289100A5BFF0 /* Helpers */,
 				C98A35282A6020A900A5BFF0 /* Fonts */,
 				C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */,
 				C91DFEF12A5ED45F00FC657A /* Preview Content */,
@@ -132,6 +137,31 @@
 				C98A35352A6020CC00A5BFF0 /* Montserrat-ThinItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C98A354E2A60280400A5BFF0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
+				C98A35532A602D7900A5BFF0 /* Font+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C98A354F2A60281A00A5BFF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C91DFEED2A5ED45E00FC657A /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C98A35502A60289100A5BFF0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C98A35512A6029A400A5BFF0 /* CustomFonts.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C91DFEEE2A5ED45E00FC657A /* ContentView.swift in Sources */,
+				C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */,
+				C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */,
 				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
 				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
 			);

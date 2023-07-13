@@ -5,7 +5,6 @@
 //  Created by Rohan Bimal Raj on 12/07/23.
 //
 
-import Foundation
 import SwiftUI
 
 extension ShapeStyle where Self == Color {
