@@ -10,7 +10,9 @@ import SwiftUI
 struct SettingsView: View {
     
     @StateObject private var viewModel = SettingsViewModel()
+    @EnvironmentObject private var authenticationManager: AuthenticationManager
     @Binding var showSignInView: Bool
+    @EnvironmentObject private var appRouter: AppRouter
     
     var body: some View {
         VStack {
@@ -18,7 +20,7 @@ struct SettingsView: View {
                 
                 do {
                     try viewModel.signOut()
-                    showSignInView = true
+                    appRouter.popToRoot()
                     
                 }catch {
                     print(error)
@@ -51,6 +53,10 @@ struct SettingsView: View {
                     .background(.themeOne)
                     .cornerRadius(10)
             }
+        }
+        .navigationBarBackButtonHidden()
+        .onAppear{
+            viewModel.authenticationManager = authenticationManager
         }
     }
 }

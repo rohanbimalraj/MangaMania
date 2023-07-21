@@ -22,8 +22,8 @@ class SignInViewModel: ObservableObject {
         
         Task {
             do {
-                let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-                print("Success", returnedUserData)
+                //let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
+                //print("Success", returnedUserData)
             }catch {
                 print(error.localizedDescription)
             }

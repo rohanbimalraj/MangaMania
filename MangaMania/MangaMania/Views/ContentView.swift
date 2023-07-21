@@ -19,8 +19,8 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear{
-            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-            showSignInView = authUser == nil
+            //let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+            //showSignInView = authUser == nil
         }
         .fullScreenCover(isPresented: $showSignInView) {
             SignInView()

@@ -5,8 +5,8 @@
 //  Created by Rohan Bimal Raj on 16/07/23.
 //
 
-import Foundation
 import FirebaseAuth
+import SwiftUI
 
 struct AuthDataResultModel {
     
@@ -21,11 +21,17 @@ struct AuthDataResultModel {
     }
 }
 
-final class AuthenticationManager {
+class AuthenticationManager: ObservableObject {
+            
+    var isUserLoggedIn: Bool {
+        currentUser != nil
+    }
     
-    static let shared = AuthenticationManager()
+    @Published var currentUser: User?
     
-    private init() {}
+    init() {
+        currentUser = Auth.auth().currentUser
+    }
     
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
@@ -49,6 +55,7 @@ final class AuthenticationManager {
     
     func signOut() throws {
         try Auth.auth().signOut()
+        currentUser = nil
     }
     
     func resetPassword() async throws {

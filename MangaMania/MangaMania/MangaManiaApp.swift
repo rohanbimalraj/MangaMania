@@ -15,7 +15,7 @@ struct MangaManiaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRouterView()
         }
     }
 }
