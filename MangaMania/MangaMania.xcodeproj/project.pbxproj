@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */; };
+		C9164E342A6AB2B500DDA9BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164E332A6AB2B500DDA9BA /* SettingsView.swift */; };
 		C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D952A6905A400F8C30D /* AppRouter.swift */; };
 		C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D972A690A4900F8C30D /* AppRouterView.swift */; };
 		C91A8D9A2A696F6400F8C30D /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */; };
 		C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */; };
-		C91DFEEE2A5ED45E00FC657A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEED2A5ED45E00FC657A /* ContentView.swift */; };
 		C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */; };
 		C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */; };
 		C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */; };
@@ -43,20 +44,18 @@
 		C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */; };
 		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
 		C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6D12A60401900AC5955 /* FirebaseFirestore */; };
-		C9B8202A2A63CE8F00658CCD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B820292A63CE8F00658CCD /* SignInView.swift */; };
-		C9B8202D2A63CF7500658CCD /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B8202C2A63CF7500658CCD /* SignInViewModel.swift */; };
 		C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */; };
-		C9B820322A64123500658CCD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B820312A64123500658CCD /* SettingsView.swift */; };
 		C9B820342A64127700658CCD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B820332A64127700658CCD /* SettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C9164E332A6AB2B500DDA9BA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C91A8D952A6905A400F8C30D /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		C91A8D972A690A4900F8C30D /* AppRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterView.swift; sourceTree = "<group>"; };
 		C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		C91DFEE82A5ED45E00FC657A /* MangaMania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaMania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManiaApp.swift; sourceTree = "<group>"; };
-		C91DFEED2A5ED45E00FC657A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+Extension.swift"; sourceTree = "<group>"; };
@@ -86,10 +85,7 @@
 		C98A35512A6029A400A5BFF0 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		C98A35532A602D7900A5BFF0 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C9B820292A63CE8F00658CCD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		C9B8202C2A63CF7500658CCD /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
-		C9B820312A64123500658CCD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C9B820332A64127700658CCD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,8 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				C9B820282A63CE4900658CCD /* Authentication */,
-				C91DFEED2A5ED45E00FC657A /* ContentView.swift */,
 				C91A8D972A690A4900F8C30D /* AppRouterView.swift */,
+				C9164E332A6AB2B500DDA9BA /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,8 +210,6 @@
 		C9B820282A63CE4900658CCD /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				C9B820292A63CE8F00658CCD /* SignInView.swift */,
-				C9B820312A64123500658CCD /* SettingsView.swift */,
 				C927AF242A67E71F00F19DE3 /* LoginView.swift */,
 				C927AF262A6810C900F19DE3 /* CreateAccountView.swift */,
 				C927AF282A68195300F19DE3 /* ForgotPasswordView.swift */,
@@ -226,9 +220,9 @@
 		C9B8202B2A63CF4C00658CCD /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C9B8202C2A63CF7500658CCD /* SignInViewModel.swift */,
 				C9B820332A64127700658CCD /* SettingsViewModel.swift */,
 				C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */,
+				C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -338,14 +332,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9B8202A2A63CE8F00658CCD /* SignInView.swift in Sources */,
+				C9164E342A6AB2B500DDA9BA /* SettingsView.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
-				C9B8202D2A63CF7500658CCD /* SignInViewModel.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
-				C9B820322A64123500658CCD /* SettingsView.swift in Sources */,
-				C91DFEEE2A5ED45E00FC657A /* ContentView.swift in Sources */,
 				C927AF272A6810C900F19DE3 /* CreateAccountView.swift in Sources */,
 				C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */,
+				C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */,
 				C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */,
 				C91A8D9A2A696F6400F8C30D /* CreateAccountViewModel.swift in Sources */,
 				C927AF292A68195300F19DE3 /* ForgotPasswordView.swift in Sources */,

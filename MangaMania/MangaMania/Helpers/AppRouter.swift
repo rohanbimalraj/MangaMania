@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Page: String, Identifiable {
-    case login, content, settings
+    case login, settings
     
     var id: String {
         self.rawValue
@@ -51,15 +51,12 @@ class AppRouter: ObservableObject {
     @ViewBuilder
     func build(page: Page) -> some View {
         switch page {
-            
-        case .content:
-            ContentView()
-            
+                        
         case .login:
             LoginView()
             
         case .settings:
-            SettingsView(showSignInView: .constant(false))
+            SettingsView()
         }
     }
     

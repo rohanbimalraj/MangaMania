@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct LoginView: View {
-    
-    @State private var email = ""
-    @State private var password = ""
+
+    @StateObject private var viewModel = LoginViewModel()
     
     @FocusState private var isKeyBoardPresented: Bool
     
     @EnvironmentObject private var appRouter: AppRouter
+    @EnvironmentObject var authenticationManager: AuthenticationManager
+    
+    @State private var aleretMessage = ""
+    @State private var showAlert = false
     
     var body: some View {
         ZStack {
@@ -42,7 +45,7 @@ struct LoginView: View {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(.themeFour.opacity(0.75))
                         
-                        TextField("EMAIL", text: $email, prompt:
+                        TextField("EMAIL", text: $viewModel.email, prompt:
                           Text("EMAIL")
                             .font(.custom(.semiBold, size: 15))
                             .foregroundColor(.themeFour.opacity(0.75))
@@ -65,7 +68,7 @@ struct LoginView: View {
                         Image(systemName: "lock.fill")
                             .foregroundColor(.themeFour.opacity(0.75))
                         
-                        SecureField("PASSWORD", text: $password, prompt:
+                        SecureField("PASSWORD", text: $viewModel.password, prompt:
                           Text("PASSWORD")
                             .font(.custom(.semiBold, size: 15))
                             .foregroundColor(.themeFour.opacity(0.75))
@@ -96,7 +99,16 @@ struct LoginView: View {
                     Spacer()
                     
                     Button {
-                        appRouter.push(.content)
+                        
+                        Task {
+                            do {
+                                try await viewModel.login()
+                                appRouter.push(.settings)
+                            }catch {
+                                aleretMessage = error.localizedDescription
+                                showAlert = true
+                            }
+                        }
                     }label: {
                         HStack {
                             Text("LOGIN")
@@ -136,11 +148,20 @@ struct LoginView: View {
             .padding()
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .onAppear{
+            viewModel.authenticationManager = authenticationManager
+        }
+        .alert("Error!", isPresented: $showAlert) {
+            Button("OK"){}
+        }message: {
+            Text(aleretMessage)
+        }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(AuthenticationManager())
     }
 }
