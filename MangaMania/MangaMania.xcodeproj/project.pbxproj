@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907124E2A6D4E9100AC98E0 /* ContentView.swift */; };
+		C90712512A6D4EC100AC98E0 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712502A6D4EC100AC98E0 /* TabBarView.swift */; };
+		C90712522A6D4F1A00AC98E0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164E332A6AB2B500DDA9BA /* SettingsView.swift */; };
+		C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */; };
+		C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */; };
+		C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712572A6D500800AC98E0 /* MangaSearchView.swift */; };
 		C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */; };
-		C9164E342A6AB2B500DDA9BA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164E332A6AB2B500DDA9BA /* SettingsView.swift */; };
 		C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D952A6905A400F8C30D /* AppRouter.swift */; };
 		C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D972A690A4900F8C30D /* AppRouterView.swift */; };
 		C91A8D9A2A696F6400F8C30D /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */; };
@@ -49,6 +54,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C907124E2A6D4E9100AC98E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C90712502A6D4EC100AC98E0 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMangasView.swift; sourceTree = "<group>"; };
+		C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMangasView.swift; sourceTree = "<group>"; };
+		C90712572A6D500800AC98E0 /* MangaSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaSearchView.swift; sourceTree = "<group>"; };
 		C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C9164E332A6AB2B500DDA9BA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C91A8D952A6905A400F8C30D /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -103,6 +113,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C907124D2A6D4E7A00AC98E0 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C907124E2A6D4E9100AC98E0 /* ContentView.swift */,
+				C90712502A6D4EC100AC98E0 /* TabBarView.swift */,
+				C9164E332A6AB2B500DDA9BA /* SettingsView.swift */,
+				C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */,
+				C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */,
+				C90712572A6D500800AC98E0 /* MangaSearchView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
 		C91DFEDF2A5ED45E00FC657A = {
 			isa = PBXGroup;
 			children = (
@@ -191,9 +214,9 @@
 		C98A354F2A60281A00A5BFF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C907124D2A6D4E7A00AC98E0 /* Tab */,
 				C9B820282A63CE4900658CCD /* Authentication */,
 				C91A8D972A690A4900F8C30D /* AppRouterView.swift */,
-				C9164E332A6AB2B500DDA9BA /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,11 +355,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9164E342A6AB2B500DDA9BA /* SettingsView.swift in Sources */,
+				C90712512A6D4EC100AC98E0 /* TabBarView.swift in Sources */,
+				C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
+				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
 				C927AF272A6810C900F19DE3 /* CreateAccountView.swift in Sources */,
+				C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */,
+				C90712522A6D4F1A00AC98E0 /* SettingsView.swift in Sources */,
 				C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */,
+				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
 				C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */,
 				C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */,
 				C91A8D9A2A696F6400F8C30D /* CreateAccountViewModel.swift in Sources */,

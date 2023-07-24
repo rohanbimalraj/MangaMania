@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Page: String, Identifiable {
-    case login, settings
+    case login, settings, content
     
     var id: String {
         self.rawValue
@@ -57,6 +57,9 @@ class AppRouter: ObservableObject {
             
         case .settings:
             SettingsView()
+            
+        case .content:
+            ContentView()
         }
     }
     

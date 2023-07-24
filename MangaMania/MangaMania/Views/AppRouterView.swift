@@ -14,7 +14,7 @@ struct AppRouterView: View {
     
     var body: some View {
         NavigationStack(path: $appRouter.path) {
-            appRouter.build(page: authenticationManager.isUserLoggedIn ? .settings : .login)
+            appRouter.build(page: authenticationManager.isUserLoggedIn ? .content : .login)
                 .navigationDestination(for: Page.self) { page in
                     appRouter.build(page: page)
                 }
