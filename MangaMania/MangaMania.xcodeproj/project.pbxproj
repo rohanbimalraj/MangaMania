@@ -13,6 +13,8 @@
 		C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */; };
 		C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */; };
 		C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712572A6D500800AC98E0 /* MangaSearchView.swift */; };
+		C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */; };
+		C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */; };
 		C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */; };
 		C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D952A6905A400F8C30D /* AppRouter.swift */; };
 		C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D972A690A4900F8C30D /* AppRouterView.swift */; };
@@ -59,6 +61,7 @@
 		C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMangasView.swift; sourceTree = "<group>"; };
 		C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMangasView.swift; sourceTree = "<group>"; };
 		C90712572A6D500800AC98E0 /* MangaSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaSearchView.swift; sourceTree = "<group>"; };
+		C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManager.swift; sourceTree = "<group>"; };
 		C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C9164E332A6AB2B500DDA9BA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C91A8D952A6905A400F8C30D /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */,
+				C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */,
 				C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */,
 				C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */,
 			);
@@ -226,6 +230,7 @@
 			children = (
 				C98A35512A6029A400A5BFF0 /* CustomFonts.swift */,
 				C91A8D952A6905A400F8C30D /* AppRouter.swift */,
+				C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */,
 				C9B6D6CF2A60401900AC5955 /* FirebaseAuth */,
 				C9B6D6D12A60401900AC5955 /* FirebaseFirestore */,
+				C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */,
 			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
@@ -309,6 +315,7 @@
 			mainGroup = C91DFEDF2A5ED45E00FC657A;
 			packageReferences = (
 				C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = C91DFEE92A5ED45E00FC657A /* Products */;
 			projectDirPath = "";
@@ -373,6 +380,7 @@
 				C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */,
 				C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */,
 				C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */,
+				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,
 				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
 				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
 			);
@@ -579,6 +587,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -590,6 +606,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

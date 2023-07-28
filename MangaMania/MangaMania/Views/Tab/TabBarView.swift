@@ -44,6 +44,7 @@ struct TabBarView: View {
             )
             .cornerRadius(10)
             .padding()
+            .shadow(radius: 20)
         }
     }
 }

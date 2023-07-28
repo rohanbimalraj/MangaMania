@@ -5,10 +5,11 @@
 //  Created by Rohan Bimal Raj on 20/07/23.
 //
 
+import Combine
 import SwiftUI
 
 enum Page: String, Identifiable {
-    case login, settings, content
+    case login, settings, content, topMangas
     
     var id: String {
         self.rawValue
@@ -60,6 +61,9 @@ class AppRouter: ObservableObject {
             
         case .content:
             ContentView()
+            
+        case .topMangas:
+            TopMangasView()
         }
     }
     
@@ -77,5 +81,21 @@ class AppRouter: ObservableObject {
                 ForgotPasswordView()
             }
         }
+    }
+}
+
+
+class TopMangasRouter: ObservableObject {
+    
+    var router: AppRouter
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        router = AppRouter()
+        router.objectWillChange
+            .sink { [self] _ in
+                objectWillChange.send()
+            }
+            .store(in: &cancellables)
     }
 }

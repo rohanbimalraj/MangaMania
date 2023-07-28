@@ -36,6 +36,9 @@ class AuthenticationManager: ObservableObject {
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+        DispatchQueue.main.async {
+            self.currentUser = Auth.auth().currentUser
+        }
         return AuthDataResultModel(user: authDataResult.user)
     }
     
@@ -50,6 +53,9 @@ class AuthenticationManager: ObservableObject {
     @discardableResult
     func signIn(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+        DispatchQueue.main.async {
+            self.currentUser = Auth.auth().currentUser
+        }
         return AuthDataResultModel(user: authDataResult.user)
     }
     

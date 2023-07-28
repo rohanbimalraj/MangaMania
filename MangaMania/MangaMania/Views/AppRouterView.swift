@@ -10,21 +10,36 @@ import SwiftUI
 struct AppRouterView: View {
     
     @StateObject private var appRouter = AppRouter()
+    @StateObject private var mangaManager = MangaManager()
     @StateObject private var authenticationManager = AuthenticationManager()
     
     var body: some View {
-        NavigationStack(path: $appRouter.path) {
-            appRouter.build(page: authenticationManager.isUserLoggedIn ? .content : .login)
-                .navigationDestination(for: Page.self) { page in
-                    appRouter.build(page: page)
+        ZStack {
+            if authenticationManager.isUserLoggedIn {
+                
+                ContentView()
+                .transition(.slide)
+                .environmentObject(appRouter)
+                .environmentObject(authenticationManager)
+                .environmentObject(mangaManager)
+                
+            }else {
+                NavigationStack(path: $appRouter.path) {
+                    appRouter.build(page: .login)
+                        .navigationDestination(for: Page.self) { page in
+                            appRouter.build(page: page)
+                        }
+                        .fullScreenCover(item: $appRouter.fullScrrenCover) { fullScreenCover in
+                            appRouter.build(fullScreenCover: fullScreenCover)
+                        }
+                        .environmentObject(appRouter)
+                        .environmentObject(authenticationManager)
                 }
-                .fullScreenCover(item: $appRouter.fullScrrenCover) { fullScreenCover in
-                    appRouter.build(fullScreenCover: fullScreenCover)
-                }
-                .animation(.default, value: authenticationManager.isUserLoggedIn)
+                .transition(.slide)
+
+            }
         }
-        .environmentObject(appRouter)
-        .environmentObject(authenticationManager)
+        .animation(.easeInOut, value: authenticationManager.isUserLoggedIn)
     }
 }
 

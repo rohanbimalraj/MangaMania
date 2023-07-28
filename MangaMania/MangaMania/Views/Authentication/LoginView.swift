@@ -103,7 +103,7 @@ struct LoginView: View {
                         Task {
                             do {
                                 try await viewModel.login()
-                                appRouter.push(.content)
+                                //appRouter.push(.content)
                             }catch {
                                 aleretMessage = error.localizedDescription
                                 showAlert = true

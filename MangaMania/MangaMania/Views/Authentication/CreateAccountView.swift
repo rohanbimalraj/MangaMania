@@ -113,7 +113,7 @@ struct CreateAccountView: View {
                         Task {
                             do {
                                 try await viewModel.signUp()
-                                appRouter.push(.settings)
+                                //appRouter.push(.settings)
                                 appRouter.dismissFullScreenCover()
                             }catch {
                                 aleretMessage = error.localizedDescription
