@@ -4,7 +4,7 @@
 //
 //  Created by Rohan Bimal Raj on 23/07/23.
 //
-
+import Kingfisher
 import SwiftUI
 
 struct TopMangasView: View {
@@ -12,71 +12,65 @@ struct TopMangasView: View {
     @EnvironmentObject private var mangaManager: MangaManager
     @State private var topMangas: [TopManga] = []
     
-    var columns: [GridItem] {
-        [
-            GridItem(.adaptive(minimum: 150))
-        ]
-    }
+    var columns: [GridItem] = [
+        GridItem(.adaptive(minimum: 150))
+    ]
         
     var body: some View {
+        
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
             ScrollView {
-                
-                HStack {
-                    Text("Top Mangas")
-                        .foregroundColor(.themeFour)
-                        .font(.custom(.black, size: 40))
-                        .minimumScaleFactor(0.5)
-                        .padding(.leading, 20)
-                    Spacer()
-                }
-                
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(topMangas) { manga in
                         
                         Button {
                             
                         }label: {
-                            VStack {
-                                AsyncImage(url: URL(string: manga.coverUrl ?? "")) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                } placeholder: {
-                                    ProgressView()
+                            KFImage(URL(string: manga.coverUrl ?? ""))
+                                .resizable()
+                                .overlay {
+                                    LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top)
+                                    VStack {
+                                        Spacer()
+                                        Text(manga.title ?? "")
+                                            .foregroundColor(.themeFour)
+                                            .font(.custom(.medium, size: 17))
+                                            .padding([.horizontal, .bottom])
+                                    }
                                 }
-
-                            }
-                            .frame(height: 250)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                            .clipped()
+                                .frame(height: 250)
+                                .cornerRadius(10)
+                                .padding(.horizontal, 20)
+                                .padding(.top, 20)
+                            
                         }
                     }
                 }
             }
+            .padding(.bottom, 90)
+            .clipped()
         }
         .onAppear {
             Task {
                 do {
-                    
                     topMangas = try await mangaManager.getTopMangas()
-                    
                 }catch {
                     print(error)
                 }
             }
         }
+        .navigationTitle("Top Mangas")
     }
 }
 
 struct TopMangasView_Previews: PreviewProvider {
     static var previews: some View {
-        TopMangasView()
-            .environmentObject(MangaManager())
+        NavigationStack {
+            TopMangasView()
+                .environmentObject(MangaManager())
+        }
     }
 }
