@@ -10,6 +10,7 @@ import SwiftUI
 struct TopMangasView: View {
     
     @EnvironmentObject private var mangaManager: MangaManager
+    @EnvironmentObject private var topMangaRouter: TopMangasRouter
     @State private var topMangas: [TopManga] = []
     
     var columns: [GridItem] = [
@@ -27,6 +28,8 @@ struct TopMangasView: View {
                     ForEach(topMangas) { manga in
                         
                         Button {
+                            
+                            topMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? ""))
                             
                         }label: {
                             KFImage(URL(string: manga.coverUrl ?? ""))

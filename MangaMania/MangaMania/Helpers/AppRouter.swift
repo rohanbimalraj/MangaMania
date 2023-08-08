@@ -8,20 +8,22 @@
 import Combine
 import SwiftUI
 
-enum Page: String, Identifiable {
+enum Page: Hashable, Identifiable {
     case login, settings, content, topMangas
+    case mangaDetail(url: String)
     
-    var id: String {
-        self.rawValue
+    var id: Self {
+        return self
     }
 }
 
-enum FullScreenCover: String, Identifiable {
+enum FullScreenCover: Identifiable {
     case createAccount, forgotPassword
     
-    var id: String {
-        self.rawValue
+    var id: Self {
+        return self
     }
+    
 }
 
 class AppRouter: ObservableObject {
@@ -64,6 +66,9 @@ class AppRouter: ObservableObject {
             
         case .topMangas:
             TopMangasView()
+            
+        case .mangaDetail(let url):
+            MangaDetailView(detailUrl: url)
         }
     }
     
