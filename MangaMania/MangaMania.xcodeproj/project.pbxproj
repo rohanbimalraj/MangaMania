@@ -235,7 +235,6 @@
 			children = (
 				C98A35512A6029A400A5BFF0 /* CustomFonts.swift */,
 				C91A8D952A6905A400F8C30D /* AppRouter.swift */,
-				C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -264,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */,
+				C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
