@@ -29,7 +29,7 @@ struct TopMangasView: View {
                         
                         Button {
                             
-                            topMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? ""))
+                            topMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? "", from: .topMangas))
                             
                         }label: {
                             KFImage(URL(string: manga.coverUrl ?? ""))

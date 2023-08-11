@@ -9,12 +9,18 @@ import SwiftUI
 
 struct MyMangasView: View {
     var body: some View {
-        Text("My Mangas")
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+        }
+        .navigationTitle("My Mangas")
     }
 }
 
 struct MyMangasView_Previews: PreviewProvider {
     static var previews: some View {
-        MyMangasView()
+        NavigationStack {
+            MyMangasView()
+        }
     }
 }

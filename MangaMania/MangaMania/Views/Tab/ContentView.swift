@@ -11,6 +11,9 @@ struct ContentView: View {
     
     @State private var selectedTab: Tab = .topMangas
     @StateObject private var topMangaRouter = TopMangasRouter()
+    @StateObject private var myMangasRouter = MyMangasRouter()
+    @StateObject private var searchMangaRouter = SearchMangaRouter()
+    @StateObject private var settingsRouter = SettingsRouter()
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -36,14 +39,38 @@ struct ContentView: View {
                     }
                     .tag(Tab.topMangas)
                     
-                    MyMangasView()
-                        .tag(Tab.myMangas)
+                    NavigationStack(path: $myMangasRouter.router.path) {
+                        myMangasRouter.router.build(page: .myMangas)
+                            .navigationDestination(for: Page.self) { page in
+                                myMangasRouter.router.build(page: page)
+                            }
+                            .fullScreenCover(item: $myMangasRouter.router.fullScrrenCover) { fullScreenCover in
+                                myMangasRouter.router.build(fullScreenCover: fullScreenCover)
+                            }
+                    }
+                    .tag(Tab.myMangas)
                     
-                    MangaSearchView()
-                        .tag(Tab.searchMangas)
+                    NavigationStack(path: $searchMangaRouter.router.path) {
+                        searchMangaRouter.router.build(page: .searchManga)
+                            .navigationDestination(for: Page.self) { page in
+                                searchMangaRouter.router.build(page: page)
+                            }
+                            .fullScreenCover(item: $searchMangaRouter.router.fullScrrenCover) { fullScreenCover in
+                                searchMangaRouter.router.build(fullScreenCover: fullScreenCover)
+                            }
+                    }
+                    .tag(Tab.searchMangas)
                     
-                    SettingsView()
-                        .tag(Tab.settings)
+                    NavigationStack(path: $settingsRouter.router.path) {
+                        settingsRouter.router.build(page: .settings)
+                            .navigationDestination(for: Page.self) { page in
+                                settingsRouter.router.build(page: page)
+                            }
+                            .fullScreenCover(item: $settingsRouter.router.fullScrrenCover) { fullScreenCover in
+                                settingsRouter.router.build(fullScreenCover: fullScreenCover)
+                            }
+                    }
+                    .tag(Tab.settings)
                 }
             }
             
@@ -54,6 +81,9 @@ struct ContentView: View {
         }
         .onAppear(perform: setNavBarAppearance)
         .environmentObject(topMangaRouter)
+        .environmentObject(myMangasRouter)
+        .environmentObject(searchMangaRouter)
+        .environmentObject(settingsRouter)
     }
     
     private func setNavBarAppearance() {

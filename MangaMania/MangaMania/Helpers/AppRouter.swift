@@ -9,8 +9,8 @@ import Combine
 import SwiftUI
 
 enum Page: Hashable, Identifiable {
-    case login, settings, content, topMangas
-    case mangaDetail(url: String)
+    case login, settings, content, topMangas, myMangas, searchManga
+    case mangaDetail(url: String, from: Tab)
     
     var id: Self {
         return self
@@ -67,8 +67,14 @@ class AppRouter: ObservableObject {
         case .topMangas:
             TopMangasView()
             
-        case .mangaDetail(let url):
-            MangaDetailView(detailUrl: url)
+        case .myMangas:
+            MyMangasView()
+            
+        case .searchManga:
+            MangaSearchView()
+            
+        case .mangaDetail(let url, let tab):
+            MangaDetailView(detailUrl: url, tab: tab)
         }
     }
     
@@ -91,6 +97,51 @@ class AppRouter: ObservableObject {
 
 
 class TopMangasRouter: ObservableObject {
+    
+    var router: AppRouter
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        router = AppRouter()
+        router.objectWillChange
+            .sink { [self] _ in
+                objectWillChange.send()
+            }
+            .store(in: &cancellables)
+    }
+}
+
+class MyMangasRouter: ObservableObject {
+    
+    var router: AppRouter
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        router = AppRouter()
+        router.objectWillChange
+            .sink { [self] _ in
+                objectWillChange.send()
+            }
+            .store(in: &cancellables)
+    }
+}
+
+class SearchMangaRouter: ObservableObject {
+    
+    var router: AppRouter
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        router = AppRouter()
+        router.objectWillChange
+            .sink { [self] _ in
+                objectWillChange.send()
+            }
+            .store(in: &cancellables)
+    }
+}
+
+class SettingsRouter: ObservableObject {
     
     var router: AppRouter
     private var cancellables = Set<AnyCancellable>()

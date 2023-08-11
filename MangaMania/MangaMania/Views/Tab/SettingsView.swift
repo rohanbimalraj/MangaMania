@@ -38,13 +38,16 @@ struct SettingsView: View {
         .onAppear{
             viewModel.authenticationManager = authenticationManager
         }
-        .navigationBarBackButtonHidden()
+        .navigationTitle("Settings")
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
-            .environmentObject(AuthenticationManager())
+        
+        NavigationStack {
+            SettingsView()
+                .environmentObject(AuthenticationManager())
+        }
     }
 }

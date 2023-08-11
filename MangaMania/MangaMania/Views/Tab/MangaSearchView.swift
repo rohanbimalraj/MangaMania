@@ -9,12 +9,18 @@ import SwiftUI
 
 struct MangaSearchView: View {
     var body: some View {
-        Text("Search Manga")
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+        }
+        .navigationTitle("Search Manga")
     }
 }
 
 struct MangaSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        MangaSearchView()
+        NavigationStack {
+            MangaSearchView()
+        }
     }
 }
