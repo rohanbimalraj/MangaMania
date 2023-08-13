@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedTab: Tab = .topMangas
+    @State private var showTabBar = true
+    
     @StateObject private var topMangaRouter = TopMangasRouter()
     @StateObject private var myMangasRouter = MyMangasRouter()
     @StateObject private var searchMangaRouter = SearchMangaRouter()
@@ -76,7 +78,9 @@ struct ContentView: View {
             
             VStack {
                 Spacer()
-                TabBarView(selectedTab: $selectedTab)
+                if showTabBar {
+                    TabBarView(selectedTab: $selectedTab)
+                }
             }
         }
         .onAppear(perform: setNavBarAppearance)
@@ -84,6 +88,7 @@ struct ContentView: View {
         .environmentObject(myMangasRouter)
         .environmentObject(searchMangaRouter)
         .environmentObject(settingsRouter)
+        .environment(\.isTabBarVisible, $showTabBar)
     }
     
     private func setNavBarAppearance() {

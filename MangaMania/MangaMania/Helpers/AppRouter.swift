@@ -76,9 +76,11 @@ class AppRouter: ObservableObject {
             
         case .mangaDetail(let url, let tab):
             MangaDetailView(detailUrl: url, tab: tab)
+
             
         case .mangaChapter(let url, let tab):
             MangaChapterView(chapterlUrl: url, tab: tab)
+
         }
     }
     

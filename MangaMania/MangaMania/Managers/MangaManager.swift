@@ -4,7 +4,7 @@
 //
 //  Created by Rohan Bimal Raj on 24/07/23.
 //
-
+import Kingfisher
 import SwiftUI
 import SwiftSoup
 
@@ -36,6 +36,16 @@ struct MangaDetail {
 }
 
 final class MangaManager: ObservableObject{
+    
+    let chapterRequestModifier = AnyModifier { request in
+        var r = request
+        r.setValue("\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"", forHTTPHeaderField: "sec-ch-ua")
+        r.setValue("https://chapmanganelo.com/", forHTTPHeaderField: "Referer")
+        r.setValue("?0", forHTTPHeaderField: "sec-ch-ua-mobile")
+        r.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36", forHTTPHeaderField: "User-Agent")
+        r.setValue("sec-ch-ua-platform", forHTTPHeaderField: "\"macOS\"")
+        return r
+    }
     
         
     func getTopMangas() async throws -> [TopManga] {

@@ -54,3 +54,14 @@ struct TabBarView_Previews: PreviewProvider {
         TabBarView(selectedTab: .constant(.topMangas))
     }
 }
+
+struct TabBarVisibilityKey: EnvironmentKey {
+    static let defaultValue: Binding<Bool> = .constant(true)
+}
+
+extension EnvironmentValues {
+    var isTabBarVisible: Binding<Bool> {
+        get { self[TabBarVisibilityKey.self] }
+        set { self[TabBarVisibilityKey.self] = newValue }
+    }
+}
