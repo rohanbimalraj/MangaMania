@@ -23,6 +23,10 @@
 		C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */; };
 		C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */; };
 		C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */; };
+		C9242B572A889A46008613B7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9242B562A889A46008613B7 /* Lottie */; };
+		C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9242B592A889A72008613B7 /* LottieView.swift */; };
+		C9242B5C2A889ABC008613B7 /* flower.json in Resources */ = {isa = PBXBuildFile; fileRef = C9242B5B2A889ABC008613B7 /* flower.json */; };
+		C9242B612A88B65D008613B7 /* MangaChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9242B602A88B65D008613B7 /* MangaChapterView.swift */; };
 		C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927AF242A67E71F00F19DE3 /* LoginView.swift */; };
 		C927AF272A6810C900F19DE3 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927AF262A6810C900F19DE3 /* CreateAccountView.swift */; };
 		C927AF292A68195300F19DE3 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927AF282A68195300F19DE3 /* ForgotPasswordView.swift */; };
@@ -57,7 +61,6 @@
 		C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */; };
 		C9B820342A64127700658CCD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B820332A64127700658CCD /* SettingsViewModel.swift */; };
 		C9C729942A812FB000F9B226 /* MangaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C729932A812FB000F9B226 /* MangaDetailView.swift */; };
-		C9CB17812A87563000760684 /* MangaPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB17802A87563000760684 /* MangaPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,9 @@
 		C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+Extension.swift"; sourceTree = "<group>"; };
+		C9242B592A889A72008613B7 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		C9242B5B2A889ABC008613B7 /* flower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flower.json; sourceTree = "<group>"; };
+		C9242B602A88B65D008613B7 /* MangaChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaChapterView.swift; sourceTree = "<group>"; };
 		C927AF242A67E71F00F19DE3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C927AF262A6810C900F19DE3 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		C927AF282A68195300F19DE3 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -107,7 +113,6 @@
 		C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C9B820332A64127700658CCD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		C9C729932A812FB000F9B226 /* MangaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailView.swift; sourceTree = "<group>"; };
-		C9CB17802A87563000760684 /* MangaPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */,
+				C9242B572A889A46008613B7 /* Lottie in Frameworks */,
 				C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */,
 				C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */,
 				C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */,
@@ -138,7 +144,7 @@
 				C90712572A6D500800AC98E0 /* MangaSearchView.swift */,
 				C9C729932A812FB000F9B226 /* MangaDetailView.swift */,
 				C93112E42A86798C004FBB80 /* RatingView.swift */,
-				C9CB17802A87563000760684 /* MangaPageView.swift */,
+				C9242B602A88B65D008613B7 /* MangaChapterView.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -186,6 +192,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		C9242B582A889A51008613B7 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				C9242B592A889A72008613B7 /* LottieView.swift */,
+				C9242B5B2A889ABC008613B7 /* flower.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		C939F9022A66D8EE00CF35D3 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +246,7 @@
 		C98A354F2A60281A00A5BFF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C9242B582A889A51008613B7 /* Lottie */,
 				C907124D2A6D4E7A00AC98E0 /* Tab */,
 				C9B820282A63CE4900658CCD /* Authentication */,
 				C91A8D972A690A4900F8C30D /* AppRouterView.swift */,
@@ -299,6 +315,7 @@
 				C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */,
 				C93850ED2A738F8000B62507 /* Kingfisher */,
 				C93112E72A8685D9004FBB80 /* ExpandableText */,
+				C9242B562A889A46008613B7 /* Lottie */,
 			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
@@ -333,6 +350,7 @@
 				C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */,
+				C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = C91DFEE92A5ED45E00FC657A /* Products */;
 			projectDirPath = "";
@@ -356,6 +374,7 @@
 				C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */,
 				C98A353F2A6020CD00A5BFF0 /* Montserrat-Black.ttf in Resources */,
 				C98A354B2A6020CD00A5BFF0 /* Montserrat-Italic.ttf in Resources */,
+				C9242B5C2A889ABC008613B7 /* flower.json in Resources */,
 				C98A35452A6020CD00A5BFF0 /* Montserrat-Bold.ttf in Resources */,
 				C98A353E2A6020CD00A5BFF0 /* Montserrat-ExtraLight.ttf in Resources */,
 				C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */,
@@ -380,7 +399,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C90712512A6D4EC100AC98E0 /* TabBarView.swift in Sources */,
+				C9242B612A88B65D008613B7 /* MangaChapterView.swift in Sources */,
 				C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */,
+				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
 				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
@@ -389,7 +410,6 @@
 				C93112E52A86798C004FBB80 /* RatingView.swift in Sources */,
 				C90712522A6D4F1A00AC98E0 /* SettingsView.swift in Sources */,
 				C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */,
-				C9CB17812A87563000760684 /* MangaPageView.swift in Sources */,
 				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
 				C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */,
 				C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */,
@@ -615,6 +635,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/NuPlay/ExpandableText.git";
@@ -646,6 +674,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		C9242B562A889A46008613B7 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		C93112E72A8685D9004FBB80 /* ExpandableText */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -11,6 +11,7 @@ import SwiftUI
 enum Page: Hashable, Identifiable {
     case login, settings, content, topMangas, myMangas, searchManga
     case mangaDetail(url: String, from: Tab)
+    case mangaChapter(url: String, from: Tab)
     
     var id: Self {
         return self
@@ -75,6 +76,9 @@ class AppRouter: ObservableObject {
             
         case .mangaDetail(let url, let tab):
             MangaDetailView(detailUrl: url, tab: tab)
+            
+        case .mangaChapter(let url, let tab):
+            MangaChapterView(chapterlUrl: url, tab: tab)
         }
     }
     

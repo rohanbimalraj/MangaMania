@@ -126,6 +126,33 @@ final class MangaManager: ObservableObject{
         }
     }
     
+    func getMangaChapterPages(from url: String) async throws -> [String] {
+        
+        guard let url = URL(string: url) else {
+            throw AppErrors.internalError
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            guard let html = String(data: data, encoding: .utf8) else {
+                throw AppErrors.internalError
+            }
+            
+            let doc: Document = try SwiftSoup.parse(html)
+            let pages = try doc.getElementsByClass("container-chapter-reader").select("> img.reader-content")
+            var pageUrls: [String] = []
+           try pages.forEach { page in
+               let url = try page.attr("src")
+                pageUrls.append(url)
+            }
+            return pageUrls
+            
+        }catch {
+            throw error
+        }
+    }
+    
     private func getRequiredRating(from rating: String) -> Int? {
         let wordsToRemove = ["MangaNelo.com", "rate", ":", "/", "5", "-", "votes"]
         var stringArray = rating.components(separatedBy: " ")
