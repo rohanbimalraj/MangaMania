@@ -34,6 +34,11 @@ struct TopMangasView: View {
                         }label: {
                             KFImage(URL(string: manga.coverUrl ?? ""))
                                 .resizable()
+                                .fade(duration: 0.5)
+                                .placeholder({
+                                    Image("book-cover-placeholder")
+                                        .resizable()
+                                })
                                 .overlay {
                                     LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top)
                                     VStack {

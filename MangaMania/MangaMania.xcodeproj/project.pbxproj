@@ -26,6 +26,8 @@
 		C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927AF242A67E71F00F19DE3 /* LoginView.swift */; };
 		C927AF272A6810C900F19DE3 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927AF262A6810C900F19DE3 /* CreateAccountView.swift */; };
 		C927AF292A68195300F19DE3 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927AF282A68195300F19DE3 /* ForgotPasswordView.swift */; };
+		C93112E52A86798C004FBB80 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93112E42A86798C004FBB80 /* RatingView.swift */; };
+		C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = C93112E72A8685D9004FBB80 /* ExpandableText */; };
 		C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C93850ED2A738F8000B62507 /* Kingfisher */; };
 		C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939F9032A66D91100CF35D3 /* AppErrors.swift */; };
 		C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */; };
@@ -55,6 +57,7 @@
 		C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */; };
 		C9B820342A64127700658CCD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B820332A64127700658CCD /* SettingsViewModel.swift */; };
 		C9C729942A812FB000F9B226 /* MangaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C729932A812FB000F9B226 /* MangaDetailView.swift */; };
+		C9CB17812A87563000760684 /* MangaPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CB17802A87563000760684 /* MangaPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,7 @@
 		C927AF242A67E71F00F19DE3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C927AF262A6810C900F19DE3 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		C927AF282A68195300F19DE3 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		C93112E42A86798C004FBB80 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		C939F9032A66D91100CF35D3 /* AppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrors.swift; sourceTree = "<group>"; };
 		C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C9B820332A64127700658CCD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		C9C729932A812FB000F9B226 /* MangaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailView.swift; sourceTree = "<group>"; };
+		C9CB17802A87563000760684 /* MangaPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +118,7 @@
 				C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */,
 				C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */,
 				C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */,
+				C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */,
 				C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */,
 				C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */,
 			);
@@ -131,6 +137,8 @@
 				C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */,
 				C90712572A6D500800AC98E0 /* MangaSearchView.swift */,
 				C9C729932A812FB000F9B226 /* MangaDetailView.swift */,
+				C93112E42A86798C004FBB80 /* RatingView.swift */,
+				C9CB17802A87563000760684 /* MangaPageView.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 				C9B6D6D12A60401900AC5955 /* FirebaseFirestore */,
 				C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */,
 				C93850ED2A738F8000B62507 /* Kingfisher */,
+				C93112E72A8685D9004FBB80 /* ExpandableText */,
 			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
@@ -323,6 +332,7 @@
 				C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */,
 			);
 			productRefGroup = C91DFEE92A5ED45E00FC657A /* Products */;
 			projectDirPath = "";
@@ -376,8 +386,10 @@
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
 				C927AF272A6810C900F19DE3 /* CreateAccountView.swift in Sources */,
 				C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */,
+				C93112E52A86798C004FBB80 /* RatingView.swift in Sources */,
 				C90712522A6D4F1A00AC98E0 /* SettingsView.swift in Sources */,
 				C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */,
+				C9CB17812A87563000760684 /* MangaPageView.swift in Sources */,
 				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
 				C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */,
 				C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */,
@@ -603,6 +615,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NuPlay/ExpandableText.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -626,6 +646,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		C93112E72A8685D9004FBB80 /* ExpandableText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */;
+			productName = ExpandableText;
 		};
 		C93850ED2A738F8000B62507 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -17,7 +17,8 @@ struct TopManga: Identifiable {
 
 struct MangaDetail {
     
-    struct Chapter {
+    struct Chapter: Identifiable {
+        let id: UUID = UUID()
         let chapUrl: String?
         let chapTitle: String?
         let chapDate: String?
@@ -28,7 +29,7 @@ struct MangaDetail {
     let authors: String?
     let status: String?
     let updatedDate: String?
-    let rating: Double?
+    let rating: Int?
     let description: String?
     let chapters: [Chapter]?
     
@@ -85,15 +86,28 @@ final class MangaManager: ObservableObject{
             
             let mangaCover = try doc.getElementsByClass("info-image").select("> img").attr("src")
             let title = try doc.getElementsByClass("story-info-right").select("> h1").text()
-            let authorsAndStatusDoc = try doc.getElementsByClass("variations-tableInfo").select("td.table-value")
-            let authors = try authorsAndStatusDoc[1].text()
-            let status = try authorsAndStatusDoc[2].text()
+            let elementArray = try doc.getElementsByClass("variations-tableInfo").select("> tbody").select("> tr")
+            var authors = ""
+            var status = ""
+            
+            try elementArray.forEach { element in
+                let label = try element.select("td.table-label").text()
+                switch label {
+                case "Author(s) :":
+                    authors = try element.select("td.table-value").text()
+                case "Status :":
+                    status = try element.select("td.table-value").text()
+                default:
+                    break
+                }
+            }
             
             let tempDateAndRating = try doc.getElementsByClass("story-info-right-extent").select("> p")
             let updatedDate = try tempDateAndRating[0].select("span.stre-value").text()
             let rating = try tempDateAndRating[3].select("> em").text()
             
-            let description = try doc.getElementsByClass("panel-story-info-description").text()
+            var description = try doc.getElementsByClass("panel-story-info-description").text()
+            description = description.replacingOccurrences(of: "Description :", with: "")
             let tempChapters = try doc.getElementsByClass("row-content-chapter").select("> li")
             var chapters: [MangaDetail.Chapter] = []
             
@@ -112,12 +126,12 @@ final class MangaManager: ObservableObject{
         }
     }
     
-    private func getRequiredRating(from rating: String) -> Double? {
+    private func getRequiredRating(from rating: String) -> Int? {
         let wordsToRemove = ["MangaNelo.com", "rate", ":", "/", "5", "-", "votes"]
         var stringArray = rating.components(separatedBy: " ")
         stringArray = stringArray.filter{ !wordsToRemove.contains($0) }
         if let ratingString = stringArray.first {
-            return Double(ratingString)
+            return Int(Double(ratingString)?.rounded() ?? 0.0)
         }
         return nil
     }
