@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct MangaSearchView: View {
+    @State private var searchText = ""
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
+            VStack {
+                SearchBarView(searchText: $searchText)
+                ScrollView {
+                    
+                }
+            }
         }
         .navigationTitle("Search Manga")
     }

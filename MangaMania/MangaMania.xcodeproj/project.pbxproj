@@ -34,6 +34,8 @@
 		C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = C93112E72A8685D9004FBB80 /* ExpandableText */; };
 		C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C93850ED2A738F8000B62507 /* Kingfisher */; };
 		C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939F9032A66D91100CF35D3 /* AppErrors.swift */; };
+		C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */; };
+		C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */; };
 		C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */; };
 		C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */; };
 		C98A353D2A6020CD00A5BFF0 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */; };
@@ -88,6 +90,8 @@
 		C927AF282A68195300F19DE3 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		C93112E42A86798C004FBB80 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		C939F9032A66D91100CF35D3 /* AppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrors.swift; sourceTree = "<group>"; };
+		C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				C93112E42A86798C004FBB80 /* RatingView.swift */,
+				C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 			children = (
 				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
 				C98A35532A602D7900A5BFF0 /* Font+Extension.swift */,
+				C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				C9242B612A88B65D008613B7 /* MangaChapterView.swift in Sources */,
 				C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */,
 				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
+				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
 				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
@@ -428,6 +435,7 @@
 				C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */,
 				C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */,
 				C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */,
+				C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */,
 				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,
 				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
 				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
