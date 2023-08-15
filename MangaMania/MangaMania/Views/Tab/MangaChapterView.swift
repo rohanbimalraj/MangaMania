@@ -27,6 +27,7 @@ struct MangaChapterView: View {
                         ProgressView()
                     })
                     .scaledToFill()
+                    .padding(.bottom, 2)
             }
         }
         .onAppear{

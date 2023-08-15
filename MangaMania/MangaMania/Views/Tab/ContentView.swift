@@ -89,6 +89,7 @@ struct ContentView: View {
         .environmentObject(searchMangaRouter)
         .environmentObject(settingsRouter)
         .environment(\.isTabBarVisible, $showTabBar)
+        .ignoresSafeArea(.keyboard)
     }
     
     private func setNavBarAppearance() {

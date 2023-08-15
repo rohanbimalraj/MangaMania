@@ -136,7 +136,7 @@ struct MangaDetailView: View {
                 .clipped()
                 .padding(.bottom, 90)
                 .navigationBarTitleDisplayMode(.inline)
-                .transition(.asymmetric(insertion: .scale, removal: .opacity))
+                .transition(.opacity)
 
             }else {
                 LottieView()
@@ -172,7 +172,7 @@ struct MangaDetailView: View {
                 }
             }
         }
-        .animation(.easeInOut(duration: 1), value: showDetails)
+        .animation(.easeInOut(duration: 0.5), value: showDetails)
     }
 }
 
