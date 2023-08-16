@@ -8,7 +8,7 @@ import Kingfisher
 import SwiftUI
 import SwiftSoup
 
-struct TopManga: Identifiable {
+struct Manga: Identifiable {
     let id = UUID()
     let title: String?
     let coverUrl: String?
@@ -37,6 +37,8 @@ struct MangaDetail {
 
 final class MangaManager: ObservableObject{
     
+    private let baseUrl = "https://m.manganelo.com"
+    
     let chapterRequestModifier = AnyModifier { request in
         var r = request
         r.setValue("\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"", forHTTPHeaderField: "sec-ch-ua")
@@ -48,11 +50,17 @@ final class MangaManager: ObservableObject{
     }
     
         
-    func getTopMangas() async throws -> [TopManga] {
+    func getTopMangas() async throws -> [Manga] {
         
-        guard let url = URL(string: "https://m.manganelo.com/genre-all?type=topview") else {
+        guard var url = URL(string: baseUrl) else {
             throw AppErrors.internalError
         }
+        url.append(path: "genre-all")
+        url.append(queryItems:
+                    [
+                        URLQueryItem(name: "type", value: "topview")
+                    ]
+        )
         
         do {
             
@@ -63,13 +71,13 @@ final class MangaManager: ObservableObject{
             let doc: Document = try SwiftSoup.parse(html)
             
             let mangas = try doc.getElementsByClass("content-genres-item").select("> a")
-            var topMangas: [TopManga] = []
+            var topMangas: [Manga] = []
             
             try mangas.forEach { manga in
                 let detailUrl = try manga.attr("href")
                 let title = try manga.select("img").attr("alt")
                 let coverUrl = try manga.select("img").attr("src")
-                topMangas.append(TopManga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
+                topMangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
             }
             
             return topMangas
@@ -157,6 +165,40 @@ final class MangaManager: ObservableObject{
                 pageUrls.append(url)
             }
             return pageUrls
+            
+        }catch {
+            throw error
+        }
+    }
+    
+    func getMangas(with title: String) async throws -> [Manga] {
+        
+        guard var url = URL(string: baseUrl) else {
+            throw AppErrors.internalError
+        }
+        
+        url.append(path: "search")
+        url.append(path: "story")
+        url.append(path: title.lowercased().replacingOccurrences(of: " ", with: "_"))
+        
+        do {
+            
+            let (data, _) = try await URLSession.shared.data(from: url)
+            guard let html = String(data: data, encoding: .utf8) else {
+                throw AppErrors.internalError
+            }
+            
+            let doc: Document = try SwiftSoup.parse(html)
+            let searchResults = try doc.getElementsByClass("search-story-item")
+            var mangas: [Manga] = []
+            try searchResults.forEach({ item in
+                let t = try item.select("> a")
+                let title = try t.attr("title")
+                let detailUrl = try t.attr("href")
+                let coverUrl = try item.select("img.img-loading").attr("src")
+                mangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
+            })
+            return mangas
             
         }catch {
             throw error

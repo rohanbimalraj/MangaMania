@@ -11,7 +11,7 @@ struct TopMangasView: View {
     
     @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangaRouter: TopMangasRouter
-    @State private var topMangas: [TopManga] = []
+    @State private var topMangas: [Manga] = []
     
     var columns: [GridItem] = [
         GridItem(.adaptive(minimum: 150))

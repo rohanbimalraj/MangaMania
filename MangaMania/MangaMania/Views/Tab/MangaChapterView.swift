@@ -11,6 +11,8 @@ struct MangaChapterView: View {
         
     @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
+    @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
+    
     @Environment(\.isTabBarVisible) private var isTabBarVisible
     @State private var pageUrls: [String] = []
     
@@ -43,7 +45,15 @@ struct MangaChapterView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    topMangasRouter.router.pop()
+                    switch tab {
+                    case .topMangas:
+                        topMangasRouter.router.pop()
+                        
+                    case .searchMangas:
+                        searchMangaRouter.router.pop()
+                    default:
+                        break
+                    }
                 }label: {
                     Image(systemName: "arrowshape.left.fill")
                         .foregroundColor(.themeThree)

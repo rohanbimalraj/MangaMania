@@ -56,6 +56,7 @@
 		C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */; };
 		C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35512A6029A400A5BFF0 /* CustomFonts.swift */; };
 		C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35532A602D7900A5BFF0 /* Font+Extension.swift */; };
+		C9A4DC1F2A8C8A6400A71270 /* MangaSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC1E2A8C8A6400A71270 /* MangaSearchViewModel.swift */; };
 		C9B6D6CB2A603FA000AC5955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */; };
 		C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */; };
 		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
@@ -113,6 +114,7 @@
 		C98A354D2A6020EA00A5BFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C98A35512A6029A400A5BFF0 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		C98A35532A602D7900A5BFF0 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		C9A4DC1E2A8C8A6400A71270 /* MangaSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaSearchViewModel.swift; sourceTree = "<group>"; };
 		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C9B820332A64127700658CCD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				C9B820332A64127700658CCD /* SettingsViewModel.swift */,
 				C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */,
 				C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */,
+				C9A4DC1E2A8C8A6400A71270 /* MangaSearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				C90712512A6D4EC100AC98E0 /* TabBarView.swift in Sources */,
 				C9242B612A88B65D008613B7 /* MangaChapterView.swift in Sources */,
 				C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */,
+				C9A4DC1F2A8C8A6400A71270 /* MangaSearchViewModel.swift in Sources */,
 				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
 				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,

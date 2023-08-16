@@ -19,10 +19,8 @@ struct SearchBarView: View {
                 .foregroundColor(.themeThree)
                 .font(.custom(.semiBold, size: 15))
             )
-            .autocorrectionDisabled()
             .foregroundColor(.themeFour)
             .font(.custom(.regular, size: 15))
-            .keyboardType(.alphabet)
             .overlay(alignment: .trailing) {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundColor(.themeFour)

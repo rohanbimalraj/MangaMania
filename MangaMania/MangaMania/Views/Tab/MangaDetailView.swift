@@ -13,6 +13,7 @@ struct MangaDetailView: View {
     
     @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
+    @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     
     @State private var mangaDetail: MangaDetail?
     var showDetails: Bool {
@@ -111,7 +112,15 @@ struct MangaDetailView: View {
                                 List {
                                     ForEach(mangaDetail?.chapters ?? []) { chapter in
                                         Button {
-                                            topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: .topMangas))
+                                            switch tab {
+                                            case .topMangas:
+                                                topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: .topMangas))
+                                            case .searchMangas:
+                                                searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: .searchMangas))
+                                            default:
+                                                break
+                                            }
+
                                         }label: {
                                             HStack {
                                                 Text(chapter.chapTitle ?? "")
@@ -165,7 +174,16 @@ struct MangaDetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    topMangasRouter.router.pop()
+                    switch tab {
+                    case .topMangas:
+                        topMangasRouter.router.pop()
+                        
+                    case .searchMangas:
+                        searchMangaRouter.router.pop()
+                        
+                    default:
+                        break
+                    }
                 }label: {
                     Image(systemName: "arrowshape.left.fill")
                         .foregroundColor(.themeFour)
