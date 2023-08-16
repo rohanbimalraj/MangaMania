@@ -19,6 +19,7 @@ struct MangaDetailView: View {
     var showDetails: Bool {
        return mangaDetail != nil
     }
+    @State private var isSavedToLibrary = false
     
     let detailUrl: String
     let tab: Tab
@@ -89,14 +90,12 @@ struct MangaDetailView: View {
                                 Text("Description")
                                     .foregroundColor(.themeFour)
                                     .font(.custom(.bold, size: 20))
-                                if mangaDetail != nil {
-                                    ExpandableText(text: mangaDetail?.description ?? "")
-                                        .font(.custom(.regular, size: 14))
-                                        .foregroundColor(.themeFour)
-                                        .lineLimit(5)
-                                        .expandButton(TextSet(text: "more", font: .custom(.bold, size: 16), color: .themeThree))
-                                        .collapseButton(TextSet(text: "less", font: .custom(.bold, size: 16), color: .themeThree))
-                                }
+                                ExpandableText(text: mangaDetail?.description ?? "")
+                                    .font(.custom(.regular, size: 14))
+                                    .foregroundColor(.themeFour)
+                                    .lineLimit(5)
+                                    .expandButton(TextSet(text: "more", font: .custom(.bold, size: 16), color: .themeThree))
+                                    .collapseButton(TextSet(text: "less", font: .custom(.bold, size: 16), color: .themeThree))
 
                             }
                             
