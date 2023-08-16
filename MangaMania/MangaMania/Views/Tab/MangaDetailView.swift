@@ -77,7 +77,22 @@ struct MangaDetailView: View {
                                         }
                                     }
                                     
-                                    RatingView(rating: .constant(mangaDetail?.rating ?? 0))
+                                    HStack(alignment: .top) {
+                                        RatingView(rating: .constant(mangaDetail?.rating ?? 0))
+                                        Spacer()
+                                        VStack {
+                                            Image(systemName: isSavedToLibrary ? "bookmark.fill" : "bookmark")
+                                                .foregroundColor(.themeFour)
+                                                .font(.largeTitle)
+                                                .onTapGesture {
+                                                    isSavedToLibrary.toggle()
+                                                }
+                                            Text(isSavedToLibrary ? "Remove from library" : "Save to library")
+                                                .foregroundColor(.themeFour)
+                                                .font(.custom(.semiBold, size: 10))
+                                                .multilineTextAlignment(.center)
+                                        }
+                                    }
                                 }
                             }
                             
