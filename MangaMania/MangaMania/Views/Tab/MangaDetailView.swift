@@ -14,10 +14,9 @@ struct MangaDetailView: View {
     @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
+    @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
     
     @StateObject private var vm = MangaDetailViewModel()
-    
-    @State private var isSavedToLibrary = false
     
     let detailUrl: String
     let tab: Tab
@@ -79,13 +78,13 @@ struct MangaDetailView: View {
                                         RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
                                         Spacer()
                                         VStack {
-                                            Image(systemName: isSavedToLibrary ? "bookmark.fill" : "bookmark")
+                                            Image(systemName: vm.isAddedToLib ? "bookmark.fill" : "bookmark")
                                                 .foregroundColor(.themeFour)
                                                 .font(.largeTitle)
                                                 .onTapGesture {
-                                                    isSavedToLibrary.toggle()
+                                                    vm.showldSave ? vm.saveToLib() : vm.deleteFromLib()
                                                 }
-                                            Text(isSavedToLibrary ? "Remove from\n library" : "Save to library")
+                                            Text(vm.isAddedToLib ? "Remove from\n library" : "Save to library")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.semiBold, size: 10))
                                                 .multilineTextAlignment(.center)
@@ -126,9 +125,11 @@ struct MangaDetailView: View {
                                         Button {
                                             switch tab {
                                             case .topMangas:
-                                                topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: .topMangas))
+                                                topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
                                             case .searchMangas:
-                                                searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: .searchMangas))
+                                                searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                            case .myMangas:
+                                                myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
                                             default:
                                                 break
                                             }
@@ -192,6 +193,8 @@ struct MangaDetailView: View {
                         
                     case .searchMangas:
                         searchMangaRouter.router.pop()
+                    case .myMangas:
+                        myMangaMangaRouter.router.pop()
                         
                     default:
                         break
@@ -203,6 +206,11 @@ struct MangaDetailView: View {
             }
         }
         .animation(.easeInOut(duration: 0.5), value: vm.showDetails)
+        .alert("Message", isPresented: $vm.showAlert) {
+            Button("Ok"){}
+        }message: {
+            Text(vm.message)
+        }
     }
 }
 

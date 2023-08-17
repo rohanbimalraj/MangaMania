@@ -12,6 +12,7 @@ struct MangaChapterView: View {
     @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
+    @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
     
     @Environment(\.isTabBarVisible) private var isTabBarVisible
     @State private var pageUrls: [String] = []
@@ -51,6 +52,8 @@ struct MangaChapterView: View {
                         
                     case .searchMangas:
                         searchMangaRouter.router.pop()
+                    case .myMangas:
+                        myMangaMangaRouter.router.pop()
                     default:
                         break
                     }

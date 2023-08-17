@@ -40,15 +40,17 @@ final class DataController {
         }
     }
     
-    private func save() {
+    private func save(completion: (Result<String, Error>) -> Void) {
         do {
             try context.save()
+            completion(.success("Library updated successfully"))
         }catch {
             print(error.localizedDescription)
+            completion(.failure(error))
         }
     }
     
-    func addMangaToLib(title: String, detailUrl: String, coverUrl: String) {
+    func addMangaToLib(title: String, detailUrl: String, coverUrl: String, completion: (Result<String, Error>) -> Void) {
         
         let myManga = MyManga(context: context)
         myManga.id = UUID()
@@ -56,12 +58,24 @@ final class DataController {
         myManga.detailUrl = detailUrl
         myManga.title = title
         myManga.date = Date.now
-        save()
+        save(completion: completion)
     }
     
     
-    func deleteMangaFromLib(manga: MyManga) {
-        context.delete(manga)
-        save()
+    func deleteMangaFromLib(with title: String, completion: (Result<String, Error>) -> Void) {
+        let mangas = fetchMangas()
+        let requiredManga = mangas.filter{ $0.title == title }.first
+        guard let requiredManga = requiredManga else {
+            completion(.failure(AppErrors.internalError))
+            return
+        }
+        context.delete(requiredManga)
+        save(completion: completion)
+    }
+    
+    func isMangaInLib(with title: String) -> Bool {
+        let mangas = fetchMangas()
+        let requiredManga = mangas.filter{ $0.title == title }.first
+        return requiredManga != nil
     }
 }

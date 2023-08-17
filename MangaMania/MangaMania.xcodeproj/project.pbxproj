@@ -19,6 +19,7 @@
 		C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D952A6905A400F8C30D /* AppRouter.swift */; };
 		C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D972A690A4900F8C30D /* AppRouterView.swift */; };
 		C91A8D9A2A696F6400F8C30D /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */; };
+		C91AFAD82A8E248100307CFE /* MyMangaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91AFAD72A8E248100307CFE /* MyMangaViewModel.swift */; };
 		C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */; };
 		C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */; };
 		C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		C91A8D952A6905A400F8C30D /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		C91A8D972A690A4900F8C30D /* AppRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterView.swift; sourceTree = "<group>"; };
 		C91A8D992A696F6400F8C30D /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
+		C91AFAD72A8E248100307CFE /* MyMangaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMangaViewModel.swift; sourceTree = "<group>"; };
 		C91DFEE82A5ED45E00FC657A /* MangaMania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaMania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManiaApp.swift; sourceTree = "<group>"; };
 		C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				C9164E132A6A904F00DDA9BA /* LoginViewModel.swift */,
 				C9A4DC1E2A8C8A6400A71270 /* MangaSearchViewModel.swift */,
 				C9A4DC272A8CF3D300A71270 /* MangaDetailViewModel.swift */,
+				C91AFAD72A8E248100307CFE /* MyMangaViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
 				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
+				C91AFAD82A8E248100307CFE /* MyMangaViewModel.swift in Sources */,
 				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
 				C927AF272A6810C900F19DE3 /* CreateAccountView.swift in Sources */,
