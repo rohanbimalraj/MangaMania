@@ -12,12 +12,10 @@ import Firebase
 struct MangaManiaApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject private var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {
             AppRouterView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

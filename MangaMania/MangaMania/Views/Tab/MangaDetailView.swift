@@ -15,10 +15,8 @@ struct MangaDetailView: View {
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     
-    @State private var mangaDetail: MangaDetail?
-    var showDetails: Bool {
-       return mangaDetail != nil
-    }
+    @StateObject private var vm = MangaDetailViewModel()
+    
     @State private var isSavedToLibrary = false
     
     let detailUrl: String
@@ -29,11 +27,11 @@ struct MangaDetailView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-            if showDetails {
+            if vm.showDetails {
                 ScrollView {
                         VStack {
                             HStack(alignment: .top) {
-                                KFImage(URL(string: mangaDetail?.coverUrl ?? ""))
+                                KFImage(URL(string: vm.mangaDetail?.coverUrl ?? ""))
                                     .resizable()
                                     .fade(duration: 0.5)
                                     .placeholder({
@@ -44,7 +42,7 @@ struct MangaDetailView: View {
                                     .cornerRadius(10)
                                 
                                 VStack(alignment: .leading, spacing: 20) {
-                                    Text(mangaDetail?.title ?? "")
+                                    Text(vm.mangaDetail?.title ?? "")
                                         .foregroundColor(.themeFour)
                                         .font(.custom(.bold, size: 24))
                                     VStack(alignment: .leading, spacing: 5) {
@@ -53,7 +51,7 @@ struct MangaDetailView: View {
                                             Text("Author(s): ")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.semiBold, size: 16))
-                                            Text(mangaDetail?.authors ?? "")
+                                            Text(vm.mangaDetail?.authors ?? "")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.medium, size: 15))
                                         }
@@ -62,7 +60,7 @@ struct MangaDetailView: View {
                                             Text("Updated:  ")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.semiBold, size: 16))
-                                            Text(mangaDetail?.updatedDate ?? "")
+                                            Text(vm.mangaDetail?.updatedDate ?? "")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.medium, size: 15))
                                         }
@@ -71,14 +69,14 @@ struct MangaDetailView: View {
                                             Text("Status:      ")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.semiBold, size: 16))
-                                            Text(mangaDetail?.status ?? "")
+                                            Text(vm.mangaDetail?.status ?? "")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.medium, size: 15))
                                         }
                                     }
                                     
                                     HStack(alignment: .top) {
-                                        RatingView(rating: .constant(mangaDetail?.rating ?? 0))
+                                        RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
                                         Spacer()
                                         VStack {
                                             Image(systemName: isSavedToLibrary ? "bookmark.fill" : "bookmark")
@@ -87,7 +85,7 @@ struct MangaDetailView: View {
                                                 .onTapGesture {
                                                     isSavedToLibrary.toggle()
                                                 }
-                                            Text(isSavedToLibrary ? "Remove from library" : "Save to library")
+                                            Text(isSavedToLibrary ? "Remove from\n library" : "Save to library")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.semiBold, size: 10))
                                                 .multilineTextAlignment(.center)
@@ -105,7 +103,7 @@ struct MangaDetailView: View {
                                 Text("Description")
                                     .foregroundColor(.themeFour)
                                     .font(.custom(.bold, size: 20))
-                                ExpandableText(text: mangaDetail?.description ?? "")
+                                ExpandableText(text: vm.mangaDetail?.description ?? "")
                                     .font(.custom(.regular, size: 14))
                                     .foregroundColor(.themeFour)
                                     .lineLimit(5)
@@ -124,7 +122,7 @@ struct MangaDetailView: View {
                                     .foregroundColor(.themeFour)
                                     .font(.custom(.bold, size: 20))
                                 List {
-                                    ForEach(mangaDetail?.chapters ?? []) { chapter in
+                                    ForEach(vm.mangaDetail?.chapters ?? []) { chapter in
                                         Button {
                                             switch tab {
                                             case .topMangas:
@@ -177,8 +175,8 @@ struct MangaDetailView: View {
         .onAppear{
             Task {
                 do {
-                    mangaDetail = try await mangaManager.getMangaDetail(from: detailUrl)
-                    
+                    try await vm.getMangaDetail(from: detailUrl)
+
                 }catch {
                     print(error.localizedDescription)
                 }
@@ -204,7 +202,7 @@ struct MangaDetailView: View {
                 }
             }
         }
-        .animation(.easeInOut(duration: 0.5), value: showDetails)
+        .animation(.easeInOut(duration: 0.5), value: vm.showDetails)
     }
 }
 

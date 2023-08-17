@@ -7,11 +7,10 @@
 import CoreData
 import SwiftUI
 
+@MainActor
 final class MangaDetailViewModel: ObservableObject {
     
     let mangaManager = MangaManager()
-    let detailUrl: String
-    private (set) var moc: NSManagedObjectContext
     
     @Published var mangaDetail: MangaDetail?
     
@@ -19,19 +18,12 @@ final class MangaDetailViewModel: ObservableObject {
         mangaDetail != nil
     }
     
-    init(moc: NSManagedObjectContext, detailUrl: String) {
-        self.moc = moc
-        self.detailUrl = detailUrl
-    }
     
-    func getMangaDetail() {
-        Task {
-            do {
-                mangaDetail = try await mangaManager.getMangaDetail(from: detailUrl)
-            }catch {
-                print(error.localizedDescription)
-            }
+    func getMangaDetail(from url: String) async throws {
+        do {
+            mangaDetail = try await mangaManager.getMangaDetail(from: url)
+        }catch {
+            throw error
         }
     }
-    
 }
