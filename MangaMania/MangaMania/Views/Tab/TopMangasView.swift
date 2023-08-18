@@ -12,6 +12,7 @@ struct TopMangasView: View {
     @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangaRouter: TopMangasRouter
     @State private var topMangas: [Manga] = []
+    @StateObject private var vm = TopMangasViewModel()
     
     var columns: [GridItem] = [
         GridItem(.adaptive(minimum: 150))
@@ -25,7 +26,7 @@ struct TopMangasView: View {
             
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(topMangas) { manga in
+                    ForEach(vm.mangas) { manga in
                         
                         Button {
                             
@@ -56,19 +57,19 @@ struct TopMangasView: View {
                             
                         }
                     }
+                    
+                    Color.clear
+                        .onAppear{
+                            vm.getTopMangas()
+                        }
+                }
+                
+                if vm.state == .loading {
+                    ProgressView()
                 }
             }
             .padding(.bottom, 90)
             .clipped()
-        }
-        .onAppear {
-            Task {
-                do {
-                    topMangas = try await mangaManager.getTopMangas()
-                }catch {
-                    print(error)
-                }
-            }
         }
         .navigationTitle("Top Mangas")
     }

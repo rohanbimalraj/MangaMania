@@ -61,6 +61,8 @@
 		C9A4DC242A8CD8BC00A71270 /* MangaMania.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC222A8CD8BC00A71270 /* MangaMania.xcdatamodeld */; };
 		C9A4DC262A8CDA7800A71270 /* DataControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC252A8CDA7800A71270 /* DataControllers.swift */; };
 		C9A4DC282A8CF3D300A71270 /* MangaDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC272A8CF3D300A71270 /* MangaDetailViewModel.swift */; };
+		C9ACFDCA2A8F832A00AA1005 /* TopMangasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ACFDC92A8F832A00AA1005 /* TopMangasViewModel.swift */; };
+		C9ACFDCC2A8F840D00AA1005 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */; };
 		C9B6D6CB2A603FA000AC5955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */; };
 		C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */; };
 		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
@@ -123,6 +125,8 @@
 		C9A4DC232A8CD8BC00A71270 /* MangaMania.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MangaMania.xcdatamodel; sourceTree = "<group>"; };
 		C9A4DC252A8CDA7800A71270 /* DataControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllers.swift; sourceTree = "<group>"; };
 		C9A4DC272A8CF3D300A71270 /* MangaDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailViewModel.swift; sourceTree = "<group>"; };
+		C9ACFDC92A8F832A00AA1005 /* TopMangasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMangasViewModel.swift; sourceTree = "<group>"; };
+		C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		C9B820332A64127700658CCD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				C98A35512A6029A400A5BFF0 /* CustomFonts.swift */,
 				C91A8D952A6905A400F8C30D /* AppRouter.swift */,
 				C9A4DC252A8CDA7800A71270 /* DataControllers.swift */,
+				C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				C9A4DC1E2A8C8A6400A71270 /* MangaSearchViewModel.swift */,
 				C9A4DC272A8CF3D300A71270 /* MangaDetailViewModel.swift */,
 				C91AFAD72A8E248100307CFE /* MyMangaViewModel.swift */,
+				C9ACFDC92A8F832A00AA1005 /* TopMangasViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -453,6 +459,7 @@
 				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
 				C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */,
 				C9A4DC282A8CF3D300A71270 /* MangaDetailViewModel.swift in Sources */,
+				C9ACFDCC2A8F840D00AA1005 /* LoadingState.swift in Sources */,
 				C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */,
 				C91A8D9A2A696F6400F8C30D /* CreateAccountViewModel.swift in Sources */,
 				C927AF292A68195300F19DE3 /* ForgotPasswordView.swift in Sources */,
@@ -461,6 +468,7 @@
 				C9B820342A64127700658CCD /* SettingsViewModel.swift in Sources */,
 				C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */,
 				C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */,
+				C9ACFDCA2A8F832A00AA1005 /* TopMangasViewModel.swift in Sources */,
 				C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */,
 				C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */,
 				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,

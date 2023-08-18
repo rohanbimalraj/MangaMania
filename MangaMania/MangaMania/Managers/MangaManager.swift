@@ -50,12 +50,15 @@ final class MangaManager: ObservableObject{
     }
     
         
-    func getTopMangas() async throws -> [Manga] {
+    func getTopMangas(in page: Int) async throws -> [Manga] {
         
         guard var url = URL(string: baseUrl) else {
             throw AppErrors.internalError
         }
         url.append(path: "genre-all")
+        if page != 1 {
+            url.append(path: String(page))
+        }
         url.append(queryItems:
                     [
                         URLQueryItem(name: "type", value: "topview")
