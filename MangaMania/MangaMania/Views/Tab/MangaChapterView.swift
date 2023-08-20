@@ -31,6 +31,7 @@ struct MangaChapterView: View {
                     })
                     .scaledToFill()
                     .padding(.bottom, 2)
+                    .pinchToZoom()
             }
         }
         .onAppear{
