@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MangaSearchView: View {
     
-    @StateObject private var vm = MangaSearchViewModel()
+    @StateObject private var vm = ViewModel()
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     var columns: [GridItem] = [
         GridItem(.adaptive(minimum: 150))
@@ -23,7 +23,7 @@ struct MangaSearchView: View {
                 SearchBarView(searchText: $vm.searchText)
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach($vm.mangas) { $manga in
+                        ForEach(vm.mangas) { manga in
                             
                             Button {
                                 

@@ -10,7 +10,7 @@ import SwiftUI
 struct MyMangasView: View {
     
     @EnvironmentObject private var myMangasRouter: MyMangasRouter
-    @StateObject private var vm = MyMangaViewModel()
+    @StateObject private var vm = ViewModel()
     
     var columns: [GridItem] = [
         GridItem(.adaptive(minimum: 150))

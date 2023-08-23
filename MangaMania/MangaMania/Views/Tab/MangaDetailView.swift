@@ -16,7 +16,7 @@ struct MangaDetailView: View {
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
     
-    @StateObject private var vm = MangaDetailViewModel()
+    @StateObject private var vm = ViewModel()
     
     let detailUrl: String
     let tab: Tab
