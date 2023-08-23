@@ -10,7 +10,7 @@ extension MangaDetailView {
     
     @MainActor class ViewModel: ObservableObject {
         
-        let mangaManager = MangaManager()
+        let mangaManager = MangaManager.shared
         private var detailUrl = ""
         
         @Published private(set) var mangaDetail: MangaDetail?

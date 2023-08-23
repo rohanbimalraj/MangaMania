@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopMangasView: View {
     
-    @EnvironmentObject private var mangaManager: MangaManager
+
     @EnvironmentObject private var topMangaRouter: TopMangasRouter
     @State private var topMangas: [Manga] = []
     @StateObject private var vm = ViewModel()
@@ -79,7 +79,6 @@ struct TopMangasView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             TopMangasView()
-                .environmentObject(MangaManager())
         }
     }
 }

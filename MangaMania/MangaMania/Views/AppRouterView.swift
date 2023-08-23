@@ -10,7 +10,6 @@ import SwiftUI
 struct AppRouterView: View {
     
     @StateObject private var appRouter = AppRouter()
-    @StateObject private var mangaManager = MangaManager()
     @StateObject private var authenticationManager = AuthenticationManager()
     
     var body: some View {
@@ -21,7 +20,6 @@ struct AppRouterView: View {
                 .transition(.slide)
                 .environmentObject(appRouter)
                 .environmentObject(authenticationManager)
-                .environmentObject(mangaManager)
                 
             }else {
                 NavigationStack(path: $appRouter.path) {

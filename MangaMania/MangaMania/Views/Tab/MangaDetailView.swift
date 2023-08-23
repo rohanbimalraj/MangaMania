@@ -11,7 +11,6 @@ import ExpandableText
 
 struct MangaDetailView: View {
     
-    @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
@@ -218,7 +217,6 @@ struct MangaDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             MangaDetailView(detailUrl: "", tab: .topMangas)
-                .environmentObject(MangaManager())
         }
     }
 }

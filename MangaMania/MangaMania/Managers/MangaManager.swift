@@ -35,9 +35,11 @@ struct MangaDetail {
     
 }
 
-final class MangaManager: ObservableObject{
+final class MangaManager {
     
     private let baseUrl = "https://m.manganelo.com"
+    
+    static let shared = MangaManager()
     
     let chapterRequestModifier = AnyModifier { request in
         var r = request
@@ -49,6 +51,7 @@ final class MangaManager: ObservableObject{
         return r
     }
     
+    private init() {}
         
     func getTopMangas(in page: Int) async throws -> [Manga] {
         

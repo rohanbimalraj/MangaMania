@@ -11,7 +11,7 @@ extension MangaSearchView {
     
     @MainActor class ViewModel: ObservableObject {
         
-        private let mangaManager = MangaManager()
+        private let mangaManager = MangaManager.shared
         private var cancellable = Set<AnyCancellable>()
         
         @Published var searchText = ""

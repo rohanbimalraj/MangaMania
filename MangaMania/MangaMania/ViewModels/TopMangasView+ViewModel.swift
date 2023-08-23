@@ -17,7 +17,7 @@ extension TopMangasView {
         private var page = 1
         private let maxPageLimit = 5
         
-        private let mangaManager = MangaManager()
+        private let mangaManager = MangaManager.shared
         
         func getTopMangas() {
             guard page <= 5 && state == .idle else { return }

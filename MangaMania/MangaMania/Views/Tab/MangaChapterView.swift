@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MangaChapterView: View {
         
-    @EnvironmentObject private var mangaManager: MangaManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
@@ -24,7 +23,7 @@ struct MangaChapterView: View {
         ScrollView {
             ForEach(pageUrls, id: \.self) { url in
                 KFImage(URL(string: url))
-                    .requestModifier(mangaManager.chapterRequestModifier)
+                    .requestModifier(MangaManager.shared.chapterRequestModifier)
                     .resizable()
                     .placeholder({ _ in
                         ProgressView()
@@ -37,7 +36,7 @@ struct MangaChapterView: View {
         .onAppear{
             isTabBarVisible.wrappedValue = false
             Task {
-                pageUrls = try await mangaManager.getMangaChapterPages(from: chapterlUrl)
+                pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
             }
         }
         .onDisappear{
@@ -70,6 +69,5 @@ struct MangaChapterView: View {
 struct MangaChapterView_Previews: PreviewProvider {
     static var previews: some View {
         MangaChapterView(chapterlUrl: "", tab: .topMangas)
-            .environmentObject(MangaManager())
     }
 }
