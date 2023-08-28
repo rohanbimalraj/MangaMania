@@ -25,10 +25,20 @@ struct AppRouterView: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                vm.showSplash = false
+                vm.checkForUpdate()
             }
         }
         .animation(.easeInOut(duration: 0.5), value: vm.showSplash)
+        .alert("Update Available", isPresented: $vm.showUpdateAlert) {
+            Button {
+                UIApplication.shared.openAppStore()
+                
+            }label: {
+                Text("Update")
+            }
+        }message: {
+            Text("A new version of Manga Mania is available. Please update to latest version now.")
+        }
     }
 }
 
