@@ -39,6 +39,9 @@
 		C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */; };
 		C94CD46C2A9BB79200B92A08 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */; };
 		C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */; };
+		C969C5112A9C804E0092B41C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */; };
+		C969C5132A9C82000092B41C /* RCKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5122A9C82000092B41C /* RCKey.swift */; };
+		C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */; };
 		C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97092FF2A927E02005504FD /* PinchToZoomView.swift */; };
 		C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */; };
 		C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */; };
@@ -104,6 +107,9 @@
 		C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		C969C5122A9C82000092B41C /* RCKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCKey.swift; sourceTree = "<group>"; };
+		C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		C97092FF2A927E02005504FD /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
 		C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 			children = (
 				C98A354D2A6020EA00A5BFF0 /* Info.plist */,
 				C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */,
+				C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */,
 				C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */,
 				C98A354F2A60281A00A5BFF0 /* Views */,
 				C9A4DC212A8CD88900A71270 /* Models */,
@@ -306,6 +313,7 @@
 				C9A4DC252A8CDA7800A71270 /* DataControllers.swift */,
 				C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */,
 				C97092FF2A927E02005504FD /* PinchToZoomView.swift */,
+				C969C5122A9C82000092B41C /* RCKey.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -347,6 +355,7 @@
 			children = (
 				C9B8202F2A63F56100658CCD /* AuthenticationManager.swift */,
 				C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */,
+				C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -439,6 +448,7 @@
 				C98A353E2A6020CD00A5BFF0 /* Montserrat-ExtraLight.ttf in Resources */,
 				C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */,
 				C98A35482A6020CD00A5BFF0 /* Montserrat-BoldItalic.ttf in Resources */,
+				C969C5112A9C804E0092B41C /* RemoteConfigDefaults.plist in Resources */,
 				C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */,
 				C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */,
 				C98A35412A6020CD00A5BFF0 /* Montserrat-Medium.ttf in Resources */,
@@ -465,6 +475,7 @@
 				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
 				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
+				C969C5132A9C82000092B41C /* RCKey.swift in Sources */,
 				C91AFAD82A8E248100307CFE /* MyMangaView+ViewModel.swift in Sources */,
 				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
@@ -488,6 +499,7 @@
 				C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */,
 				C9ACFDCA2A8F832A00AA1005 /* TopMangasView+ViewModel.swift in Sources */,
 				C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */,
+				C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */,
 				C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */,
 				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,
 				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,

@@ -37,7 +37,7 @@ struct MangaDetail {
 
 final class MangaManager {
     
-    private let baseUrl = "https://m.manganelo.com"
+    private let baseUrl = RemoteConfigManager.value(forKey: RCKey.baseUrl)//"https://m.manganelo.com"
     
     static let shared = MangaManager()
     
@@ -58,13 +58,13 @@ final class MangaManager {
         guard var url = URL(string: baseUrl) else {
             throw AppErrors.internalError
         }
-        url.append(path: "genre-all")
+        url.append(path: RemoteConfigManager.value(forKey: RCKey.topMangaPathComponent))
         if page != 1 {
             url.append(path: String(page))
         }
         url.append(queryItems:
                     [
-                        URLQueryItem(name: "type", value: "topview")
+                        URLQueryItem(name: RemoteConfigManager.value(forKey: RCKey.topMangaParamKey), value: RemoteConfigManager.value(forKey: RCKey.topMangaParamValue))
                     ]
         )
         
@@ -183,8 +183,8 @@ final class MangaManager {
             throw AppErrors.internalError
         }
         
-        url.append(path: "search")
-        url.append(path: "story")
+        url.append(path: RemoteConfigManager.value(forKey: RCKey.searchMangaFirstPathComponent))
+        url.append(path: RemoteConfigManager.value(forKey: RCKey.searchMangaSecondPathComponent))
         url.append(path: title.lowercased().replacingOccurrences(of: " ", with: "_"))
         
         do {
