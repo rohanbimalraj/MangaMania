@@ -8,10 +8,10 @@
 import SwiftUI
 
 enum Tab: String, CaseIterable {
-    case topMangas = "flame"
+    
     case myMangas = "bookmark"
+    case topMangas = "flame"
     case searchMangas = "magnifyingglass.circle"
-    case settings = "gearshape"
 }
 
 struct TabBarView: View {
@@ -29,7 +29,7 @@ struct TabBarView: View {
                     Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
                         .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
                         .foregroundColor(.themeFour)
-                        .font(.system(size: 22))
+                        .font(.system(size: 25))
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.1)) {
                                 selectedTab = tab

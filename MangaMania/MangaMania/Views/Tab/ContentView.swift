@@ -63,16 +63,6 @@ struct ContentView: View {
                     }
                     .tag(Tab.searchMangas)
                     
-                    NavigationStack(path: $settingsRouter.router.path) {
-                        settingsRouter.router.build(page: .settings)
-                            .navigationDestination(for: Page.self) { page in
-                                settingsRouter.router.build(page: page)
-                            }
-                            .fullScreenCover(item: $settingsRouter.router.fullScrrenCover) { fullScreenCover in
-                                settingsRouter.router.build(fullScreenCover: fullScreenCover)
-                            }
-                    }
-                    .tag(Tab.settings)
                 }
             }
             

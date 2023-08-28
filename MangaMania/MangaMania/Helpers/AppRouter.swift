@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 enum Page: Hashable, Identifiable {
-    case login, settings, content, topMangas, myMangas, searchManga
+    case login, content, topMangas, myMangas, searchManga
     case mangaDetail(url: String, from: Tab)
     case mangaChapter(url: String, from: Tab)
     
@@ -58,9 +58,6 @@ class AppRouter: ObservableObject {
                         
         case .login:
             LoginView()
-            
-        case .settings:
-            SettingsView()
             
         case .content:
             ContentView()

@@ -129,8 +129,7 @@ struct MangaDetailView: View {
                                                 searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
                                             case .myMangas:
                                                 myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                            default:
-                                                break
+
                                             }
 
                                         }label: {
@@ -160,15 +159,7 @@ struct MangaDetailView: View {
                 .transition(.opacity)
 
             }else {
-                LottieView()
-                    .frame(width: 200, height: 200)
-                    .padding(.bottom, 90)
-                    .overlay(alignment: .bottom) {
-                        Text("Loading...")
-                            .font(.custom(.black, size: 16))
-                            .foregroundColor(.themeFour)
-                            .padding(.bottom, 100)
-                    }
+                CustomLoaderView()
             }
             
         }
@@ -194,9 +185,7 @@ struct MangaDetailView: View {
                         searchMangaRouter.router.pop()
                     case .myMangas:
                         myMangaMangaRouter.router.pop()
-                        
-                    default:
-                        break
+
                     }
                 }label: {
                     Image(systemName: "arrowshape.left.fill")

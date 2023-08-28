@@ -20,6 +20,7 @@ struct SearchBarView: View {
                 .font(.custom(.semiBold, size: 15))
             )
             .foregroundColor(.themeFour)
+            .tint(.themeFour)
             .font(.custom(.regular, size: 15))
             .overlay(alignment: .trailing) {
                 Image(systemName: "xmark.circle.fill")

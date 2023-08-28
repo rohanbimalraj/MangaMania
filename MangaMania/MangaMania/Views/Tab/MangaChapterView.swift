@@ -54,8 +54,7 @@ struct MangaChapterView: View {
                         searchMangaRouter.router.pop()
                     case .myMangas:
                         myMangaMangaRouter.router.pop()
-                    default:
-                        break
+                        
                     }
                 }label: {
                     Image(systemName: "arrowshape.left.fill")

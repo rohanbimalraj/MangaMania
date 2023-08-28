@@ -21,45 +21,60 @@ struct MangaSearchView: View {
                 .ignoresSafeArea()
             VStack {
                 SearchBarView(searchText: $vm.searchText)
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(vm.mangas) { manga in
-                            
-                            Button {
+                switch vm.loadingState {
+                case .idle:
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(vm.mangas) { manga in
                                 
-                                searchMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? "", from: .searchMangas))
-                                
-                            }label: {
-                                KFImage(URL(string: manga.coverUrl ?? ""))
-                                    .resizable()
-                                    .fade(duration: 0.5)
-                                    .placeholder({
-                                        Image("book-cover-placeholder")
-                                            .resizable()
-                                    })
-                                    .overlay {
-                                        LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top)
-                                        VStack {
-                                            Spacer()
-                                            Text(manga.title ?? "")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.medium, size: 17))
-                                                .padding([.horizontal, .bottom])
+                                Button {
+                                    
+                                    searchMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? "", from: .searchMangas))
+                                    
+                                }label: {
+                                    KFImage(URL(string: manga.coverUrl ?? ""))
+                                        .resizable()
+                                        .fade(duration: 0.5)
+                                        .placeholder({
+                                            Image("book-cover-placeholder")
+                                                .resizable()
+                                        })
+                                        .overlay {
+                                            LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top)
+                                            VStack {
+                                                Spacer()
+                                                Text(manga.title ?? "")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.medium, size: 17))
+                                                    .padding([.horizontal, .bottom])
+                                            }
                                         }
-                                    }
-                                    .frame(height: 250)
-                                    .cornerRadius(10)
-                                    .padding(.horizontal, 20)
-                                    .padding(.top, 20)
-                                
+                                        .frame(height: 250)
+                                        .cornerRadius(10)
+                                        .padding(.horizontal, 20)
+                                        .padding(.top, 20)
+                                    
+                                }
                             }
                         }
                     }
+                    .padding(.bottom, 90)
+                    .clipped()
+                    .transition(.opacity)
+                    
+                case .loading:
+                    CustomLoaderView(bottomPadding: 0)
+                        .transition(.opacity)
+                case .error(let message):
+                    Text(message)
+                        .foregroundColor(.themeFour)
+                        .font(.custom(.bold, size: 25))
+                        .transition(.opacity)
                 }
-                .padding(.bottom, 90)
-                .clipped()
+                Spacer()
             }
         }
+        .animation(.easeInOut(duration: 0.5), value: vm.loadingState)
         .navigationTitle("Search Manga")
         .ignoresSafeArea(.keyboard)
     }
