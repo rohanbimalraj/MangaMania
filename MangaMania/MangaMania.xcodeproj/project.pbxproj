@@ -38,6 +38,7 @@
 		C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */; };
 		C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */; };
 		C94CD46C2A9BB79200B92A08 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */; };
+		C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */; };
 		C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97092FF2A927E02005504FD /* PinchToZoomView.swift */; };
 		C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */; };
 		C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */; };
@@ -149,6 +150,7 @@
 				C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */,
 				C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */,
 				C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */,
+				C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +177,7 @@
 			children = (
 				C91DFEEA2A5ED45E00FC657A /* MangaMania */,
 				C91DFEE92A5ED45E00FC657A /* Products */,
+				C969C50D2A9C49F60092B41C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,6 +241,13 @@
 				C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C969C50D2A9C49F60092B41C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C98A35282A6020A900A5BFF0 /* Fonts */ = {
@@ -365,6 +375,7 @@
 				C93850ED2A738F8000B62507 /* Kingfisher */,
 				C93112E72A8685D9004FBB80 /* ExpandableText */,
 				C9242B562A889A46008613B7 /* Lottie */,
+				C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */,
 			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
@@ -749,6 +760,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 		C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
