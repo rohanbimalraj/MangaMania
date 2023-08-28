@@ -31,7 +31,7 @@ struct SplashScreenView: View {
             }
             VStack {
                 Spacer()
-                Text("v1.0.0")
+                Text("v\(Bundle.appVersionBundle)")
                     .foregroundColor(.themeFour)
                     .font(.custom(.black, size: 17))
             }

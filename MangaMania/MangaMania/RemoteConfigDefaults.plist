@@ -14,5 +14,11 @@
 	<string>search</string>
 	<key>search_manga_pc_2</key>
 	<string>story</string>
+	<key>force_update_current_version</key>
+	<string>1.0.0(1)</string>
+	<key>force_update_store_url</key>
+	<string>https://www.apple.com/app-store/</string>
+	<key>is_force_update_required</key>
+	<string>false</string>
 </dict>
 </plist>

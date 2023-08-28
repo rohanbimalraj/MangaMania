@@ -37,7 +37,7 @@ struct MangaDetail {
 
 final class MangaManager {
     
-    private let baseUrl = RemoteConfigManager.value(forKey: RCKey.baseUrl)//"https://m.manganelo.com"
+    private let baseUrl = RemoteConfigManager.value(forKey: RCKey.BASE_URL)
     
     static let shared = MangaManager()
     
@@ -58,13 +58,13 @@ final class MangaManager {
         guard var url = URL(string: baseUrl) else {
             throw AppErrors.internalError
         }
-        url.append(path: RemoteConfigManager.value(forKey: RCKey.topMangaPathComponent))
+        url.append(path: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PC))
         if page != 1 {
             url.append(path: String(page))
         }
         url.append(queryItems:
                     [
-                        URLQueryItem(name: RemoteConfigManager.value(forKey: RCKey.topMangaParamKey), value: RemoteConfigManager.value(forKey: RCKey.topMangaParamValue))
+                        URLQueryItem(name: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_KEY), value: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_VALUE))
                     ]
         )
         
@@ -183,8 +183,8 @@ final class MangaManager {
             throw AppErrors.internalError
         }
         
-        url.append(path: RemoteConfigManager.value(forKey: RCKey.searchMangaFirstPathComponent))
-        url.append(path: RemoteConfigManager.value(forKey: RCKey.searchMangaSecondPathComponent))
+        url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_ONE))
+        url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_TWO))
         url.append(path: title.lowercased().replacingOccurrences(of: " ", with: "_"))
         
         do {

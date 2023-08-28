@@ -63,6 +63,9 @@
 		C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */; };
 		C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35512A6029A400A5BFF0 /* CustomFonts.swift */; };
 		C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35532A602D7900A5BFF0 /* Font+Extension.swift */; };
+		C997BBB72A9CC76E00AB431B /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */; };
+		C997BBB92A9CCB2A00AB431B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBB82A9CCB2A00AB431B /* String+Extension.swift */; };
+		C997BBBD2A9CD81200AB431B /* AppRouterView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBBC2A9CD81200AB431B /* AppRouterView+ViewModel.swift */; };
 		C9A4DC1F2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC1E2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift */; };
 		C9A4DC242A8CD8BC00A71270 /* MangaMania.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC222A8CD8BC00A71270 /* MangaMania.xcdatamodeld */; };
 		C9A4DC262A8CDA7800A71270 /* DataControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC252A8CDA7800A71270 /* DataControllers.swift */; };
@@ -132,6 +135,9 @@
 		C98A354D2A6020EA00A5BFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C98A35512A6029A400A5BFF0 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		C98A35532A602D7900A5BFF0 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		C997BBB82A9CCB2A00AB431B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C997BBBC2A9CD81200AB431B /* AppRouterView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppRouterView+ViewModel.swift"; sourceTree = "<group>"; };
 		C9A4DC1E2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaSearchView+ViewModel.swift"; sourceTree = "<group>"; };
 		C9A4DC232A8CD8BC00A71270 /* MangaMania.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MangaMania.xcdatamodel; sourceTree = "<group>"; };
 		C9A4DC252A8CDA7800A71270 /* DataControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllers.swift; sourceTree = "<group>"; };
@@ -288,6 +294,8 @@
 				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
 				C98A35532A602D7900A5BFF0 /* Font+Extension.swift */,
 				C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */,
+				C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */,
+				C997BBB82A9CCB2A00AB431B /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +354,7 @@
 				C9A4DC272A8CF3D300A71270 /* MangaDetailView+ViewModel.swift */,
 				C91AFAD72A8E248100307CFE /* MyMangaView+ViewModel.swift */,
 				C9ACFDC92A8F832A00AA1005 /* TopMangasView+ViewModel.swift */,
+				C997BBBC2A9CD81200AB431B /* AppRouterView+ViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -476,6 +485,7 @@
 				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
 				C9B820302A63F56100658CCD /* AuthenticationManager.swift in Sources */,
 				C969C5132A9C82000092B41C /* RCKey.swift in Sources */,
+				C997BBB92A9CCB2A00AB431B /* String+Extension.swift in Sources */,
 				C91AFAD82A8E248100307CFE /* MyMangaView+ViewModel.swift in Sources */,
 				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
@@ -484,6 +494,7 @@
 				C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */,
 				C93112E52A86798C004FBB80 /* RatingView.swift in Sources */,
 				C90712522A6D4F1A00AC98E0 /* SettingsView.swift in Sources */,
+				C997BBB72A9CC76E00AB431B /* Bundle+Extension.swift in Sources */,
 				C927AF252A67E71F00F19DE3 /* LoginView.swift in Sources */,
 				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
 				C9164E142A6A904F00DDA9BA /* LoginViewModel.swift in Sources */,
@@ -504,6 +515,7 @@
 				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,
 				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
 				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
+				C997BBBD2A9CD81200AB431B /* AppRouterView+ViewModel.swift in Sources */,
 				C9A4DC262A8CDA7800A71270 /* DataControllers.swift in Sources */,
 				C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */,
 			);
@@ -647,7 +659,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -677,7 +689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

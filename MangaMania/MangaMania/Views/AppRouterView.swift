@@ -9,35 +9,26 @@ import SwiftUI
 
 struct AppRouterView: View {
     
-    @StateObject private var appRouter = AppRouter()
-    @StateObject private var authenticationManager = AuthenticationManager()
+    //@StateObject private var appRouter = AppRouter()
+    //@StateObject private var authenticationManager = AuthenticationManager()
+    @StateObject private var vm = ViewModel()
     
     var body: some View {
         ZStack {
-            if authenticationManager.isUserLoggedIn {
-                
-                ContentView()
-                .transition(.slide)
-                .environmentObject(appRouter)
-                .environmentObject(authenticationManager)
+            if vm.showSplash {
+                SplashScreenView()
                 
             }else {
-                NavigationStack(path: $appRouter.path) {
-                    appRouter.build(page: .login)
-                        .navigationDestination(for: Page.self) { page in
-                            appRouter.build(page: page)
-                        }
-                        .fullScreenCover(item: $appRouter.fullScrrenCover) { fullScreenCover in
-                            appRouter.build(fullScreenCover: fullScreenCover)
-                        }
-                        .environmentObject(appRouter)
-                        .environmentObject(authenticationManager)
-                }
-                .transition(.slide)
-
+                ContentView()
+                    .transition(.opacity)
             }
         }
-        .animation(.easeInOut, value: authenticationManager.isUserLoggedIn)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                vm.showSplash = false
+            }
+        }
+        .animation(.easeInOut(duration: 0.5), value: vm.showSplash)
     }
 }
 

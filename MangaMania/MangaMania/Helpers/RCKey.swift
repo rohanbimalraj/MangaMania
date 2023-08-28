@@ -9,12 +9,16 @@ import Foundation
 
 struct RCKey {
     
-    static let baseUrl = "base_url"
+    static let BASE_URL = "base_url"
     
-    static let topMangaPathComponent = "top_manga_pc"
-    static let topMangaParamKey = "top_manga_param_key"
-    static let topMangaParamValue = "top_manga_param_value"
+    static let TOP_MANGA_PC = "top_manga_pc"
+    static let TOP_MANGA_PARAM_KEY = "top_manga_param_key"
+    static let TOP_MANGA_PARAM_VALUE = "top_manga_param_value"
     
-    static let searchMangaFirstPathComponent = "search_manga_pc_1"
-    static let searchMangaSecondPathComponent = "search_manga_pc_2"
+    static let SEARCH_MANGA_PC_ONE = "search_manga_pc_1"
+    static let SEARCH_MANGA_PC_TWO = "search_manga_pc_2"
+    
+    static let FORCE_UPDATE_STORE_URL = "force_update_store_url"
+    static let FORCE_UPDATE_CURRENT_VERSION = "force_update_current_version"
+    static let IS_FORCE_UPDATE_REQUIRED = "is_force_update_required"
 }
