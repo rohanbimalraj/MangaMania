@@ -28,6 +28,7 @@ extension MangaSearchView {
                 .debounce(for: 1.0, scheduler: RunLoop.main)
                 .sink {
                     guard !$0.isEmpty else {
+                        self.previousSearchText = ""
                         self.loadingState = .idle
                         self.mangas = []
                         return

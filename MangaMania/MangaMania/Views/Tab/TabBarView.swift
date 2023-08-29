@@ -31,6 +31,8 @@ struct TabBarView: View {
                         .foregroundColor(.themeFour)
                         .font(.system(size: 25))
                         .onTapGesture {
+                            let generator = UISelectionFeedbackGenerator()
+                            generator.selectionChanged()
                             withAnimation(.easeInOut(duration: 0.1)) {
                                 selectedTab = tab
                             }
