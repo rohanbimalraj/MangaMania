@@ -28,6 +28,7 @@ struct TabBarView: View {
                     Spacer()
                     Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
                         .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
+                        .offset(y: selectedTab == tab ? -5 : 0)
                         .foregroundColor(.themeFour)
                         .font(.system(size: 25))
                         .onTapGesture {
