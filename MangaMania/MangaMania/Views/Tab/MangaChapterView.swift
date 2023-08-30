@@ -20,48 +20,54 @@ struct MangaChapterView: View {
     let tab: Tab
     
     var body: some View {
-        ScrollView {
-            ForEach(pageUrls, id: \.self) { url in
-                KFImage(URL(string: url))
-                    .requestModifier(MangaManager.shared.chapterRequestModifier)
-                    .resizable()
-                    .placeholder({ _ in
-                        ProgressView()
-                    })
-                    .scaledToFill()
-                    .padding(.bottom, 2)
-                    .pinchToZoom()
-            }
-        }
-        .onAppear{
-            isTabBarVisible.wrappedValue = false
-            Task {
-                pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
-            }
-        }
-        .onDisappear{
-            isTabBarVisible.wrappedValue = true
-        }
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    switch tab {
-                    case .topMangas:
-                        topMangasRouter.router.pop()
-                        
-                    case .searchMangas:
-                        searchMangaRouter.router.pop()
-                    case .myMangas:
-                        myMangaMangaRouter.router.pop()
-                        
-                    }
-                }label: {
-                    Image(systemName: "arrowshape.left.fill")
-                        .foregroundColor(.themeThree)
+        
+        ZStack {
+            
+            ScrollView {
+                ForEach(pageUrls, id: \.self) { url in
+                    KFImage(URL(string: url))
+                        .requestModifier(MangaManager.shared.chapterRequestModifier)
+                        .resizable()
+                        .placeholder({ _ in
+                            ProgressView()
+                        })
+                        .scaledToFill()
+                        .padding(.bottom, 2)
+                        .pinchToZoom()
                 }
             }
+            .onAppear{
+                isTabBarVisible.wrappedValue = false
+                Task {
+                    pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
+                }
+            }
+            .onDisappear{
+                isTabBarVisible.wrappedValue = true
+            }
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        switch tab {
+                        case .topMangas:
+                            topMangasRouter.router.pop()
+                            
+                        case .searchMangas:
+                            searchMangaRouter.router.pop()
+                        case .myMangas:
+                            myMangaMangaRouter.router.pop()
+                            
+                        }
+                    }label: {
+                        Image(systemName: "arrowshape.left.fill")
+                            .foregroundColor(.themeThree)
+                    }
+                }
+            }
+            
         }
+        .background(.black)
     }
 }
 
