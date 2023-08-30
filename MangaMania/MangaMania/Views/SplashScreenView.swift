@@ -34,6 +34,7 @@ struct SplashScreenView: View {
                 Text("v\(Bundle.appVersionBundle)")
                     .foregroundColor(.themeFour)
                     .font(.custom(.black, size: 17))
+                    .padding(.bottom)
             }
         }
         .animation(.easeInOut(duration: 1), value: showLogo)

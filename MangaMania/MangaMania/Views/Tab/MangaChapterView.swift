@@ -36,6 +36,7 @@ struct MangaChapterView: View {
                         .pinchToZoom()
                 }
             }
+            .clipped()
             .onAppear{
                 isTabBarVisible.wrappedValue = false
                 Task {
@@ -45,6 +46,7 @@ struct MangaChapterView: View {
             .onDisappear{
                 isTabBarVisible.wrappedValue = true
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -65,7 +67,7 @@ struct MangaChapterView: View {
                     }
                 }
             }
-            
+            .preferredColorScheme(.dark)
         }
         .background(.black)
     }
