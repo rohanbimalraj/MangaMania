@@ -35,9 +35,7 @@ struct ContentView: View {
                             .navigationDestination(for: Page.self) { page in
                                 topMangaRouter.router.build(page: page)
                             }
-                            .fullScreenCover(item: $topMangaRouter.router.fullScrrenCover) { fullScreenCover in
-                                topMangaRouter.router.build(fullScreenCover: fullScreenCover)
-                            }
+
                     }
                     .tag(Tab.topMangas)
                     
@@ -46,9 +44,7 @@ struct ContentView: View {
                             .navigationDestination(for: Page.self) { page in
                                 myMangasRouter.router.build(page: page)
                             }
-                            .fullScreenCover(item: $myMangasRouter.router.fullScrrenCover) { fullScreenCover in
-                                myMangasRouter.router.build(fullScreenCover: fullScreenCover)
-                            }
+
                     }
                     .tag(Tab.myMangas)
                     
@@ -56,9 +52,6 @@ struct ContentView: View {
                         searchMangaRouter.router.build(page: .searchManga)
                             .navigationDestination(for: Page.self) { page in
                                 searchMangaRouter.router.build(page: page)
-                            }
-                            .fullScreenCover(item: $searchMangaRouter.router.fullScrrenCover) { fullScreenCover in
-                                searchMangaRouter.router.build(fullScreenCover: fullScreenCover)
                             }
                     }
                     .tag(Tab.searchMangas)

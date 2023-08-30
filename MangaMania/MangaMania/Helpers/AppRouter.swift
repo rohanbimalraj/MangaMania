@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 enum Page: Hashable, Identifiable {
-    case login, content, topMangas, myMangas, searchManga
+    case content, topMangas, myMangas, searchManga
     case mangaDetail(url: String, from: Tab)
     case mangaChapter(url: String, from: Tab)
     
@@ -18,26 +18,12 @@ enum Page: Hashable, Identifiable {
     }
 }
 
-enum FullScreenCover: Identifiable {
-    case createAccount, forgotPassword
-    
-    var id: Self {
-        return self
-    }
-    
-}
-
 class AppRouter: ObservableObject {
     
     @Published var path = NavigationPath()
-    @Published var fullScrrenCover: FullScreenCover?
     
     func push(_ page: Page) {
         path.append(page)
-    }
-    
-    func present(fullScreenCover: FullScreenCover) {
-        self.fullScrrenCover = fullScreenCover
     }
     
     func pop() {
@@ -48,17 +34,10 @@ class AppRouter: ObservableObject {
         path.removeLast(path.count)
     }
     
-    func dismissFullScreenCover() {
-        self.fullScrrenCover = nil
-    }
-    
     @ViewBuilder
     func build(page: Page) -> some View {
         switch page {
-                        
-        case .login:
-            LoginView()
-            
+                                    
         case .content:
             ContentView()
             
@@ -81,21 +60,6 @@ class AppRouter: ObservableObject {
         }
     }
     
-    @ViewBuilder
-    func build(fullScreenCover: FullScreenCover) -> some View {
-        switch fullScreenCover {
-            
-        case .createAccount:
-            NavigationStack {
-                CreateAccountView()
-            }
-            
-        case .forgotPassword:
-            NavigationStack {
-                ForgotPasswordView()
-            }
-        }
-    }
 }
 
 

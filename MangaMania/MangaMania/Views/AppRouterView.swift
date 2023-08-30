@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AppRouterView: View {
     
-    //@StateObject private var appRouter = AppRouter()
-    //@StateObject private var authenticationManager = AuthenticationManager()
     @StateObject private var vm = ViewModel()
     
     var body: some View {
