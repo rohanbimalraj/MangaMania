@@ -58,10 +58,12 @@ struct MyMangasView: View {
             }
             .scrollBounceBehavior(.basedOnSize)
             .padding(.bottom, 90)
+            .padding(.top, 1)
             .clipped()
         }
         .navigationTitle("My Mangas")
         .onAppear(perform: vm.getMyMangas)
+        .preferredColorScheme(.dark)
     }
 }
 

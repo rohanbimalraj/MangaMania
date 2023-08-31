@@ -44,6 +44,7 @@ struct SplashScreenView: View {
                 startAnimation.toggle()
             }
         }
+        .preferredColorScheme(.dark)
     }
 }
 

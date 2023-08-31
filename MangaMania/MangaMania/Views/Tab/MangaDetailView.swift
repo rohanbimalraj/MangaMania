@@ -75,7 +75,7 @@ struct MangaDetailView: View {
                                     
                                     HStack(alignment: .top) {
                                         RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
-                                        Spacer()
+                                        
                                         VStack {
                                             Image(systemName: vm.isAddedToLib ? "bookmark.fill" : "bookmark")
                                                 .foregroundColor(.themeFour)
@@ -83,7 +83,7 @@ struct MangaDetailView: View {
                                                 .onTapGesture {
                                                     vm.showldSave ? vm.saveToLib() : vm.deleteFromLib()
                                                 }
-                                            Text(vm.isAddedToLib ? "Remove from\n library" : "Save to library")
+                                            Text(vm.isAddedToLib ? "Delete from\nlibrary" : "Save to\nlibrary")
                                                 .foregroundColor(.themeFour)
                                                 .font(.custom(.semiBold, size: 10))
                                                 .multilineTextAlignment(.center)
@@ -199,6 +199,7 @@ struct MangaDetailView: View {
         }message: {
             Text(vm.message)
         }
+        .preferredColorScheme(.dark)
     }
 }
 

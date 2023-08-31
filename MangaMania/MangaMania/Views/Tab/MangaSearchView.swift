@@ -59,6 +59,7 @@ struct MangaSearchView: View {
                         }
                     }
                     .padding(.bottom, 90)
+                    .padding(.top, 1)
                     .clipped()
                     .transition(.opacity)
                     
@@ -77,6 +78,7 @@ struct MangaSearchView: View {
         .animation(.easeInOut(duration: 0.5), value: vm.loadingState)
         .navigationTitle("Search Manga")
         .ignoresSafeArea(.keyboard)
+        .preferredColorScheme(.dark)
     }
 }
 
