@@ -61,7 +61,7 @@ struct MyMangasView: View {
             .padding(.top, 1)
             .clipped()
         }
-        .navigationTitle("My Mangas")
+        .navigationTitle("My Manga")
         .onAppear(perform: vm.getMyMangas)
         .preferredColorScheme(.dark)
     }

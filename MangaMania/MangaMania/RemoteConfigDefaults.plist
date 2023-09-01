@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>base_url</key>
-	<string>https://m.manganelo.com</string>
+	<string>&quot;&quot;</string>
 	<key>top_manga_pc</key>
 	<string>genre-all</string>
 	<key>top_manga_param_key</key>
@@ -20,5 +20,7 @@
 	<string>https://www.apple.com/app-store/</string>
 	<key>is_force_update_required</key>
 	<string>false</string>
+	<key>read_feature_version</key>
+	<string>1.0.0(1)</string>
 </dict>
 </plist>

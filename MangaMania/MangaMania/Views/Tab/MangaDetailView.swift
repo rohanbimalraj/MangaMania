@@ -121,27 +121,33 @@ struct MangaDetailView: View {
                                     .font(.custom(.bold, size: 20))
                                 List {
                                     ForEach(vm.mangaDetail?.chapters ?? []) { chapter in
-                                        Button {
-                                            switch tab {
-                                            case .topMangas:
-                                                topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                            case .searchMangas:
-                                                searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                            case .myMangas:
-                                                myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                        if vm.isReadFeatureEnabled {
+                                            Button {
+                                                switch tab {
+                                                case .topMangas:
+                                                    topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                case .searchMangas:
+                                                    searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                case .myMangas:
+                                                    myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
 
-                                            }
+                                                }
 
-                                        }label: {
-                                            HStack {
-                                                Text(chapter.chapTitle ?? "")
-                                                    .foregroundColor(.themeFour)
-                                                    .font(.custom(.semiBold, size: 13))
-                                                Spacer()
-                                                
-                                                Image(systemName: "chevron.right")
-                                                    .foregroundColor(.themeFour)
+                                            }label: {
+                                                HStack {
+                                                    Text(chapter.chapTitle ?? "")
+                                                        .foregroundColor(.themeFour)
+                                                        .font(.custom(.semiBold, size: 13))
+                                                    Spacer()
+                                                    
+                                                    Image(systemName: "chevron.right")
+                                                        .foregroundColor(.themeFour)
+                                                }
                                             }
+                                        }else {
+                                            Text(chapter.chapTitle ?? "")
+                                                .foregroundColor(.themeFour)
+                                                .font(.custom(.semiBold, size: 13))
                                         }
                                     }
                                     .listRowSeparatorTint(.themeTwo)

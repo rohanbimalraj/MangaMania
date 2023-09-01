@@ -72,7 +72,7 @@ struct TopMangasView: View {
             .padding(.top, 1)
             .clipped()
         }
-        .navigationTitle("Top Mangas")
+        .navigationTitle("Top Manga")
         .preferredColorScheme(.dark)
     }
 }

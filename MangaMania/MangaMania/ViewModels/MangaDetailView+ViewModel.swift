@@ -16,6 +16,13 @@ extension MangaDetailView {
         @Published private(set) var mangaDetail: MangaDetail?
         @Published private(set) var isAddedToLib = false
         @Published var showAlert = false
+        
+        var isReadFeatureEnabled: Bool = {
+            let currentVersion = "\(Bundle.appVersionBundle)(\(Bundle.appBuildBundle))"
+            let readFeatureVersion = RemoteConfigManager.value(forKey: RCKey.READ_FEATURE_VERSION)
+            return currentVersion == readFeatureVersion
+        }()
+        
         var message = ""
         
         var showDetails: Bool {
