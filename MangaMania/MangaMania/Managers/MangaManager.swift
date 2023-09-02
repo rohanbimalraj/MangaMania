@@ -53,27 +53,30 @@ final class MangaManager {
     
     private init() {}
         
-    func getTopMangas(in page: Int) async throws -> [Manga] {
+    func getTopMangas(in page: Int) async -> Result<[Manga], Error> {
         
-        guard var url = URL(string: baseUrl) else {
-            throw AppErrors.internalError
-        }
-        url.append(path: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PC))
-        if page != 1 {
-            url.append(path: String(page))
-        }
-        url.append(queryItems:
-                    [
-                        URLQueryItem(name: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_KEY), value: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_VALUE))
-                    ]
-        )
-        
-        do {
+        let fetchTask = Task { () -> [Manga] in
+            
+            guard var url = URL(string: baseUrl) else {
+                throw AppErrors.internalError
+            }
+            
+            url.append(path: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PC))
+            if page != 1 {
+                url.append(path: String(page))
+            }
+            
+            url.append(queryItems:
+                        [
+                            URLQueryItem(name: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_KEY), value: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_VALUE))
+                        ]
+            )
             
             let (data, _) = try await URLSession.shared.data(from: url)
             guard let html = String(data: data, encoding: .utf8) else {
                 throw AppErrors.internalError
             }
+            
             let doc: Document = try SwiftSoup.parse(html)
             
             let mangas = try doc.getElementsByClass("content-genres-item").select("> a")
@@ -88,18 +91,20 @@ final class MangaManager {
             
             return topMangas
             
-        }catch {
-            throw error
         }
+        
+        let result = await fetchTask.result
+        return result
     }
     
-    func getMangaDetail(from url: String) async throws -> MangaDetail {
+    func getMangaDetail(from url: String) async -> Result<MangaDetail, Error> {
         
-        guard let url = URL(string: url) else {
-            throw AppErrors.internalError
-        }
-        
-        do {
+        let fetchTask = Task { () -> MangaDetail in
+            
+            guard let url = URL(string: url) else {
+                throw AppErrors.internalError
+            }
+            
             let (data, _) = try await URLSession.shared.data(from: url)
             
             guard let html = String(data: data, encoding: .utf8) else {
@@ -144,10 +149,11 @@ final class MangaManager {
             
                         
             return MangaDetail(coverUrl: mangaCover, title: title, authors: authors, status: status, updatedDate: updatedDate, rating: getRequiredRating(from: rating), description: description, chapters: chapters)
-            
-        }catch {
-            throw error
         }
+        
+        let result = await fetchTask.result
+        return result
+        
     }
     
     func getMangaChapterPages(from url: String) async throws -> [String] {
@@ -177,17 +183,17 @@ final class MangaManager {
         }
     }
     
-    func getMangas(with title: String) async throws -> [Manga] {
+    func getMangas(with title: String) async -> Result<[Manga], Error> {
         
-        guard var url = URL(string: baseUrl) else {
-            throw AppErrors.internalError
-        }
-        
-        url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_ONE))
-        url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_TWO))
-        url.append(path: title.lowercased().replacingOccurrences(of: " ", with: "_"))
-        
-        do {
+        let fetchTask = Task { () -> [Manga] in
+            
+            guard var url = URL(string: baseUrl) else {
+                throw AppErrors.internalError
+            }
+            
+            url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_ONE))
+            url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_TWO))
+            url.append(path: title.lowercased().replacingOccurrences(of: " ", with: "_"))
             
             let (data, _) = try await URLSession.shared.data(from: url)
             guard let html = String(data: data, encoding: .utf8) else {
@@ -205,10 +211,10 @@ final class MangaManager {
                 mangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
             })
             return mangas
-            
-        }catch {
-            throw error
         }
+        let result = await fetchTask.result
+        return result
+        
     }
     
     private func getRequiredRating(from rating: String) -> Int? {

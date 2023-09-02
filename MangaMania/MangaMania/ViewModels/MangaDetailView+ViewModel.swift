@@ -10,20 +10,21 @@ extension MangaDetailView {
     
     @MainActor class ViewModel: ObservableObject {
         
-        let mangaManager = MangaManager.shared
-        private var detailUrl = ""
-        
         @Published private(set) var mangaDetail: MangaDetail?
         @Published private(set) var isAddedToLib = false
         @Published var showAlert = false
+        
+        let mangaManager = MangaManager.shared
+        
+        private var detailUrl = ""
+        private var loadingTask: Task<Void, Never>?
+        var message = ""
         
         var isReadFeatureEnabled: Bool = {
             let currentVersion = "\(Bundle.appVersionBundle)(\(Bundle.appBuildBundle))"
             let readFeatureVersion = RemoteConfigManager.value(forKey: RCKey.READ_FEATURE_VERSION)
             return currentVersion == readFeatureVersion
         }()
-        
-        var message = ""
         
         var showDetails: Bool {
             mangaDetail != nil
@@ -33,15 +34,26 @@ extension MangaDetailView {
             !DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
         }
         
+        deinit {
+            loadingTask?.cancel()
+        }
         
-        func getMangaDetail(from url: String) async throws {
+        func getMangaDetail(from url: String) {
             detailUrl = url
-            do {
-                mangaDetail = try await mangaManager.getMangaDetail(from: detailUrl)
-            }catch {
-                throw error
+
+            loadingTask = Task {
+                
+                let result = await mangaManager.getMangaDetail(from: detailUrl)
+                switch result {
+                    
+                case.success(let detail):
+                    mangaDetail = detail
+                    isAddedToLib = DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
-            isAddedToLib = DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
         }
         
         func saveToLib() {

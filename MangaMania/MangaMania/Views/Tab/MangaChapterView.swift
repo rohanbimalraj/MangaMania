@@ -28,6 +28,9 @@ struct MangaChapterView: View {
                     KFImage(URL(string: url))
                         .requestModifier(MangaManager.shared.chapterRequestModifier)
                         .resizable()
+                        .loadDiskFileSynchronously()
+                        .diskCacheExpiration(.expired)
+                        .memoryCacheExpiration(.expired)
                         .placeholder({ _ in
                             ProgressView()
                         })

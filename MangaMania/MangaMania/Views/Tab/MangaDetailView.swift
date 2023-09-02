@@ -31,6 +31,9 @@ struct MangaDetailView: View {
                             HStack(alignment: .top) {
                                 KFImage(URL(string: vm.mangaDetail?.coverUrl ?? ""))
                                     .resizable()
+                                    .loadDiskFileSynchronously()
+                                    .diskCacheExpiration(.expired)
+                                    .memoryCacheExpiration(.expired)
                                     .fade(duration: 0.5)
                                     .placeholder({
                                         Image("book-cover-placeholder")
@@ -170,14 +173,8 @@ struct MangaDetailView: View {
             
         }
         .onAppear{
-            Task {
-                do {
-                    try await vm.getMangaDetail(from: detailUrl)
-
-                }catch {
-                    print(error.localizedDescription)
-                }
-            }
+            
+            vm.getMangaDetail(from: detailUrl)
         }
         .navigationBarBackButtonHidden()
         .toolbar {

@@ -14,6 +14,7 @@ extension MangaSearchView {
         private let mangaManager = MangaManager.shared
         private var previousSearchText = ""
         private var cancellable = Set<AnyCancellable>()
+        private var loadingTask: Task<Void, Never>?
         
         @Published var searchText = ""
         @Published private(set) var mangas: [Manga] = []
@@ -21,6 +22,10 @@ extension MangaSearchView {
         
         init() {
             debounceSearchText()
+        }
+        
+        deinit {
+            loadingTask?.cancel()
         }
         
         private func debounceSearchText() {
@@ -43,16 +48,20 @@ extension MangaSearchView {
         }
         
         private func getMangas(with title: String) {
-            Task {
-                do {
-                    mangas = try await mangaManager.getMangas(with: title)
+            loadingTask = Task {
+                let result = await mangaManager.getMangas(with: title)
+                
+                switch result {
+                    
+                case .success(let mangaArray):
+                    mangas = mangaArray
                     guard mangas.isEmpty && !searchText.isEmpty else {
                         loadingState = .idle
                         return
                     }
                     loadingState = .error("No results found!!!!")
-
-                }catch {
+                    
+                case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
