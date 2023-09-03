@@ -1,10 +1,7 @@
 # MangaMania
 A free app made using SwiftUI for users who wish to read any manga of their choosing.
-![Splash Screen](Screenshots/splash.png)
 <img src="Screenshots/splash.png" width="300" alt="Splash Screen">
-![Top Manga Screen](Screenshots/topManga.png)
-![My Manga Screen](Screenshots/topManga.png)
-![My Manga Screen](Screenshots/myManga.png)
-![Search Manga Screen](Screenshots/searchManga.png)
-![Detail Manga Screen](Screenshots/detail.png)
-
+<img src="Screenshots/topManga.png" width="300" alt="Top Manga Screen">
+<img src="Screenshots/myManga.png" width="300" alt="My Manga Screen">
+<img src="Screenshots/searchManga.png" width="300" alt="Search Manga Screen">
+<img src="Screenshots/detail.png" width="300" alt="Detail Manga Screen">
