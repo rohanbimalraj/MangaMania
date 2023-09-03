@@ -1,0 +1,806 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C907124E2A6D4E9100AC98E0 /* ContentView.swift */; };
+		C90712512A6D4EC100AC98E0 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712502A6D4EC100AC98E0 /* TabBarView.swift */; };
+		C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */; };
+		C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */; };
+		C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90712572A6D500800AC98E0 /* MangaSearchView.swift */; };
+		C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */; };
+		C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */; };
+		C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D952A6905A400F8C30D /* AppRouter.swift */; };
+		C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A8D972A690A4900F8C30D /* AppRouterView.swift */; };
+		C91AFAD82A8E248100307CFE /* MyMangaView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91AFAD72A8E248100307CFE /* MyMangaView+ViewModel.swift */; };
+		C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */; };
+		C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */; };
+		C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */; };
+		C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */; };
+		C9242B572A889A46008613B7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9242B562A889A46008613B7 /* Lottie */; };
+		C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9242B592A889A72008613B7 /* LottieView.swift */; };
+		C9242B5C2A889ABC008613B7 /* flower.json in Resources */ = {isa = PBXBuildFile; fileRef = C9242B5B2A889ABC008613B7 /* flower.json */; };
+		C9242B612A88B65D008613B7 /* MangaChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9242B602A88B65D008613B7 /* MangaChapterView.swift */; };
+		C93112E52A86798C004FBB80 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93112E42A86798C004FBB80 /* RatingView.swift */; };
+		C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */ = {isa = PBXBuildFile; productRef = C93112E72A8685D9004FBB80 /* ExpandableText */; };
+		C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C93850ED2A738F8000B62507 /* Kingfisher */; };
+		C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939F9032A66D91100CF35D3 /* AppErrors.swift */; };
+		C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */; };
+		C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */; };
+		C94CD46C2A9BB79200B92A08 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */; };
+		C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */; };
+		C969C5112A9C804E0092B41C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */; };
+		C969C5132A9C82000092B41C /* RCKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5122A9C82000092B41C /* RCKey.swift */; };
+		C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */; };
+		C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97092FF2A927E02005504FD /* PinchToZoomView.swift */; };
+		C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */; };
+		C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */; };
+		C98A353D2A6020CD00A5BFF0 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */; };
+		C98A353E2A6020CD00A5BFF0 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352C2A6020CA00A5BFF0 /* Montserrat-ExtraLight.ttf */; };
+		C98A353F2A6020CD00A5BFF0 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352D2A6020CB00A5BFF0 /* Montserrat-Black.ttf */; };
+		C98A35402A6020CD00A5BFF0 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352E2A6020CB00A5BFF0 /* Montserrat-ExtraLightItalic.ttf */; };
+		C98A35412A6020CD00A5BFF0 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352F2A6020CB00A5BFF0 /* Montserrat-Medium.ttf */; };
+		C98A35422A6020CD00A5BFF0 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35302A6020CB00A5BFF0 /* Montserrat-LightItalic.ttf */; };
+		C98A35432A6020CD00A5BFF0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35312A6020CB00A5BFF0 /* Montserrat-Regular.ttf */; };
+		C98A35442A6020CD00A5BFF0 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35322A6020CB00A5BFF0 /* Montserrat-BlackItalic.ttf */; };
+		C98A35452A6020CD00A5BFF0 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35332A6020CC00A5BFF0 /* Montserrat-Bold.ttf */; };
+		C98A35462A6020CD00A5BFF0 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35342A6020CC00A5BFF0 /* Montserrat-SemiBoldItalic.ttf */; };
+		C98A35472A6020CD00A5BFF0 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35352A6020CC00A5BFF0 /* Montserrat-ThinItalic.ttf */; };
+		C98A35482A6020CD00A5BFF0 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35362A6020CC00A5BFF0 /* Montserrat-BoldItalic.ttf */; };
+		C98A35492A6020CD00A5BFF0 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35372A6020CC00A5BFF0 /* Montserrat-ExtraBoldItalic.ttf */; };
+		C98A354A2A6020CD00A5BFF0 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35382A6020CC00A5BFF0 /* Montserrat-MediumItalic.ttf */; };
+		C98A354B2A6020CD00A5BFF0 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35392A6020CD00A5BFF0 /* Montserrat-Italic.ttf */; };
+		C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */; };
+		C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35512A6029A400A5BFF0 /* CustomFonts.swift */; };
+		C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A35532A602D7900A5BFF0 /* Font+Extension.swift */; };
+		C997BBB72A9CC76E00AB431B /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */; };
+		C997BBB92A9CCB2A00AB431B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBB82A9CCB2A00AB431B /* String+Extension.swift */; };
+		C997BBBD2A9CD81200AB431B /* AppRouterView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBBC2A9CD81200AB431B /* AppRouterView+ViewModel.swift */; };
+		C997BBC12A9CFF4600AB431B /* CustomLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C997BBC02A9CFF4600AB431B /* CustomLoaderView.swift */; };
+		C9A4DC1F2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC1E2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift */; };
+		C9A4DC242A8CD8BC00A71270 /* MangaMania.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC222A8CD8BC00A71270 /* MangaMania.xcdatamodeld */; };
+		C9A4DC262A8CDA7800A71270 /* DataControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC252A8CDA7800A71270 /* DataControllers.swift */; };
+		C9A4DC282A8CF3D300A71270 /* MangaDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A4DC272A8CF3D300A71270 /* MangaDetailView+ViewModel.swift */; };
+		C9ACFDCA2A8F832A00AA1005 /* TopMangasView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ACFDC92A8F832A00AA1005 /* TopMangasView+ViewModel.swift */; };
+		C9ACFDCC2A8F840D00AA1005 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */; };
+		C9B6D6CB2A603FA000AC5955 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */; };
+		C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */; };
+		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
+		C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6D12A60401900AC5955 /* FirebaseFirestore */; };
+		C9C729942A812FB000F9B226 /* MangaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C729932A812FB000F9B226 /* MangaDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C907124E2A6D4E9100AC98E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C90712502A6D4EC100AC98E0 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMangasView.swift; sourceTree = "<group>"; };
+		C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMangasView.swift; sourceTree = "<group>"; };
+		C90712572A6D500800AC98E0 /* MangaSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaSearchView.swift; sourceTree = "<group>"; };
+		C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManager.swift; sourceTree = "<group>"; };
+		C91A8D952A6905A400F8C30D /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		C91A8D972A690A4900F8C30D /* AppRouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterView.swift; sourceTree = "<group>"; };
+		C91AFAD72A8E248100307CFE /* MyMangaView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyMangaView+ViewModel.swift"; sourceTree = "<group>"; };
+		C91DFEE82A5ED45E00FC657A /* MangaMania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangaMania.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManiaApp.swift; sourceTree = "<group>"; };
+		C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+Extension.swift"; sourceTree = "<group>"; };
+		C9242B592A889A72008613B7 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		C9242B5B2A889ABC008613B7 /* flower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flower.json; sourceTree = "<group>"; };
+		C9242B602A88B65D008613B7 /* MangaChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaChapterView.swift; sourceTree = "<group>"; };
+		C93112E42A86798C004FBB80 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		C939F9032A66D91100CF35D3 /* AppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrors.swift; sourceTree = "<group>"; };
+		C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		C969C5122A9C82000092B41C /* RCKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCKey.swift; sourceTree = "<group>"; };
+		C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		C97092FF2A927E02005504FD /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
+		C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		C98A352C2A6020CA00A5BFF0 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C98A352D2A6020CB00A5BFF0 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		C98A352E2A6020CB00A5BFF0 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C98A352F2A6020CB00A5BFF0 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		C98A35302A6020CB00A5BFF0 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		C98A35312A6020CB00A5BFF0 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		C98A35322A6020CB00A5BFF0 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C98A35332A6020CC00A5BFF0 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		C98A35342A6020CC00A5BFF0 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C98A35352A6020CC00A5BFF0 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C98A35362A6020CC00A5BFF0 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C98A35372A6020CC00A5BFF0 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C98A35382A6020CC00A5BFF0 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C98A35392A6020CD00A5BFF0 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C98A354D2A6020EA00A5BFF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C98A35512A6029A400A5BFF0 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		C98A35532A602D7900A5BFF0 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		C997BBB82A9CCB2A00AB431B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C997BBBC2A9CD81200AB431B /* AppRouterView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppRouterView+ViewModel.swift"; sourceTree = "<group>"; };
+		C997BBC02A9CFF4600AB431B /* CustomLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoaderView.swift; sourceTree = "<group>"; };
+		C9A4DC1E2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaSearchView+ViewModel.swift"; sourceTree = "<group>"; };
+		C9A4DC232A8CD8BC00A71270 /* MangaMania.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MangaMania.xcdatamodel; sourceTree = "<group>"; };
+		C9A4DC252A8CDA7800A71270 /* DataControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControllers.swift; sourceTree = "<group>"; };
+		C9A4DC272A8CF3D300A71270 /* MangaDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaDetailView+ViewModel.swift"; sourceTree = "<group>"; };
+		C9ACFDC92A8F832A00AA1005 /* TopMangasView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopMangasView+ViewModel.swift"; sourceTree = "<group>"; };
+		C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C9C729932A812FB000F9B226 /* MangaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C91DFEE52A5ED45E00FC657A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */,
+				C9242B572A889A46008613B7 /* Lottie in Frameworks */,
+				C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */,
+				C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */,
+				C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */,
+				C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */,
+				C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */,
+				C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C907124D2A6D4E7A00AC98E0 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C907124E2A6D4E9100AC98E0 /* ContentView.swift */,
+				C90712502A6D4EC100AC98E0 /* TabBarView.swift */,
+				C90712532A6D4FCF00AC98E0 /* TopMangasView.swift */,
+				C90712552A6D4FEE00AC98E0 /* MyMangasView.swift */,
+				C90712572A6D500800AC98E0 /* MangaSearchView.swift */,
+				C9C729932A812FB000F9B226 /* MangaDetailView.swift */,
+				C9242B602A88B65D008613B7 /* MangaChapterView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		C91DFEDF2A5ED45E00FC657A = {
+			isa = PBXGroup;
+			children = (
+				C91DFEEA2A5ED45E00FC657A /* MangaMania */,
+				C91DFEE92A5ED45E00FC657A /* Products */,
+				C969C50D2A9C49F60092B41C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C91DFEE92A5ED45E00FC657A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C91DFEE82A5ED45E00FC657A /* MangaMania.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C91DFEEA2A5ED45E00FC657A /* MangaMania */ = {
+			isa = PBXGroup;
+			children = (
+				C98A354D2A6020EA00A5BFF0 /* Info.plist */,
+				C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */,
+				C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */,
+				C91DFEEB2A5ED45E00FC657A /* MangaManiaApp.swift */,
+				C98A354F2A60281A00A5BFF0 /* Views */,
+				C9A4DC212A8CD88900A71270 /* Models */,
+				C9B8202B2A63CF4C00658CCD /* ViewModels */,
+				C9B8202E2A63F51400658CCD /* Managers */,
+				C98A354E2A60280400A5BFF0 /* Extensions */,
+				C98A35502A60289100A5BFF0 /* Helpers */,
+				C98A35282A6020A900A5BFF0 /* Fonts */,
+				C939F9022A66D8EE00CF35D3 /* Errors */,
+				C91DFEEF2A5ED45F00FC657A /* Assets.xcassets */,
+				C91DFEF12A5ED45F00FC657A /* Preview Content */,
+			);
+			path = MangaMania;
+			sourceTree = "<group>";
+		};
+		C91DFEF12A5ED45F00FC657A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C91DFEF22A5ED45F00FC657A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C9242B582A889A51008613B7 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				C9242B592A889A72008613B7 /* LottieView.swift */,
+				C9242B5B2A889ABC008613B7 /* flower.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		C939F9022A66D8EE00CF35D3 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				C939F9032A66D91100CF35D3 /* AppErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		C94AB9F32A8BAEBE0058BEEE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C93112E42A86798C004FBB80 /* RatingView.swift */,
+				C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C969C50D2A9C49F60092B41C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C98A35282A6020A900A5BFF0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C98A352D2A6020CB00A5BFF0 /* Montserrat-Black.ttf */,
+				C98A35322A6020CB00A5BFF0 /* Montserrat-BlackItalic.ttf */,
+				C98A35332A6020CC00A5BFF0 /* Montserrat-Bold.ttf */,
+				C98A35362A6020CC00A5BFF0 /* Montserrat-BoldItalic.ttf */,
+				C98A353A2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf */,
+				C98A35372A6020CC00A5BFF0 /* Montserrat-ExtraBoldItalic.ttf */,
+				C98A352C2A6020CA00A5BFF0 /* Montserrat-ExtraLight.ttf */,
+				C98A352E2A6020CB00A5BFF0 /* Montserrat-ExtraLightItalic.ttf */,
+				C98A35392A6020CD00A5BFF0 /* Montserrat-Italic.ttf */,
+				C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */,
+				C98A35302A6020CB00A5BFF0 /* Montserrat-LightItalic.ttf */,
+				C98A352F2A6020CB00A5BFF0 /* Montserrat-Medium.ttf */,
+				C98A35382A6020CC00A5BFF0 /* Montserrat-MediumItalic.ttf */,
+				C98A35312A6020CB00A5BFF0 /* Montserrat-Regular.ttf */,
+				C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */,
+				C98A35342A6020CC00A5BFF0 /* Montserrat-SemiBoldItalic.ttf */,
+				C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */,
+				C98A35352A6020CC00A5BFF0 /* Montserrat-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C98A354E2A60280400A5BFF0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
+				C98A35532A602D7900A5BFF0 /* Font+Extension.swift */,
+				C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */,
+				C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */,
+				C997BBB82A9CCB2A00AB431B /* String+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C98A354F2A60281A00A5BFF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C94AB9F32A8BAEBE0058BEEE /* Components */,
+				C9242B582A889A51008613B7 /* Lottie */,
+				C907124D2A6D4E7A00AC98E0 /* Tab */,
+				C91A8D972A690A4900F8C30D /* AppRouterView.swift */,
+				C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */,
+				C997BBC02A9CFF4600AB431B /* CustomLoaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C98A35502A60289100A5BFF0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C98A35512A6029A400A5BFF0 /* CustomFonts.swift */,
+				C91A8D952A6905A400F8C30D /* AppRouter.swift */,
+				C9A4DC252A8CDA7800A71270 /* DataControllers.swift */,
+				C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */,
+				C97092FF2A927E02005504FD /* PinchToZoomView.swift */,
+				C969C5122A9C82000092B41C /* RCKey.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C9A4DC212A8CD88900A71270 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C9A4DC222A8CD8BC00A71270 /* MangaMania.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C9B8202B2A63CF4C00658CCD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C9A4DC1E2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift */,
+				C9A4DC272A8CF3D300A71270 /* MangaDetailView+ViewModel.swift */,
+				C91AFAD72A8E248100307CFE /* MyMangaView+ViewModel.swift */,
+				C9ACFDC92A8F832A00AA1005 /* TopMangasView+ViewModel.swift */,
+				C997BBBC2A9CD81200AB431B /* AppRouterView+ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C9B8202E2A63F51400658CCD /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */,
+				C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C91DFEE72A5ED45E00FC657A /* MangaMania */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C91DFEF62A5ED45F00FC657A /* Build configuration list for PBXNativeTarget "MangaMania" */;
+			buildPhases = (
+				C91DFEE42A5ED45E00FC657A /* Sources */,
+				C91DFEE52A5ED45E00FC657A /* Frameworks */,
+				C91DFEE62A5ED45E00FC657A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MangaMania;
+			packageProductDependencies = (
+				C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */,
+				C9B6D6CF2A60401900AC5955 /* FirebaseAuth */,
+				C9B6D6D12A60401900AC5955 /* FirebaseFirestore */,
+				C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */,
+				C93850ED2A738F8000B62507 /* Kingfisher */,
+				C93112E72A8685D9004FBB80 /* ExpandableText */,
+				C9242B562A889A46008613B7 /* Lottie */,
+				C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */,
+			);
+			productName = MangaMania;
+			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C91DFEE02A5ED45E00FC657A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					C91DFEE72A5ED45E00FC657A = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = C91DFEE32A5ED45E00FC657A /* Build configuration list for PBXProject "MangaMania" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C91DFEDF2A5ED45E00FC657A;
+			packageReferences = (
+				C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */,
+				C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
+			productRefGroup = C91DFEE92A5ED45E00FC657A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C91DFEE72A5ED45E00FC657A /* MangaMania */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C91DFEE62A5ED45E00FC657A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98A35462A6020CD00A5BFF0 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				C98A353D2A6020CD00A5BFF0 /* Montserrat-Light.ttf in Resources */,
+				C98A35432A6020CD00A5BFF0 /* Montserrat-Regular.ttf in Resources */,
+				C98A35402A6020CD00A5BFF0 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				C98A354A2A6020CD00A5BFF0 /* Montserrat-MediumItalic.ttf in Resources */,
+				C98A354C2A6020CD00A5BFF0 /* Montserrat-ExtraBold.ttf in Resources */,
+				C98A353F2A6020CD00A5BFF0 /* Montserrat-Black.ttf in Resources */,
+				C98A354B2A6020CD00A5BFF0 /* Montserrat-Italic.ttf in Resources */,
+				C9242B5C2A889ABC008613B7 /* flower.json in Resources */,
+				C98A35452A6020CD00A5BFF0 /* Montserrat-Bold.ttf in Resources */,
+				C98A353E2A6020CD00A5BFF0 /* Montserrat-ExtraLight.ttf in Resources */,
+				C91DFEF32A5ED45F00FC657A /* Preview Assets.xcassets in Resources */,
+				C98A35482A6020CD00A5BFF0 /* Montserrat-BoldItalic.ttf in Resources */,
+				C969C5112A9C804E0092B41C /* RemoteConfigDefaults.plist in Resources */,
+				C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */,
+				C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */,
+				C98A35412A6020CD00A5BFF0 /* Montserrat-Medium.ttf in Resources */,
+				C98A35492A6020CD00A5BFF0 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				C98A35442A6020CD00A5BFF0 /* Montserrat-BlackItalic.ttf in Resources */,
+				C98A35422A6020CD00A5BFF0 /* Montserrat-LightItalic.ttf in Resources */,
+				C91DFEF02A5ED45F00FC657A /* Assets.xcassets in Resources */,
+				C98A35472A6020CD00A5BFF0 /* Montserrat-ThinItalic.ttf in Resources */,
+				C9B6D6CB2A603FA000AC5955 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C91DFEE42A5ED45E00FC657A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C90712512A6D4EC100AC98E0 /* TabBarView.swift in Sources */,
+				C9242B612A88B65D008613B7 /* MangaChapterView.swift in Sources */,
+				C90712562A6D4FEE00AC98E0 /* MyMangasView.swift in Sources */,
+				C9A4DC1F2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift in Sources */,
+				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
+				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
+				C969C5132A9C82000092B41C /* RCKey.swift in Sources */,
+				C997BBB92A9CCB2A00AB431B /* String+Extension.swift in Sources */,
+				C91AFAD82A8E248100307CFE /* MyMangaView+ViewModel.swift in Sources */,
+				C997BBC12A9CFF4600AB431B /* CustomLoaderView.swift in Sources */,
+				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
+				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
+				C94CD46C2A9BB79200B92A08 /* SplashScreenView.swift in Sources */,
+				C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */,
+				C93112E52A86798C004FBB80 /* RatingView.swift in Sources */,
+				C997BBB72A9CC76E00AB431B /* Bundle+Extension.swift in Sources */,
+				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
+				C9A4DC282A8CF3D300A71270 /* MangaDetailView+ViewModel.swift in Sources */,
+				C9ACFDCC2A8F840D00AA1005 /* LoadingState.swift in Sources */,
+				C91A8D962A6905A400F8C30D /* AppRouter.swift in Sources */,
+				C9A4DC242A8CD8BC00A71270 /* MangaMania.xcdatamodeld in Sources */,
+				C9C729942A812FB000F9B226 /* MangaDetailView.swift in Sources */,
+				C91A8D982A690A4900F8C30D /* AppRouterView.swift in Sources */,
+				C98A35542A602D7900A5BFF0 /* Font+Extension.swift in Sources */,
+				C9ACFDCA2A8F832A00AA1005 /* TopMangasView+ViewModel.swift in Sources */,
+				C98A35522A6029A400A5BFF0 /* CustomFonts.swift in Sources */,
+				C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */,
+				C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */,
+				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,
+				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
+				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
+				C997BBBD2A9CD81200AB431B /* AppRouterView+ViewModel.swift in Sources */,
+				C9A4DC262A8CDA7800A71270 /* DataControllers.swift in Sources */,
+				C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C91DFEF42A5ED45F00FC657A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C91DFEF52A5ED45F00FC657A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C91DFEF72A5ED45F00FC657A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MangaMania/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 53C3L492D5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MangaMania/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Manga Mania";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = MangaMania_Development_Profile_2023;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C91DFEF82A5ED45F00FC657A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MangaMania/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 53C3L492D5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MangaMania/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Manga Mania";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = MangaMania_AdHoc_Profile_2023;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C91DFEE32A5ED45E00FC657A /* Build configuration list for PBXProject "MangaMania" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C91DFEF42A5ED45F00FC657A /* Debug */,
+				C91DFEF52A5ED45F00FC657A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C91DFEF62A5ED45F00FC657A /* Build configuration list for PBXNativeTarget "MangaMania" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C91DFEF72A5ED45F00FC657A /* Debug */,
+				C91DFEF82A5ED45F00FC657A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NuPlay/ExpandableText.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9125EBA2A6E85BA00FCF2F8 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9125EB92A6E85BA00FCF2F8 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		C9242B562A889A46008613B7 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		C93112E72A8685D9004FBB80 /* ExpandableText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */;
+			productName = ExpandableText;
+		};
+		C93850ED2A738F8000B62507 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		C9B6D6CD2A60401900AC5955 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C9B6D6CF2A60401900AC5955 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		C9B6D6D12A60401900AC5955 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C9A4DC222A8CD8BC00A71270 /* MangaMania.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C9A4DC232A8CD8BC00A71270 /* MangaMania.xcdatamodel */,
+			);
+			currentVersion = C9A4DC232A8CD8BC00A71270 /* MangaMania.xcdatamodel */;
+			path = MangaMania.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C91DFEE02A5ED45E00FC657A /* Project object */;
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>base_url</key>
+	<string>&quot;&quot;</string>
+	<key>top_manga_pc</key>
+	<string>genre-all</string>
+	<key>top_manga_param_key</key>
+	<string>type</string>
+	<key>top_manga_param_value</key>
+	<string>topview</string>
+	<key>search_manga_pc_1</key>
+	<string>search</string>
+	<key>search_manga_pc_2</key>
+	<string>story</string>
+	<key>force_update_current_version</key>
+	<string>1.0.0(1)</string>
+	<key>force_update_store_url</key>
+	<string>https://www.apple.com/app-store/</string>
+	<key>is_force_update_required</key>
+	<string>false</string>
+	<key>read_feature_version</key>
+	<string>1.0.0(1)</string>
+</dict>
+</plist>
