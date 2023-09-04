@@ -35,9 +35,6 @@ struct MangaSearchView: View {
                                     KFImage(URL(string: manga.coverUrl ?? ""))
                                         .memoryCacheExpiration(.expired)
                                         .resizable()
-                                        .loadDiskFileSynchronously()
-                                        .diskCacheExpiration(.expired)
-                                        .memoryCacheExpiration(.expired)
                                         .fade(duration: 0.5)
                                         .placeholder({
                                             Image("book-cover-placeholder")

@@ -12,9 +12,11 @@ extension MyMangasView {
     @MainActor class ViewModel: ObservableObject {
         
         @Published private(set) var myMangas: [MyManga] = []
+        @Published var showEmptyMessage = false
         
         func getMyMangas() {
             myMangas = DataController.shared.fetchMangas()
+            showEmptyMessage = myMangas.isEmpty
         }
     }
 }

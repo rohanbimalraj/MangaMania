@@ -17,9 +17,11 @@ enum Tab: String, CaseIterable {
 struct TabBarView: View {
     
     @Binding var selectedTab: Tab
+    @State private var libraryUpdated = false
     private var fillImage: String {
         selectedTab.rawValue + ".fill"
     }
+    private let pub = NotificationCenter.default.publisher(for: .libraryUpdated)
     
     var body: some View {
         VStack {
@@ -29,6 +31,7 @@ struct TabBarView: View {
                     Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
                         .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
                         .offset(y: selectedTab == tab ? -5 : 0)
+                        .offset(y: (tab == .myMangas && libraryUpdated) ? -50 : 0)
                         .foregroundColor(.themeFour)
                         .font(.system(size: 25))
                         .onTapGesture {
@@ -44,11 +47,27 @@ struct TabBarView: View {
             .frame(width: nil, height: 60)
             .background(
                 LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeThree]), startPoint: .top, endPoint: .bottom)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             )
-            .cornerRadius(10)
             .padding()
             .shadow(radius: 20)
         }
+        .onReceive(pub) { _ in
+            animateBookmarkButton()
+        }
+    }
+    
+    private func animateBookmarkButton() {
+        withAnimation(.interpolatingSpring(stiffness: 100, damping: 100, initialVelocity: 10).repeatCount(1,autoreverses: true)) {
+            libraryUpdated.toggle()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                withAnimation(.interpolatingSpring(stiffness: 100, damping: 5, initialVelocity: 10).repeatCount(1,autoreverses: true)) {
+                    libraryUpdated.toggle()
+                }
+            }
+        }
+        
     }
 }
 

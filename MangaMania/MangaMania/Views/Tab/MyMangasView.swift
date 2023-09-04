@@ -20,12 +20,15 @@ struct MyMangasView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
+                .animation(.none, value: vm.showEmptyMessage)
             
-            if vm.myMangas.isEmpty {
-                Text("You have not added any manga to library yet!!!")
+            if vm.showEmptyMessage {
+                Text("\"You have not added any manga to library yet\"")
                     .foregroundColor(.themeFour)
                     .font(.custom(.bold, size: 17))
                     .padding(.bottom, 90)
+                    .padding(.horizontal)
+                    .transition(.scale)
                 
             }else {
                 ScrollView {
@@ -39,9 +42,6 @@ struct MyMangasView: View {
                             }label: {
                                 KFImage(URL(string: manga.coverUrl ?? ""))
                                     .resizable()
-                                    .loadDiskFileSynchronously()
-                                    .diskCacheExpiration(.expired)
-                                    .memoryCacheExpiration(.expired)
                                     .fade(duration: 0.5)
                                     .placeholder({
                                         Image("book-cover-placeholder")
@@ -75,7 +75,11 @@ struct MyMangasView: View {
         }
         .navigationTitle("My Manga")
         .onAppear(perform: vm.getMyMangas)
+        .onDisappear {
+            vm.showEmptyMessage = false
+        }
         .preferredColorScheme(.dark)
+        .animation(.easeInOut(duration: 1), value: vm.showEmptyMessage)
     }
 }
 

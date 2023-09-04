@@ -29,8 +29,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         RemoteConfigManager.configure()
         
         let cache = ImageCache.default
-        // Constrain In-Memory Cache to 10 MB
+        // Limit memory cache size to 10 MB.
         cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10
+        // Limit memory cache to hold 50 images at most.
+        cache.memoryStorage.config.countLimit = 50
         
         return true
     }

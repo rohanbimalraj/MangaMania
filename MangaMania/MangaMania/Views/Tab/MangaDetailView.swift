@@ -31,9 +31,6 @@ struct MangaDetailView: View {
                             HStack(alignment: .top) {
                                 KFImage(URL(string: vm.mangaDetail?.coverUrl ?? ""))
                                     .resizable()
-                                    .loadDiskFileSynchronously()
-                                    .diskCacheExpiration(.expired)
-                                    .memoryCacheExpiration(.expired)
                                     .fade(duration: 0.5)
                                     .placeholder({
                                         Image("book-cover-placeholder")
@@ -198,7 +195,9 @@ struct MangaDetailView: View {
         }
         .animation(.easeInOut(duration: 0.5), value: vm.showDetails)
         .alert("Message", isPresented: $vm.showAlert) {
-            Button("Ok"){}
+            Button("Ok"){
+                NotificationCenter.default.post(name: .libraryUpdated, object: nil)
+            }
         }message: {
             Text(vm.message)
         }
