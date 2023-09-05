@@ -20,7 +20,5 @@
 	<string>https://www.apple.com/app-store/</string>
 	<key>is_force_update_required</key>
 	<string>false</string>
-	<key>read_feature_version</key>
-	<string>1.0.0(1)</string>
 </dict>
 </plist>

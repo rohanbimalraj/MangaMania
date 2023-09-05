@@ -19,13 +19,7 @@ extension MangaDetailView {
         private var detailUrl = ""
         private var loadingTask: Task<Void, Never>?
         var message = ""
-        
-        var isReadFeatureEnabled: Bool = {
-            let currentVersion = "\(Bundle.appVersionBundle)(\(Bundle.appBuildBundle))"
-            let readFeatureVersion = RemoteConfigManager.value(forKey: RCKey.READ_FEATURE_VERSION)
-            return currentVersion == readFeatureVersion
-        }()
-        
+                
         var showDetails: Bool {
             mangaDetail != nil
         }
