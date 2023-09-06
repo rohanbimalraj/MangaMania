@@ -18,5 +18,19 @@ extension MyMangasView {
             myMangas = DataController.shared.fetchMangas()
             showEmptyMessage = myMangas.isEmpty
         }
+        
+        func deleteFromLib(_ manga: MyManga) {
+            DataController.shared.deleteMangaFromLib(with: manga.title ?? "") { result in
+                
+                switch result {
+                    
+                case .success(_):
+                    self.getMyMangas()
+                    
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }

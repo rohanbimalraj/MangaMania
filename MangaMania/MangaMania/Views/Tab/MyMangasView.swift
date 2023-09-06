@@ -59,6 +59,14 @@ struct MyMangasView: View {
                                     }
                                     .frame(height: 250)
                                     .cornerRadius(10)
+                                    .contextMenu(menuItems: {
+                                        Button {
+                                            vm.deleteFromLib(manga)
+                                        } label: {
+                                            Label("Remove from library", systemImage: "trash.fill")
+                                        }
+
+                                    })
                                     .padding(.horizontal, 20)
                                     .padding(.top, 20)
                                 
