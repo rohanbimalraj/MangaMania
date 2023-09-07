@@ -11,6 +11,7 @@ struct MangaSearchView: View {
     
     @StateObject private var vm = ViewModel()
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
+    @Environment(\.isTabBarVisible) var isTabBarVisible
     var columns: [GridItem] = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -80,6 +81,9 @@ struct MangaSearchView: View {
         .navigationTitle("Search Manga")
         .ignoresSafeArea(.keyboard)
         .preferredColorScheme(.dark)
+        .onAppear {
+            isTabBarVisible.wrappedValue = true
+        }
     }
 }
 

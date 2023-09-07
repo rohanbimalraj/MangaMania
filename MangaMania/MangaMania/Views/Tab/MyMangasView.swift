@@ -10,6 +10,7 @@ import SwiftUI
 struct MyMangasView: View {
     
     @EnvironmentObject private var myMangasRouter: MyMangasRouter
+    @Environment(\.isTabBarVisible) var isTabBarVisible
     @StateObject private var vm = ViewModel()
     
     var columns: [GridItem] = [
@@ -82,7 +83,10 @@ struct MyMangasView: View {
             
         }
         .navigationTitle("My Manga")
-        .onAppear(perform: vm.getMyMangas)
+        .onAppear {
+            isTabBarVisible.wrappedValue = true
+            vm.getMyMangas()
+        }
         .onDisappear {
             vm.showEmptyMessage = false
         }

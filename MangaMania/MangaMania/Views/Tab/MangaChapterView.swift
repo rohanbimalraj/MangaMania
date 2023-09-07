@@ -38,13 +38,9 @@ struct MangaChapterView: View {
             }
             .clipped()
             .onAppear{
-                isTabBarVisible.wrappedValue = false
                 Task {
                     pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
                 }
-            }
-            .onDisappear{
-                isTabBarVisible.wrappedValue = true
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()

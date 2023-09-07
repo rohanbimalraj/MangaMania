@@ -65,6 +65,7 @@ struct ContentView: View {
                     TabBarView(selectedTab: $selectedTab)
                 }
             }
+            .animation(.default, value: showTabBar)
         }
         .onAppear(perform: setNavBarAppearance)
         .environmentObject(topMangaRouter)

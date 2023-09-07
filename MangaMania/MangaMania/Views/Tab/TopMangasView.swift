@@ -11,6 +11,7 @@ struct TopMangasView: View {
     
 
     @EnvironmentObject private var topMangaRouter: TopMangasRouter
+    @Environment(\.isTabBarVisible) var isTabBarVisible
     @State private var topMangas: [Manga] = []
     @StateObject private var vm = ViewModel()
     
@@ -74,6 +75,9 @@ struct TopMangasView: View {
         }
         .navigationTitle("Top Manga")
         .preferredColorScheme(.dark)
+        .onAppear {
+            isTabBarVisible.wrappedValue = true
+        }
     }
 }
 

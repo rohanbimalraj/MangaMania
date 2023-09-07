@@ -17,6 +17,8 @@ struct MangaDetailView: View {
     
     @StateObject private var vm = ViewModel()
     
+    @Environment(\.isTabBarVisible) private var isTabBarVisible
+    
     let detailUrl: String
     let tab: Tab
     
@@ -154,7 +156,6 @@ struct MangaDetailView: View {
                         .padding(.horizontal)
                 }
                 .clipped()
-                .padding(.bottom, 90)
                 .navigationBarTitleDisplayMode(.inline)
                 .transition(.opacity)
 
@@ -164,7 +165,7 @@ struct MangaDetailView: View {
             
         }
         .onAppear{
-            
+            isTabBarVisible.wrappedValue = false
             vm.getMangaDetail(from: detailUrl)
         }
         .navigationBarBackButtonHidden()
