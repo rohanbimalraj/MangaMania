@@ -140,9 +140,9 @@ struct MangaDetailView: View {
                                                     .foregroundColor(.themeFour)
                                                 
                                                 TextField("Search", text: $searchText, prompt:
-                                                            Text("Search")
+                                                            Text("Search chapter")
                                                     .foregroundColor(.themeThree)
-                                                    .font(.custom(.medium, size: 15))
+                                                    .font(.custom(.medium, size: 13))
                                                 )
                                                 .tint(.themeFour)
                                                 .foregroundColor(.themeFour)
@@ -194,17 +194,25 @@ struct MangaDetailView: View {
                                         
                                         Menu {
                                             Button {
-                                                
+                                                vm.sortChapters(from: .newestToOldest)
                                             } label: {
-                                                Label("Latest - Oldest", systemImage: "checkmark")
+                                                if vm.sortType == .newestToOldest {
+                                                    Label("Newest - Oldest", systemImage: "checkmark")
+                                                }else {
+                                                    Text("Newest - Oldest")
+                                                }
+                                                
                                             }
                                             
                                             Button {
-                                                
+                                                vm.sortChapters(from: .oldestToNewest)
                                             } label: {
-                                                Label("Oldest - Latest", systemImage: "")
+                                                if vm.sortType == .oldestToNewest {
+                                                    Label("Oldest - Newest", systemImage: "checkmark")
+                                                }else {
+                                                    Text("Oldest - Newest")
+                                                }
                                             }
-
                                             
                                         }label: {
                                             Image(systemName: "arrow.up.arrow.down")
@@ -213,7 +221,7 @@ struct MangaDetailView: View {
                                         }
                                     }
                                     List {
-                                        ForEach(vm.mangaDetail?.chapters ?? []) { chapter in
+                                        ForEach(vm.sortedChapters) { chapter in
                                             Button {
                                                 switch tab {
                                                 case .topMangas:

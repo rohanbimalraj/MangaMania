@@ -10,8 +10,14 @@ extension MangaDetailView {
     
     @MainActor class ViewModel: ObservableObject {
         
+        enum SortType {
+            case oldestToNewest, newestToOldest
+        }
+        
         @Published private(set) var mangaDetail: MangaDetail?
+        @Published private(set) var sortedChapters: [MangaDetail.Chapter] = []
         @Published private(set) var isAddedToLib = false
+        @Published private(set) var sortType: SortType = .newestToOldest
         @Published var showAlert = false
         
         let mangaManager = MangaManager.shared
@@ -42,6 +48,8 @@ extension MangaDetailView {
                     
                 case.success(let detail):
                     mangaDetail = detail
+                    sortedChapters = detail.chapters ?? []
+                    sortChapters(from: sortType)
                     isAddedToLib = DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
                     
                 case .failure(let error):
@@ -82,6 +90,19 @@ extension MangaDetailView {
                 }
                 
                 showAlert = true
+            }
+        }
+        
+        func sortChapters(from type: SortType) {
+            sortType = type
+            switch sortType {
+                
+            case .newestToOldest:
+                sortedChapters = sortedChapters.sorted { $0 > $1 }
+                
+            case .oldestToNewest:
+                sortedChapters = sortedChapters.sorted { $0 < $1 }
+                
             }
         }
     }
