@@ -4,6 +4,7 @@
 //
 //  Created by Rohan Bimal Raj on 16/08/23.
 //
+import Combine
 import SwiftUI
 
 extension MangaDetailView {
@@ -15,11 +16,13 @@ extension MangaDetailView {
         }
         
         @Published private(set) var mangaDetail: MangaDetail?
-        @Published private(set) var sortedChapters: [MangaDetail.Chapter] = []
+        @Published private(set) var actualChapters: [MangaDetail.Chapter] = []
+        @Published private(set) var requiredChapters: [MangaDetail.Chapter] = []
         @Published private(set) var isAddedToLib = false
         @Published private(set) var sortType: SortType = .newestToOldest
         @Published var showAlert = false
-        
+        @Published var searchText = ""
+        private var subscriptions = Set<AnyCancellable>()
         let mangaManager = MangaManager.shared
         
         private var detailUrl = ""
@@ -33,9 +36,34 @@ extension MangaDetailView {
         var showldSave: Bool {
             !DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
         }
+        init() {
+            debounceSearchText()
+        }
         
         deinit {
             loadingTask?.cancel()
+            subscriptions.removeAll()
+        }
+        
+        private func debounceSearchText() {
+            $searchText
+                .debounce(for: 0.5, scheduler: RunLoop.main)
+                .sink {
+                    guard !$0.isEmpty else {
+                        self.requiredChapters = self.actualChapters
+                        self.sortChapters(from: self.sortType)
+                        return
+                    }
+                    let text = $0
+                    self.requiredChapters = self.requiredChapters.filter({ chap in
+                        return chap.chapTitle?.contains(text) ?? false
+                    })
+                }
+                .store(in: &subscriptions)
+        }
+        
+        func discardSearch() {
+            searchText = ""
         }
         
         func getMangaDetail(from url: String) {
@@ -48,7 +76,9 @@ extension MangaDetailView {
                     
                 case.success(let detail):
                     mangaDetail = detail
-                    sortedChapters = detail.chapters ?? []
+                    actualChapters = detail.chapters ?? []
+                    requiredChapters = actualChapters
+                    //sortedChapters = detail.chapters ?? []
                     sortChapters(from: sortType)
                     isAddedToLib = DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
                     
@@ -98,10 +128,10 @@ extension MangaDetailView {
             switch sortType {
                 
             case .newestToOldest:
-                sortedChapters = sortedChapters.sorted { $0 > $1 }
+                requiredChapters = requiredChapters.sorted { $0 > $1 }
                 
             case .oldestToNewest:
-                sortedChapters = sortedChapters.sorted { $0 < $1 }
+                requiredChapters = requiredChapters.sorted { $0 < $1 }
                 
             }
         }

@@ -18,7 +18,6 @@ struct MangaDetailView: View {
     @StateObject private var vm = ViewModel()
     
     @Environment(\.isTabBarVisible) private var isTabBarVisible
-    @Namespace private var searchAnimation
     @Namespace private var chapterSectionId
     
     @State private var showSearchBar = false
@@ -133,13 +132,27 @@ struct MangaDetailView: View {
                                         .padding(5)
                                         
                                         Spacer()
-                                        if showSearchBar {
-                                            HStack {
-                                                Image(systemName: "magnifyingglass")
-                                                    .matchedGeometryEffect(id: "detailSearch", in: searchAnimation)
-                                                    .foregroundColor(.themeFour)
+                                        
+                                        HStack {
+                                            
+                                            Button {
                                                 
-                                                TextField("Search", text: $searchText, prompt:
+                                                withAnimation {
+                                                    proxy.scrollTo(chapterSectionId)
+                                                    showSearchBar = true
+                                                }
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                    isSearchFieldActive = true
+                                                }
+                                                
+                                            }label: {
+                                                Image(systemName: "magnifyingglass")
+                                                    .foregroundColor(.themeFour)
+                                                    .padding(3)
+                                            }
+                                            .allowsHitTesting(!showSearchBar)
+                                            if showSearchBar {
+                                                TextField("Search", text: $vm.searchText, prompt:
                                                             Text("Search chapter")
                                                     .foregroundColor(.themeThree)
                                                     .font(.custom(.medium, size: 13))
@@ -153,44 +166,21 @@ struct MangaDetailView: View {
                                                 
                                                 Button {
                                                     withAnimation {
-                                                        showSearchBar.toggle()
+                                                        showSearchBar = false
                                                     }
+                                                    vm.discardSearch()
                                                 }label: {
                                                     Image(systemName: "xmark.circle.fill")
                                                         .foregroundColor(.themeFour)
                                                 }
-                                            }
-                                            .padding(5)
-                                            .background(.themeTwo)
-                                            .clipShape(Capsule())
-                                            .onAppear {
-                                                
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                                    isSearchFieldActive.toggle()
-                                                }
+                                                .offset(x: -3)
                                             }
                                             
-                                        }else {
-                                            Button {
-                                                
-                                                withAnimation {
-                                                    proxy.scrollTo(chapterSectionId)
-                                                }
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                                    withAnimation() {
-                                                        showSearchBar.toggle()
-                                                    }
-                                                }
-
-                                            } label: {
-                                                
-                                                Image(systemName: "magnifyingglass")
-                                                    .matchedGeometryEffect(id: "detailSearch", in: searchAnimation)
-                                                    .foregroundColor(.themeFour)
-                                                    .padding(5)
-                                            }
-
                                         }
+                                        .padding(3)
+                                        .background(showSearchBar ? .themeTwo : .clear)
+                                        .clipShape(Capsule())
+                                        
                                         
                                         Menu {
                                             Button {
@@ -221,7 +211,7 @@ struct MangaDetailView: View {
                                         }
                                     }
                                     List {
-                                        ForEach(vm.sortedChapters) { chapter in
+                                        ForEach(vm.requiredChapters) { chapter in
                                             Button {
                                                 switch tab {
                                                 case .topMangas:
