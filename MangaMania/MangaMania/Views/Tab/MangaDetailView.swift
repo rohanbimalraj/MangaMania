@@ -81,22 +81,26 @@ struct MangaDetailView: View {
                                                     .font(.custom(.medium, size: 15))
                                             }
                                         }
+                                        RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
                                         
-                                        HStack(alignment: .top) {
-                                            RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
-                                            
-                                            VStack {
-                                                Image(systemName: vm.isAddedToLib ? "bookmark.fill" : "bookmark")
-                                                    .foregroundColor(.themeFour)
-                                                    .font(.largeTitle)
-                                                    .onTapGesture {
-                                                        vm.showldSave ? vm.saveToLib() : vm.deleteFromLib()
-                                                    }
-                                                Text(vm.isAddedToLib ? "Delete from\nlibrary" : "Save to\nlibrary")
-                                                    .foregroundColor(.themeFour)
-                                                    .font(.custom(.semiBold, size: 10))
-                                                    .multilineTextAlignment(.center)
+                                        Button {
+                                            if vm.isAddedToLib {
+                                                vm.deleteFromLib()
+                                            }else {
+                                                vm.saveToLib()
                                             }
+                                        }label: {
+                                            HStack {
+                                                Text(vm.isAddedToLib ? "Remove" : "Save")
+                                                    .foregroundStyle(.themeFour)
+                                                    .font(.custom(.semiBold, size: 15))
+                                                Image(systemName: vm.isAddedToLib ? "bookmark.slash.fill" : "bookmark.fill")
+                                                    .foregroundStyle(.themeFour)
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .padding(10)
+                                            .background(Color.themeThree)
+                                            .clipShape(Capsule())
                                         }
                                     }
                                 }
@@ -210,36 +214,54 @@ struct MangaDetailView: View {
                                                 .padding(5)
                                         }
                                     }
-                                    List {
-                                        ForEach(vm.requiredChapters) { chapter in
-                                            Button {
-                                                switch tab {
-                                                case .topMangas:
-                                                    topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                                case .searchMangas:
-                                                    searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                                case .myMangas:
-                                                    myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                    ScrollViewReader { secondProxy in
+                                        List {
+                                            ForEach(vm.requiredChapters) { chapter in
+                                                Button {
+                                                    vm.updateSelectedChapter(title: chapter.chapTitle ?? "")
+                                                    switch tab {
+                                                    case .topMangas:
+                                                        topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                    case .searchMangas:
+                                                        searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                    case .myMangas:
+                                                        myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
 
-                                                }
+                                                    }
 
-                                            }label: {
-                                                HStack {
-                                                    Text(chapter.chapTitle ?? "")
-                                                        .foregroundColor(.themeFour)
-                                                        .font(.custom(.semiBold, size: 13))
-                                                    Spacer()
-                                                    
-                                                    Image(systemName: "chevron.right")
-                                                        .foregroundColor(.themeFour)
+                                                }label: {
+                                                    HStack {
+                                                        Text(chapter.chapTitle ?? "")
+                                                            .foregroundColor(.themeFour)
+                                                            .font(.custom(.semiBold, size: 13))
+                                                        if (chapter.chapTitle == vm.selectedChapTitle) {
+                                                            Image("ContinueNew", bundle: nil)
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .frame(width: 70, height: 20)
+                                                        }
+
+                                                        Spacer()
+                                                        
+                                                        Image(systemName: "chevron.right")
+                                                            .foregroundColor(.themeFour)
+                                                    }
                                                 }
+                                                .id(chapter.chapTitle)
+                                            }
+                                            .listRowSeparatorTint(.themeTwo)
+                                            .listRowBackground(Color.clear)
+                                        }
+                                        .frame(height: 400)
+                                        .listStyle(.plain)
+                                        .onAppear {
+                                            print("Rohan's", vm.selectedChapTitle)
+                                            withAnimation {
+                                                secondProxy.scrollTo(vm.selectedChapTitle, anchor: .top)
                                             }
                                         }
-                                        .listRowSeparatorTint(.themeTwo)
-                                        .listRowBackground(Color.clear)
                                     }
-                                    .frame(height: 400)
-                                    .listStyle(.plain)
+                                    
                                 }
                                 .id(chapterSectionId)
                             }

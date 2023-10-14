@@ -28,14 +28,12 @@ extension MangaDetailView {
         private var detailUrl = ""
         private var loadingTask: Task<Void, Never>?
         var message = ""
+        private(set) var selectedChapTitle = ""
                 
         var showDetails: Bool {
             mangaDetail != nil
         }
         
-        var showldSave: Bool {
-            !DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
-        }
         init() {
             debounceSearchText()
         }
@@ -75,12 +73,13 @@ extension MangaDetailView {
                 switch result {
                     
                 case.success(let detail):
+                    let mangaInLib = DataController.shared.isMangaInLib(with: detail.title ?? "")
+                    isAddedToLib = mangaInLib.0
+                    selectedChapTitle = mangaInLib.1
                     mangaDetail = detail
                     actualChapters = detail.chapters ?? []
                     requiredChapters = actualChapters
-                    //sortedChapters = detail.chapters ?? []
                     sortChapters(from: sortType)
-                    isAddedToLib = DataController.shared.isMangaInLib(with: mangaDetail?.title ?? "")
                     
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -102,6 +101,14 @@ extension MangaDetailView {
                 }
                 
                 showAlert = true
+            }
+        }
+        
+        func updateSelectedChapter(title: String) {
+            guard isAddedToLib else { return }
+            DataController.shared.updateSelectedChapter(of: mangaDetail?.title ?? "", with: title)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.selectedChapTitle = title
             }
         }
         

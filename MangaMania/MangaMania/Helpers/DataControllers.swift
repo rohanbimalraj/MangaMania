@@ -73,9 +73,21 @@ final class DataController {
         save(completion: completion)
     }
     
-    func isMangaInLib(with title: String) -> Bool {
+    func updateSelectedChapter(of title: String, with chapTitle: String) {
         let mangas = fetchMangas()
         let requiredManga = mangas.filter{ $0.title == title }.first
-        return requiredManga != nil
+        guard let requiredManga = requiredManga else {
+            return
+        }
+        requiredManga.selectedChapTitle = chapTitle
+        save { _ in }
+    }
+    
+    func isMangaInLib(with title: String) -> (Bool, String) {
+        let mangas = fetchMangas()
+        guard let requiredManga = mangas.filter({ $0.title == title }).first else {
+            return (false, "")
+        }
+        return (true, requiredManga.selectedChapTitle ?? "")
     }
 }
