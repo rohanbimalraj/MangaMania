@@ -258,7 +258,6 @@ struct MangaDetailView: View {
                                         .frame(height: 400)
                                         .listStyle(.plain)
                                         .onAppear {
-                                            print("Rohan's", vm.selectedChapTitle)
                                             withAnimation {
                                                 secondProxy.scrollTo(vm.selectedChapTitle, anchor: .top)
                                             }
