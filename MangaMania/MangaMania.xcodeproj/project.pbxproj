@@ -37,6 +37,7 @@
 		C969C5132A9C82000092B41C /* RCKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5122A9C82000092B41C /* RCKey.swift */; };
 		C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */; };
 		C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97092FF2A927E02005504FD /* PinchToZoomView.swift */; };
+		C98543F32AE7ED74003DF477 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98543F22AE7ED74003DF477 /* NotificationManager.swift */; };
 		C98A353B2A6020CD00A5BFF0 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */; };
 		C98A353C2A6020CD00A5BFF0 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */; };
 		C98A353D2A6020CD00A5BFF0 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */; };
@@ -73,6 +74,7 @@
 		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
 		C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6D12A60401900AC5955 /* FirebaseFirestore */; };
 		C9C729942A812FB000F9B226 /* MangaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C729932A812FB000F9B226 /* MangaDetailView.swift */; };
+		C9FEEF112AE7949900B8528E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C9FEEF102AE7949900B8528E /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +104,7 @@
 		C969C5122A9C82000092B41C /* RCKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCKey.swift; sourceTree = "<group>"; };
 		C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		C97092FF2A927E02005504FD /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
+		C98543F22AE7ED74003DF477 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		C98A35292A6020CA00A5BFF0 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		C98A352A2A6020CA00A5BFF0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		C98A352B2A6020CA00A5BFF0 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9C729932A812FB000F9B226 /* MangaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailView.swift; sourceTree = "<group>"; };
+		C9FEEF122AE7953600B8528E /* MangaManiaDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MangaManiaDebug.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9FEEF112AE7949900B8528E /* FirebaseMessaging in Frameworks */,
 				C9B6D6CE2A60401900AC5955 /* FirebaseAnalytics in Frameworks */,
 				C9242B572A889A46008613B7 /* Lottie in Frameworks */,
 				C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */,
@@ -191,6 +196,7 @@
 		C91DFEEA2A5ED45E00FC657A /* MangaMania */ = {
 			isa = PBXGroup;
 			children = (
+				C9FEEF122AE7953600B8528E /* MangaManiaDebug.entitlements */,
 				C98A354D2A6020EA00A5BFF0 /* Info.plist */,
 				C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */,
 				C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */,
@@ -339,6 +345,7 @@
 			children = (
 				C9125EBC2A6E85EB00FCF2F8 /* MangaManager.swift */,
 				C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */,
+				C98543F22AE7ED74003DF477 /* NotificationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -368,6 +375,7 @@
 				C93112E72A8685D9004FBB80 /* ExpandableText */,
 				C9242B562A889A46008613B7 /* Lottie */,
 				C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */,
+				C9FEEF102AE7949900B8528E /* FirebaseMessaging */,
 			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
@@ -481,6 +489,7 @@
 				C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */,
 				C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */,
 				C9125EBD2A6E85EB00FCF2F8 /* MangaManager.swift in Sources */,
+				C98543F32AE7ED74003DF477 /* NotificationManager.swift in Sources */,
 				C91DFEFA2A5ED5EC00FC657A /* ShapeStyle+Extension.swift in Sources */,
 				C91DFEEC2A5ED45E00FC657A /* MangaManiaApp.swift in Sources */,
 				C997BBBD2A9CD81200AB431B /* AppRouterView+ViewModel.swift in Sources */,
@@ -611,6 +620,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MangaMania/MangaManiaDebug.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -631,7 +641,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -670,7 +680,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -790,6 +800,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		C9FEEF102AE7949900B8528E /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 

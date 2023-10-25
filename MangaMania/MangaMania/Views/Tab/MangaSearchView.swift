@@ -10,6 +10,8 @@ import SwiftUI
 struct MangaSearchView: View {
     
     @StateObject private var vm = ViewModel()
+    @State private var isVisible = false
+    @EnvironmentObject private var notificationManager: NotificationManager
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     @Environment(\.isTabBarVisible) var isTabBarVisible
     var columns: [GridItem] = [
@@ -82,7 +84,15 @@ struct MangaSearchView: View {
         .ignoresSafeArea(.keyboard)
         .preferredColorScheme(.dark)
         .onAppear {
+            isVisible = true
             isTabBarVisible.wrappedValue = true
+        }
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            searchMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .searchMangas))
+        }
+        .onDisappear {
+            isVisible = false
         }
     }
 }

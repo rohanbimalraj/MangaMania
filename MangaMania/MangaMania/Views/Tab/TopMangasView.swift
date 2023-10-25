@@ -11,8 +11,10 @@ struct TopMangasView: View {
     
 
     @EnvironmentObject private var topMangaRouter: TopMangasRouter
+    @EnvironmentObject private var notificationManager: NotificationManager
     @Environment(\.isTabBarVisible) var isTabBarVisible
     @State private var topMangas: [Manga] = []
+    @State private var isVisible = false
     @StateObject private var vm = ViewModel()
     
     var columns: [GridItem] = [
@@ -75,7 +77,17 @@ struct TopMangasView: View {
         .navigationTitle("Top Manga")
         .preferredColorScheme(.dark)
         .onAppear {
+            isVisible = true
             isTabBarVisible.wrappedValue = true
+            guard let mangaUrl = notificationManager.mangaUrl else {return}
+            topMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
+        }
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            topMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
+        }
+        .onDisappear {
+            isVisible = false
         }
     }
 }

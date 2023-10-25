@@ -72,6 +72,7 @@ struct ContentView: View {
         .environmentObject(myMangasRouter)
         .environmentObject(searchMangaRouter)
         .environmentObject(settingsRouter)
+        .environmentObject(NotificationManager.shared)
         .environment(\.isTabBarVisible, $showTabBar)
         .ignoresSafeArea(.keyboard)
     }

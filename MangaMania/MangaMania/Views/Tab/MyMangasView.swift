@@ -9,8 +9,10 @@ import SwiftUI
 
 struct MyMangasView: View {
     
+    @EnvironmentObject private var notificationManager: NotificationManager
     @EnvironmentObject private var myMangasRouter: MyMangasRouter
     @Environment(\.isTabBarVisible) var isTabBarVisible
+    @State private var isVisible = false
     @StateObject private var vm = ViewModel()
     
     var columns: [GridItem] = [
@@ -84,14 +86,20 @@ struct MyMangasView: View {
         }
         .navigationTitle("My Manga")
         .onAppear {
+            isVisible = true
             isTabBarVisible.wrappedValue = true
             vm.getMyMangas()
         }
         .onDisappear {
+            isVisible = false
             vm.showEmptyMessage = false
         }
         .preferredColorScheme(.dark)
         .animation(.easeInOut(duration: 1), value: vm.showEmptyMessage)
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            myMangasRouter.router.push(.mangaDetail(url: mangaUrl, from: .myMangas))
+        }
     }
 }
 

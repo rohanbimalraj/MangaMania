@@ -11,9 +11,11 @@ import ExpandableText
 
 struct MangaDetailView: View {
     
+    
+    @EnvironmentObject private var notificationManager: NotificationManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
-    @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
+    @EnvironmentObject private var myMangaRouter: MyMangasRouter
     
     @StateObject private var vm = ViewModel()
     
@@ -22,6 +24,7 @@ struct MangaDetailView: View {
     
     @State private var showSearchBar = false
     @State private var searchText = ""
+    @State private var isVisible = false
     @FocusState private var isSearchFieldActive
     
     let detailUrl: String
@@ -225,7 +228,7 @@ struct MangaDetailView: View {
                                                     case .searchMangas:
                                                         searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
                                                     case .myMangas:
-                                                        myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                        myMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
 
                                                     }
 
@@ -277,7 +280,12 @@ struct MangaDetailView: View {
             }
             
         }
+        .onDisappear {
+            isVisible = false
+        }
         .onAppear{
+            isVisible = true
+            notificationManager.reset()
             isTabBarVisible.wrappedValue = false
             vm.getMangaDetail(from: detailUrl)
         }
@@ -292,7 +300,7 @@ struct MangaDetailView: View {
                     case .searchMangas:
                         searchMangaRouter.router.pop()
                     case .myMangas:
-                        myMangaMangaRouter.router.pop()
+                        myMangaRouter.router.pop()
 
                     }
                 }label: {
@@ -311,6 +319,22 @@ struct MangaDetailView: View {
         }
         .preferredColorScheme(.dark)
         .ignoresSafeArea(.keyboard)
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            notificationManager.reset()
+            guard (detailUrl != mangaUrl) else {return}
+            switch tab {
+            case .myMangas:
+                myMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .myMangas))
+                break
+            case .topMangas:
+                topMangasRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
+                break
+            case .searchMangas:
+                searchMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .searchMangas))
+                break
+            }
+        }
 
     }
 }
