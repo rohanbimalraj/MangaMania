@@ -17,11 +17,20 @@ struct Manga: Identifiable {
 
 struct MangaDetail {
     
-    struct Chapter: Identifiable {
+    struct Chapter: Identifiable, Comparable {
         let id: UUID = UUID()
         let chapUrl: String?
         let chapTitle: String?
         let chapDate: String?
+        let chapNum: Int
+        
+        static func <(lhs: Chapter, rhs: Chapter) -> Bool {
+            lhs.chapNum < rhs.chapNum
+        }
+        
+        static func >(lhs: Chapter, rhs: Chapter) -> Bool {
+            lhs.chapNum > rhs.chapNum
+        }
     }
     
     let coverUrl: String?
@@ -140,11 +149,15 @@ final class MangaManager {
             let tempChapters = try doc.getElementsByClass("row-content-chapter").select("> li")
             var chapters: [MangaDetail.Chapter] = []
             
+            var totalChapters = tempChapters.count
+            
             try tempChapters.forEach { chapter in
                 let chapTitle = try chapter.select("> a").text()
                 let chapUrl = try chapter.select("> a").attr("href")
                 let chapDate = try chapter.select("span.chapter-time.text-nowrap").text()
-                chapters.append(MangaDetail.Chapter(chapUrl: chapUrl, chapTitle: chapTitle, chapDate: chapDate))
+                chapters.append(MangaDetail.Chapter(chapUrl: chapUrl, chapTitle: chapTitle, chapDate: chapDate, chapNum: totalChapters))
+                totalChapters -= 1
+
             }
             
                         

@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MyMangasView: View {
     
+    @EnvironmentObject private var notificationManager: NotificationManager
     @EnvironmentObject private var myMangasRouter: MyMangasRouter
+    @Environment(\.isTabBarVisible) var isTabBarVisible
+    @State private var isVisible = false
     @StateObject private var vm = ViewModel()
     
     var columns: [GridItem] = [
@@ -20,12 +23,15 @@ struct MyMangasView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
+                .animation(.none, value: vm.showEmptyMessage)
             
-            if vm.myMangas.isEmpty {
-                Text("You have not added any manga to library yet!!!")
+            if vm.showEmptyMessage {
+                Text("\"You have not added any manga to library yet\"")
                     .foregroundColor(.themeFour)
                     .font(.custom(.bold, size: 17))
                     .padding(.bottom, 90)
+                    .padding(.horizontal)
+                    .transition(.scale)
                 
             }else {
                 ScrollView {
@@ -39,9 +45,6 @@ struct MyMangasView: View {
                             }label: {
                                 KFImage(URL(string: manga.coverUrl ?? ""))
                                     .resizable()
-                                    .loadDiskFileSynchronously()
-                                    .diskCacheExpiration(.expired)
-                                    .memoryCacheExpiration(.expired)
                                     .fade(duration: 0.5)
                                     .placeholder({
                                         Image("book-cover-placeholder")
@@ -59,6 +62,14 @@ struct MyMangasView: View {
                                     }
                                     .frame(height: 250)
                                     .cornerRadius(10)
+                                    .contextMenu(menuItems: {
+                                        Button {
+                                            vm.deleteFromLib(manga)
+                                        } label: {
+                                            Label("Remove from library", systemImage: "trash.fill")
+                                        }
+
+                                    })
                                     .padding(.horizontal, 20)
                                     .padding(.top, 20)
                                 
@@ -74,8 +85,21 @@ struct MyMangasView: View {
             
         }
         .navigationTitle("My Manga")
-        .onAppear(perform: vm.getMyMangas)
+        .onAppear {
+            isVisible = true
+            isTabBarVisible.wrappedValue = true
+            vm.getMyMangas()
+        }
+        .onDisappear {
+            isVisible = false
+            vm.showEmptyMessage = false
+        }
         .preferredColorScheme(.dark)
+        .animation(.easeInOut(duration: 1), value: vm.showEmptyMessage)
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            myMangasRouter.router.push(.mangaDetail(url: mangaUrl, from: .myMangas))
+        }
     }
 }
 

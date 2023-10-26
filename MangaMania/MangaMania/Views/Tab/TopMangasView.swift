@@ -11,7 +11,10 @@ struct TopMangasView: View {
     
 
     @EnvironmentObject private var topMangaRouter: TopMangasRouter
+    @EnvironmentObject private var notificationManager: NotificationManager
+    @Environment(\.isTabBarVisible) var isTabBarVisible
     @State private var topMangas: [Manga] = []
+    @State private var isVisible = false
     @StateObject private var vm = ViewModel()
     
     var columns: [GridItem] = [
@@ -34,11 +37,7 @@ struct TopMangasView: View {
                             
                         }label: {
                             KFImage(URL(string: manga.coverUrl ?? ""))
-                                .memoryCacheExpiration(.expired)
                                 .resizable()
-                                .loadDiskFileSynchronously()
-                                .diskCacheExpiration(.expired)
-                                .memoryCacheExpiration(.expired)
                                 .fade(duration: 0.5)
                                 .placeholder({
                                     Image("book-cover-placeholder")
@@ -73,11 +72,23 @@ struct TopMangasView: View {
                 }
             }
             .padding(.bottom, 90)
-            .padding(.top, 1)
             .clipped()
         }
         .navigationTitle("Top Manga")
         .preferredColorScheme(.dark)
+        .onAppear {
+            isVisible = true
+            isTabBarVisible.wrappedValue = true
+            guard let mangaUrl = notificationManager.mangaUrl else {return}
+            topMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
+        }
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            topMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
+        }
+        .onDisappear {
+            isVisible = false
+        }
     }
 }
 

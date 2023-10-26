@@ -11,11 +11,21 @@ import ExpandableText
 
 struct MangaDetailView: View {
     
+    
+    @EnvironmentObject private var notificationManager: NotificationManager
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
-    @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
+    @EnvironmentObject private var myMangaRouter: MyMangasRouter
     
     @StateObject private var vm = ViewModel()
+    
+    @Environment(\.isTabBarVisible) private var isTabBarVisible
+    @Namespace private var chapterSectionId
+    
+    @State private var showSearchBar = false
+    @State private var searchText = ""
+    @State private var isVisible = false
+    @FocusState private var isSearchFieldActive
     
     let detailUrl: String
     let tab: Tab
@@ -26,144 +36,241 @@ struct MangaDetailView: View {
             LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             if vm.showDetails {
-                ScrollView {
-                        VStack {
-                            HStack(alignment: .top) {
-                                KFImage(URL(string: vm.mangaDetail?.coverUrl ?? ""))
-                                    .resizable()
-                                    .loadDiskFileSynchronously()
-                                    .diskCacheExpiration(.expired)
-                                    .memoryCacheExpiration(.expired)
-                                    .fade(duration: 0.5)
-                                    .placeholder({
-                                        Image("book-cover-placeholder")
-                                            .resizable()
-                                    })
-                                    .frame(width: 150, height: 250)
-                                    .cornerRadius(10)
+                ScrollViewReader { proxy in
+                    
+                    ScrollView {
+                            VStack {
+                                HStack(alignment: .top) {
+                                    KFImage(URL(string: vm.mangaDetail?.coverUrl ?? ""))
+                                        .resizable()
+                                        .fade(duration: 0.5)
+                                        .placeholder({
+                                            Image("book-cover-placeholder")
+                                                .resizable()
+                                        })
+                                        .frame(width: 150, height: 250)
+                                        .cornerRadius(10)
+                                    
+                                    VStack(alignment: .leading, spacing: 20) {
+                                        Text(vm.mangaDetail?.title ?? "")
+                                            .foregroundColor(.themeFour)
+                                            .font(.custom(.bold, size: 24))
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            
+                                            HStack(alignment: .top ,spacing: 5) {
+                                                Text("Author(s): ")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.semiBold, size: 16))
+                                                Text(vm.mangaDetail?.authors ?? "")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.medium, size: 15))
+                                            }
+
+                                            HStack(alignment: .top, spacing: 5) {
+                                                Text("Updated:  ")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.semiBold, size: 16))
+                                                Text(vm.mangaDetail?.updatedDate ?? "")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.medium, size: 15))
+                                            }
+                                            
+                                            HStack(alignment: .top, spacing: 5) {
+                                                Text("Status:      ")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.semiBold, size: 16))
+                                                Text(vm.mangaDetail?.status ?? "")
+                                                    .foregroundColor(.themeFour)
+                                                    .font(.custom(.medium, size: 15))
+                                            }
+                                        }
+                                        RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
+                                        
+                                        Button {
+                                            if vm.isAddedToLib {
+                                                vm.deleteFromLib()
+                                            }else {
+                                                vm.saveToLib()
+                                            }
+                                        }label: {
+                                            HStack {
+                                                Text(vm.isAddedToLib ? "Remove" : "Save")
+                                                    .foregroundStyle(.themeFour)
+                                                    .font(.custom(.semiBold, size: 15))
+                                                Image(systemName: vm.isAddedToLib ? "bookmark.slash.fill" : "bookmark.fill")
+                                                    .foregroundStyle(.themeFour)
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .padding(10)
+                                            .background(Color.themeThree)
+                                            .clipShape(Capsule())
+                                        }
+                                    }
+                                }
+                                
+                                Rectangle()
+                                    .frame(height: 2)
+                                    .foregroundColor(.themeTwo)
+                                    .padding(.vertical)
                                 
                                 VStack(alignment: .leading, spacing: 20) {
-                                    Text(vm.mangaDetail?.title ?? "")
+                                    Text("Description")
                                         .foregroundColor(.themeFour)
-                                        .font(.custom(.bold, size: 24))
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        
-                                        HStack(alignment: .top ,spacing: 5) {
-                                            Text("Author(s): ")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.semiBold, size: 16))
-                                            Text(vm.mangaDetail?.authors ?? "")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.medium, size: 15))
-                                        }
+                                        .font(.custom(.bold, size: 20))
+                                    ExpandableText(text: vm.mangaDetail?.description ?? "")
+                                        .font(.custom(.regular, size: 14))
+                                        .foregroundColor(.themeFour)
+                                        .lineLimit(5)
+                                        .expandButton(TextSet(text: "more", font: .custom(.bold, size: 16), color: .themeThree))
+                                        .collapseButton(TextSet(text: "less", font: .custom(.bold, size: 16), color: .themeThree))
 
-                                        HStack(alignment: .top, spacing: 5) {
-                                            Text("Updated:  ")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.semiBold, size: 16))
-                                            Text(vm.mangaDetail?.updatedDate ?? "")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.medium, size: 15))
-                                        }
+                                }
+                                
+                                Rectangle()
+                                    .frame(height: 2)
+                                    .foregroundColor(.themeTwo)
+                                    .padding(.vertical)
+                                
+                                VStack(alignment: .leading, spacing: 15) {
+                                    HStack {
+                                        Text("Chapters")
+                                            .foregroundColor(.themeFour)
+                                        .font(.custom(.bold, size: 20))
+                                        .padding(5)
                                         
-                                        HStack(alignment: .top, spacing: 5) {
-                                            Text("Status:      ")
+                                        Spacer()
+                                        
+                                        HStack {
+                                            
+                                            Button {
+                                                
+                                                withAnimation {
+                                                    proxy.scrollTo(chapterSectionId)
+                                                    showSearchBar = true
+                                                }
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                                    isSearchFieldActive = true
+                                                }
+                                                
+                                            }label: {
+                                                Image(systemName: "magnifyingglass")
+                                                    .foregroundColor(.themeFour)
+                                                    .padding(3)
+                                            }
+                                            .allowsHitTesting(!showSearchBar)
+                                            if showSearchBar {
+                                                TextField("Search", text: $vm.searchText, prompt:
+                                                            Text("Search chapter")
+                                                    .foregroundColor(.themeThree)
+                                                    .font(.custom(.medium, size: 13))
+                                                )
+                                                .tint(.themeFour)
                                                 .foregroundColor(.themeFour)
-                                                .font(.custom(.semiBold, size: 16))
-                                            Text(vm.mangaDetail?.status ?? "")
+                                                .font(.custom(.regular, size: 15))
+                                                .focused($isSearchFieldActive)
+
+                                                
+                                                
+                                                Button {
+                                                    withAnimation {
+                                                        showSearchBar = false
+                                                    }
+                                                    vm.discardSearch()
+                                                }label: {
+                                                    Image(systemName: "xmark.circle.fill")
+                                                        .foregroundColor(.themeFour)
+                                                }
+                                                .offset(x: -3)
+                                            }
+                                            
+                                        }
+                                        .padding(3)
+                                        .background(showSearchBar ? .themeTwo : .clear)
+                                        .clipShape(Capsule())
+                                        
+                                        
+                                        Menu {
+                                            Button {
+                                                vm.sortChapters(from: .newestToOldest)
+                                            } label: {
+                                                if vm.sortType == .newestToOldest {
+                                                    Label("Newest - Oldest", systemImage: "checkmark")
+                                                }else {
+                                                    Text("Newest - Oldest")
+                                                }
+                                                
+                                            }
+                                            
+                                            Button {
+                                                vm.sortChapters(from: .oldestToNewest)
+                                            } label: {
+                                                if vm.sortType == .oldestToNewest {
+                                                    Label("Oldest - Newest", systemImage: "checkmark")
+                                                }else {
+                                                    Text("Oldest - Newest")
+                                                }
+                                            }
+                                            
+                                        }label: {
+                                            Image(systemName: "arrow.up.arrow.down")
                                                 .foregroundColor(.themeFour)
-                                                .font(.custom(.medium, size: 15))
+                                                .padding(5)
+                                        }
+                                    }
+                                    ScrollViewReader { secondProxy in
+                                        List {
+                                            ForEach(vm.requiredChapters) { chapter in
+                                                Button {
+                                                    vm.updateSelectedChapter(title: chapter.chapTitle ?? "")
+                                                    switch tab {
+                                                    case .topMangas:
+                                                        topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                    case .searchMangas:
+                                                        searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+                                                    case .myMangas:
+                                                        myMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
+
+                                                    }
+
+                                                }label: {
+                                                    HStack {
+                                                        Text(chapter.chapTitle ?? "")
+                                                            .foregroundColor(.themeFour)
+                                                            .font(.custom(.semiBold, size: 13))
+                                                        if (chapter.chapTitle == vm.selectedChapTitle) {
+                                                            Image("ContinueNew", bundle: nil)
+                                                                .resizable()
+                                                                .scaledToFill()
+                                                                .frame(width: 70, height: 20)
+                                                        }
+
+                                                        Spacer()
+                                                        
+                                                        Image(systemName: "chevron.right")
+                                                            .foregroundColor(.themeFour)
+                                                    }
+                                                }
+                                                .id(chapter.chapTitle)
+                                            }
+                                            .listRowSeparatorTint(.themeTwo)
+                                            .listRowBackground(Color.clear)
+                                        }
+                                        .frame(height: 400)
+                                        .listStyle(.plain)
+                                        .onAppear {
+                                            withAnimation {
+                                                secondProxy.scrollTo(vm.selectedChapTitle, anchor: .top)
+                                            }
                                         }
                                     }
                                     
-                                    HStack(alignment: .top) {
-                                        RatingView(rating: .constant(vm.mangaDetail?.rating ?? 0))
-                                        
-                                        VStack {
-                                            Image(systemName: vm.isAddedToLib ? "bookmark.fill" : "bookmark")
-                                                .foregroundColor(.themeFour)
-                                                .font(.largeTitle)
-                                                .onTapGesture {
-                                                    vm.showldSave ? vm.saveToLib() : vm.deleteFromLib()
-                                                }
-                                            Text(vm.isAddedToLib ? "Delete from\nlibrary" : "Save to\nlibrary")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.semiBold, size: 10))
-                                                .multilineTextAlignment(.center)
-                                        }
-                                    }
                                 }
+                                .id(chapterSectionId)
                             }
-                            
-                            Rectangle()
-                                .frame(height: 2)
-                                .foregroundColor(.themeTwo)
-                                .padding(.vertical)
-                            
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("Description")
-                                    .foregroundColor(.themeFour)
-                                    .font(.custom(.bold, size: 20))
-                                ExpandableText(text: vm.mangaDetail?.description ?? "")
-                                    .font(.custom(.regular, size: 14))
-                                    .foregroundColor(.themeFour)
-                                    .lineLimit(5)
-                                    .expandButton(TextSet(text: "more", font: .custom(.bold, size: 16), color: .themeThree))
-                                    .collapseButton(TextSet(text: "less", font: .custom(.bold, size: 16), color: .themeThree))
-
-                            }
-                            
-                            Rectangle()
-                                .frame(height: 2)
-                                .foregroundColor(.themeTwo)
-                                .padding(.vertical)
-                            
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("Chapters")
-                                    .foregroundColor(.themeFour)
-                                    .font(.custom(.bold, size: 20))
-                                List {
-                                    ForEach(vm.mangaDetail?.chapters ?? []) { chapter in
-                                        if vm.isReadFeatureEnabled {
-                                            Button {
-                                                switch tab {
-                                                case .topMangas:
-                                                    topMangasRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                                case .searchMangas:
-                                                    searchMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-                                                case .myMangas:
-                                                    myMangaMangaRouter.router.push(.mangaChapter(url: chapter.chapUrl ?? "", from: tab))
-
-                                                }
-
-                                            }label: {
-                                                HStack {
-                                                    Text(chapter.chapTitle ?? "")
-                                                        .foregroundColor(.themeFour)
-                                                        .font(.custom(.semiBold, size: 13))
-                                                    Spacer()
-                                                    
-                                                    Image(systemName: "chevron.right")
-                                                        .foregroundColor(.themeFour)
-                                                }
-                                            }
-                                        }else {
-                                            Text(chapter.chapTitle ?? "")
-                                                .foregroundColor(.themeFour)
-                                                .font(.custom(.semiBold, size: 13))
-                                        }
-                                    }
-                                    .listRowSeparatorTint(.themeTwo)
-                                    .listRowBackground(Color.clear)
-                                }
-                                .frame(height: 400)
-                                .listStyle(.plain)
-                            }
-                        }
-                        .padding(.horizontal)
+                            .padding(.horizontal)
+                    }
                 }
                 .clipped()
-                .padding(.bottom, 90)
                 .navigationBarTitleDisplayMode(.inline)
                 .transition(.opacity)
 
@@ -172,8 +279,13 @@ struct MangaDetailView: View {
             }
             
         }
+        .onDisappear {
+            isVisible = false
+        }
         .onAppear{
-            
+            isVisible = true
+            notificationManager.reset()
+            isTabBarVisible.wrappedValue = false
             vm.getMangaDetail(from: detailUrl)
         }
         .navigationBarBackButtonHidden()
@@ -187,7 +299,7 @@ struct MangaDetailView: View {
                     case .searchMangas:
                         searchMangaRouter.router.pop()
                     case .myMangas:
-                        myMangaMangaRouter.router.pop()
+                        myMangaRouter.router.pop()
 
                     }
                 }label: {
@@ -198,11 +310,31 @@ struct MangaDetailView: View {
         }
         .animation(.easeInOut(duration: 0.5), value: vm.showDetails)
         .alert("Message", isPresented: $vm.showAlert) {
-            Button("Ok"){}
+            Button("Ok"){
+                NotificationCenter.default.post(name: .libraryUpdated, object: nil)
+            }
         }message: {
             Text(vm.message)
         }
         .preferredColorScheme(.dark)
+        .ignoresSafeArea(.keyboard)
+        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
+            guard let mangaUrl = mangaUrl, isVisible else {return}
+            notificationManager.reset()
+            guard (detailUrl != mangaUrl) else {return}
+            switch tab {
+            case .myMangas:
+                myMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .myMangas))
+                break
+            case .topMangas:
+                topMangasRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
+                break
+            case .searchMangas:
+                searchMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .searchMangas))
+                break
+            }
+        }
+
     }
 }
 

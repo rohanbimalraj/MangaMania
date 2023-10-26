@@ -65,12 +65,14 @@ struct ContentView: View {
                     TabBarView(selectedTab: $selectedTab)
                 }
             }
+            .animation(.default, value: showTabBar)
         }
         .onAppear(perform: setNavBarAppearance)
         .environmentObject(topMangaRouter)
         .environmentObject(myMangasRouter)
         .environmentObject(searchMangaRouter)
         .environmentObject(settingsRouter)
+        .environmentObject(NotificationManager.shared)
         .environment(\.isTabBarVisible, $showTabBar)
         .ignoresSafeArea(.keyboard)
     }

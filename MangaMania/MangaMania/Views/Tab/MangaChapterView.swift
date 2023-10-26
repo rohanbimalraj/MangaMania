@@ -28,9 +28,6 @@ struct MangaChapterView: View {
                     KFImage(URL(string: url))
                         .requestModifier(MangaManager.shared.chapterRequestModifier)
                         .resizable()
-                        .loadDiskFileSynchronously()
-                        .diskCacheExpiration(.expired)
-                        .memoryCacheExpiration(.expired)
                         .placeholder({ _ in
                             ProgressView()
                         })
@@ -41,13 +38,9 @@ struct MangaChapterView: View {
             }
             .clipped()
             .onAppear{
-                isTabBarVisible.wrappedValue = false
                 Task {
                     pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
                 }
-            }
-            .onDisappear{
-                isTabBarVisible.wrappedValue = true
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
