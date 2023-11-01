@@ -8,6 +8,10 @@
 import Foundation
 
 extension String {
-var boolValue: Bool {
-    return (self as NSString).boolValue
-}}
+    var boolValue: Bool {
+        return (self as NSString).boolValue
+    }
+    static func placeholder(length: Int) -> String {
+        String(Array(repeating: "X", count: length))
+    }
+}

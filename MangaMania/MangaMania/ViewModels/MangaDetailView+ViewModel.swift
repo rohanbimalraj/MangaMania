@@ -16,8 +16,8 @@ extension MangaDetailView {
         }
         
         @Published private(set) var mangaDetail: MangaDetail?
-        @Published private(set) var actualChapters: [MangaDetail.Chapter] = []
-        @Published private(set) var requiredChapters: [MangaDetail.Chapter] = []
+        @Published private(set) var actualChapters: [MangaDetail.Chapter] = MangaDetail.dummyChapters
+        @Published private(set) var requiredChapters: [MangaDetail.Chapter] = MangaDetail.dummyChapters
         @Published private(set) var isAddedToLib = false
         @Published private(set) var sortType: SortType = .newestToOldest
         @Published var showAlert = false

@@ -74,6 +74,8 @@
 		C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6CF2A60401900AC5955 /* FirebaseAuth */; };
 		C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C9B6D6D12A60401900AC5955 /* FirebaseFirestore */; };
 		C9C729942A812FB000F9B226 /* MangaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C729932A812FB000F9B226 /* MangaDetailView.swift */; };
+		C9E6DE402AF2763600B42EFC /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6DE3F2AF2763600B42EFC /* View+Extension.swift */; };
+		C9E6DE432AF2767300B42EFC /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = C9E6DE422AF2767300B42EFC /* Shimmer */; };
 		C9FEEF112AE7949900B8528E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C9FEEF102AE7949900B8528E /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,7 @@
 		C9B6D6CA2A603FA000AC5955 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9C729932A812FB000F9B226 /* MangaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaDetailView.swift; sourceTree = "<group>"; };
 		C9D5BB392AEA2A3300FD7865 /* MangaManiaRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MangaManiaRelease.entitlements; sourceTree = "<group>"; };
+		C9E6DE3F2AF2763600B42EFC /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		C9FEEF122AE7953600B8528E /* MangaManiaDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MangaManiaDebug.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +157,7 @@
 				C9125EBB2A6E85BA00FCF2F8 /* SwiftSoup in Frameworks */,
 				C9B6D6D02A60401900AC5955 /* FirebaseAuth in Frameworks */,
 				C93112E82A8685D9004FBB80 /* ExpandableText in Frameworks */,
+				C9E6DE432AF2767300B42EFC /* Shimmer in Frameworks */,
 				C9B6D6D22A60401900AC5955 /* FirebaseFirestore in Frameworks */,
 				C93850EE2A738F8000B62507 /* Kingfisher in Frameworks */,
 				C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */,
@@ -287,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				C91DFEF92A5ED5EC00FC657A /* ShapeStyle+Extension.swift */,
+				C9E6DE3F2AF2763600B42EFC /* View+Extension.swift */,
 				C98A35532A602D7900A5BFF0 /* Font+Extension.swift */,
 				C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */,
 				C997BBB62A9CC76E00AB431B /* Bundle+Extension.swift */,
@@ -378,6 +383,7 @@
 				C9242B562A889A46008613B7 /* Lottie */,
 				C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */,
 				C9FEEF102AE7949900B8528E /* FirebaseMessaging */,
+				C9E6DE422AF2767300B42EFC /* Shimmer */,
 			);
 			productName = MangaMania;
 			productReference = C91DFEE82A5ED45E00FC657A /* MangaMania.app */;
@@ -413,6 +419,7 @@
 				C93850EC2A738F8000B62507 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C93112E62A8685D9004FBB80 /* XCRemoteSwiftPackageReference "ExpandableText" */,
 				C9242B552A889A46008613B7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				C9E6DE412AF2767300B42EFC /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = C91DFEE92A5ED45E00FC657A /* Products */;
 			projectDirPath = "";
@@ -477,6 +484,7 @@
 				C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */,
 				C93112E52A86798C004FBB80 /* RatingView.swift in Sources */,
 				C997BBB72A9CC76E00AB431B /* Bundle+Extension.swift in Sources */,
+				C9E6DE402AF2763600B42EFC /* View+Extension.swift in Sources */,
 				C90712582A6D500800AC98E0 /* MangaSearchView.swift in Sources */,
 				C9A4DC282A8CF3D300A71270 /* MangaDetailView+ViewModel.swift in Sources */,
 				C996DCC12AA5EC8900DC184F /* Notification+Extension.swift in Sources */,
@@ -643,7 +651,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -683,7 +691,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rohan.MangaMania;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -761,6 +769,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		C9E6DE412AF2767300B42EFC /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -803,6 +819,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9B6D6CC2A60401900AC5955 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		C9E6DE422AF2767300B42EFC /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9E6DE412AF2767300B42EFC /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 		C9FEEF102AE7949900B8528E /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;

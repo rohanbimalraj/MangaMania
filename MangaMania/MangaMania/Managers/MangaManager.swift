@@ -42,6 +42,10 @@ struct MangaDetail {
     let description: String?
     let chapters: [Chapter]?
     
+    static var dummyChapters: [Chapter] {
+        Array(repeating: Chapter(chapUrl: "", chapTitle: .placeholder(length: 30), chapDate: .placeholder(length: 10), chapNum: 1000), count: 20)
+    }
+    
 }
 
 final class MangaManager {
