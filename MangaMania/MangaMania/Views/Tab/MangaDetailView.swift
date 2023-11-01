@@ -269,9 +269,10 @@ struct MangaDetailView: View {
 
                                                     Spacer()
                                                     
-                                                    Image(systemName: "chevron.right")
-                                                        .foregroundColor(.themeFour)
-                                                        .unredacted()
+                                                    if vm.showDetails {
+                                                        Image(systemName: "chevron.right")
+                                                            .foregroundColor(.themeFour)
+                                                    }
                                                 }
                                             }
                                             .id(chapter.chapTitle)

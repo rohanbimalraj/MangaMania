@@ -43,7 +43,7 @@ struct MangaDetail {
     let chapters: [Chapter]?
     
     static var dummyChapters: [Chapter] {
-        Array(repeating: Chapter(chapUrl: "", chapTitle: .placeholder(length: 30), chapDate: .placeholder(length: 10), chapNum: 1000), count: 20)
+        Array(repeating: (), count: 20).map { Chapter(chapUrl: "", chapTitle: .placeholder(length: 80), chapDate: .placeholder(length: 10), chapNum: 1000) }
     }
     
 }
