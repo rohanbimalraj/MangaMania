@@ -67,7 +67,8 @@ struct TabBarView: View {
                 LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeThree]), startPoint: .top, endPoint: .bottom)
                     .clipShape(Capsule())
             )
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, UIApplication.shared.hasBottomSafeArea ? 0 : 20)
             .shadow(radius: 20)
         }
         .onReceive(pub) { _ in

@@ -8,11 +8,19 @@
 import SwiftUI
 
 extension UIApplication {
-    
+
+    var hasBottomSafeArea: Bool {
+        guard let windowScene = connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return false
+        }
+        return window.safeAreaInsets.bottom > 0
+    }
+
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-    
+
     func openAppStore() {
         let appStoreURL = RemoteConfigManager.value(forKey: RCKey.FORCE_UPDATE_STORE_URL)
         guard let url = URL(string: appStoreURL) else {

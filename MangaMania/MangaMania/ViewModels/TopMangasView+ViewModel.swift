@@ -12,7 +12,7 @@ extension TopMangasView {
     @MainActor class ViewModel: ObservableObject {
         
         @Published private(set) var mangas: [Manga] = []
-        @Published private (set) var state: LoadingState = .idle
+        @Published private(set) var state: LoadingState = .idle
         
         private var page = 1
         private var loadingTask: Task<Void, Never>?

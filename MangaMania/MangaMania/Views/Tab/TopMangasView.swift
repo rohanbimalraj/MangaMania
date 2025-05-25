@@ -37,6 +37,7 @@ struct TopMangasView: View {
                             
                         }label: {
                             KFImage(URL(string: manga.coverUrl ?? ""))
+                                .requestModifier(MangaManager.shared.chapterRequestModifier)
                                 .resizable()
                                 .fade(duration: 0.5)
                                 .placeholder({
@@ -71,7 +72,7 @@ struct TopMangasView: View {
                     ProgressView()
                 }
             }
-            .padding(.bottom, 90)
+            .padding(.bottom, UIApplication.shared.hasBottomSafeArea ? 20 : 40)
             .clipped()
         }
         .navigationTitle("Top Manga")

@@ -49,15 +49,29 @@ struct MangaDetail {
 }
 
 final class MangaManager {
+
+    // MARK: - Remote config values for Top Manga Screen
+    private let tmUrl = RemoteConfigManager.value(forKey: RCKey.TM_URL)
+    private let tmParamKey = RemoteConfigManager.value(forKey: RCKey.TM_PARAM_KEY)
+    private let tmListQuery = RemoteConfigManager.value(forKey: RCKey.TM_LIST_QUERY)
     
-    private let baseUrl = RemoteConfigManager.value(forKey: RCKey.BASE_URL)
+    private let tmDetailQuery = RemoteConfigManager.value(forKey: RCKey.TM_DETAIL_QUERY)
+    private let tmTitleQuery = RemoteConfigManager.value(forKey: RCKey.TM_TITLE_QUERY)
+    private let tmImageQuery = RemoteConfigManager.value(forKey: RCKey.TM_IMAGE_QUERY)
+    
+    private let tmDetailAttr = RemoteConfigManager.value(forKey: RCKey.TM_DETAIL_ATTR)
+    private let tmTitleAttr = RemoteConfigManager.value(forKey: RCKey.TM_TITLE_ATTR)
+    private let tmImageAttr = RemoteConfigManager.value(forKey: RCKey.TM_IMAGE_ATTR)
+
+    // MARK: - Remote config values for Search Screen
+    private let searchMangaUrl = RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_URL)
     
     static let shared = MangaManager()
     
     let chapterRequestModifier = AnyModifier { request in
         var r = request
         r.setValue("\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"", forHTTPHeaderField: "sec-ch-ua")
-        r.setValue("https://chapmanganelo.com/", forHTTPHeaderField: "Referer")
+        r.setValue("https://www.nelomanga.net/", forHTTPHeaderField: "Referer")
         r.setValue("?0", forHTTPHeaderField: "sec-ch-ua-mobile")
         r.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36", forHTTPHeaderField: "User-Agent")
         r.setValue("sec-ch-ua-platform", forHTTPHeaderField: "\"macOS\"")
@@ -70,35 +84,32 @@ final class MangaManager {
         
         let fetchTask = Task { () -> [Manga] in
             
-            guard var url = URL(string: baseUrl) else {
+            guard var url = URL(string: tmUrl) else {
                 throw AppErrors.internalError
             }
-            
-            url.append(path: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PC))
+
             if page != 1 {
-                url.append(path: String(page))
+                url.append(queryItems:
+                            [
+                                URLQueryItem(name: tmParamKey, value: String(page))
+                            ]
+                )
             }
-            
-            url.append(queryItems:
-                        [
-                            URLQueryItem(name: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_KEY), value: RemoteConfigManager.value(forKey: RCKey.TOP_MANGA_PARAM_VALUE))
-                        ]
-            )
-            
+
             let (data, _) = try await URLSession.shared.data(from: url)
             guard let html = String(data: data, encoding: .utf8) else {
                 throw AppErrors.internalError
             }
-            
+
             let doc: Document = try SwiftSoup.parse(html)
             
-            let mangas = try doc.getElementsByClass("content-genres-item").select("> a")
+            let mangas = try doc.select(tmListQuery)
             var topMangas: [Manga] = []
             
             try mangas.forEach { manga in
-                let detailUrl = try manga.attr("href")
-                let title = try manga.select("img").attr("alt")
-                let coverUrl = try manga.select("img").attr("src")
+                let detailUrl = try manga.select(tmDetailQuery).attr(tmDetailAttr)
+                let title = try manga.select(tmTitleQuery).attr(tmTitleAttr)
+                let coverUrl = try manga.select(tmImageQuery).attr(tmImageAttr)
                 topMangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
             }
             
@@ -124,7 +135,7 @@ final class MangaManager {
                 throw AppErrors.internalError
             }
             
-            let doc: Document = try SwiftSoup.parse(html)
+            let doc: Document = try SwiftSoup.parse(html) // div.info-wrap > div
             
             let mangaCover = try doc.getElementsByClass("info-image").select("> img").attr("src")
             let title = try doc.getElementsByClass("story-info-right").select("> h1").text()
@@ -204,7 +215,7 @@ final class MangaManager {
         
         let fetchTask = Task { () -> [Manga] in
             
-            guard var url = URL(string: baseUrl) else {
+            guard var url = URL(string: searchMangaUrl) else {
                 throw AppErrors.internalError
             }
             
