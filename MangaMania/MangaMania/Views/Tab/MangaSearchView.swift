@@ -36,6 +36,7 @@ struct MangaSearchView: View {
                                     
                                 }label: {
                                     KFImage(URL(string: manga.coverUrl ?? ""))
+                                        .requestModifier(MangaManager.shared.kfRequestModifier)
                                         .memoryCacheExpiration(.expired)
                                         .resizable()
                                         .fade(duration: 0.5)
@@ -80,7 +81,7 @@ struct MangaSearchView: View {
             }
         }
         .animation(.easeInOut(duration: 0.5), value: vm.loadingState)
-        .navigationTitle("Search Manga")
+        .navigationTitle("Search")
         .ignoresSafeArea(.keyboard)
         .preferredColorScheme(.dark)
         .onAppear {

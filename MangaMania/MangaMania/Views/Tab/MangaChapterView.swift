@@ -24,16 +24,17 @@ struct MangaChapterView: View {
         ZStack {
             
             ScrollView {
-                ForEach(pageUrls, id: \.self) { url in
-                    KFImage(URL(string: url))
-                        .requestModifier(MangaManager.shared.chapterRequestModifier)
-                        .resizable()
-                        .placeholder({ _ in
-                            ProgressView()
-                        })
-                        .scaledToFill()
-                        .padding(.bottom, 2)
-                        .pinchToZoom()
+                LazyVStack(spacing: 0) {
+                    ForEach(pageUrls, id: \.self) { url in
+                        KFImage(URL(string: url))
+                            .requestModifier(MangaManager.shared.kfRequestModifier)
+                            .resizable()
+                            .placeholder({ _ in
+                                ProgressView()
+                            })
+                            .scaledToFill()
+                            .pinchToZoom()
+                    }
                 }
             }
             .clipped()

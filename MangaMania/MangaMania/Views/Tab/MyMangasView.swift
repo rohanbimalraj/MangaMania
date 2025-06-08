@@ -84,7 +84,7 @@ struct MyMangasView: View {
             }
             
         }
-        .navigationTitle("My Manga")
+        .navigationTitle("Your Library")
         .onAppear {
             isVisible = true
             isTabBarVisible.wrappedValue = true

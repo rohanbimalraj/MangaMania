@@ -49,6 +49,8 @@ struct MangaDetail {
 }
 
 final class MangaManager {
+    
+    static let shared = MangaManager()
 
     // MARK: - Remote config values for Top Manga Screen
     private let tmUrl = RemoteConfigManager.value(forKey: RCKey.TM_URL)
@@ -66,15 +68,19 @@ final class MangaManager {
     // MARK: - Remote config values for Search Screen
     private let searchMangaUrl = RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_URL)
     
-    static let shared = MangaManager()
+    private static let defaultRequestHeaders: [String: String] = [
+        "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"",
+        "Referer": "https://www.nelomanga.net/",
+        "sec-ch-ua-mobile": "?0",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+        "sec-ch-ua-platform": "\"macOS\""
+    ]
     
-    let chapterRequestModifier = AnyModifier { request in
+    let kfRequestModifier = AnyModifier { request in
         var r = request
-        r.setValue("\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"", forHTTPHeaderField: "sec-ch-ua")
-        r.setValue("https://www.nelomanga.net/", forHTTPHeaderField: "Referer")
-        r.setValue("?0", forHTTPHeaderField: "sec-ch-ua-mobile")
-        r.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36", forHTTPHeaderField: "User-Agent")
-        r.setValue("sec-ch-ua-platform", forHTTPHeaderField: "\"macOS\"")
+        defaultRequestHeaders.forEach { key, value in
+            r.setValue(value, forHTTPHeaderField: key)
+        }
         return r
     }
     
@@ -135,41 +141,46 @@ final class MangaManager {
                 throw AppErrors.internalError
             }
             
-            let doc: Document = try SwiftSoup.parse(html) // div.info-wrap > div
+            let doc: Document = try SwiftSoup.parse(html)
             
-            let mangaCover = try doc.getElementsByClass("info-image").select("> img").attr("src")
-            let title = try doc.getElementsByClass("story-info-right").select("> h1").text()
-            let elementArray = try doc.getElementsByClass("variations-tableInfo").select("> tbody").select("> tr")
+            let mangaCover = try doc.select("div.thumbnail-wrap > img").attr("src")
+            let title = try doc.select("h1").text()
+            let elementArray = try doc.select("div.info-wrap > div")
+            
             var authors = ""
             var status = ""
+            var updatedDate = ""
+            var rating = ""
             
             try elementArray.forEach { element in
-                let label = try element.select("td.table-label").text()
+                let label = try element.select("> p:nth-of-type(1)").text()
                 switch label {
-                case "Author(s) :":
-                    authors = try element.select("td.table-value").text()
-                case "Status :":
-                    status = try element.select("td.table-value").text()
+                case "Author(s):":
+                    authors = try element.select("> p:nth-of-type(2)").text()
+                case "Status:":
+                    status = try element.select("> p:nth-of-type(2)").text()
+                case "Last updated:":
+                    updatedDate = try element.select("> p:nth-of-type(2)").text()
+                case "Rating:":
+                    rating = try element.select("em#rate_row_cmd").text()
                 default:
                     break
                 }
             }
+
             
-            let tempDateAndRating = try doc.getElementsByClass("story-info-right-extent").select("> p")
-            let updatedDate = try tempDateAndRating[0].select("span.stre-value").text()
-            let rating = try tempDateAndRating[3].select("> em").text()
+            var description = try doc.select("div#contentBox").text()
+            description = description.replacingOccurrences(of: "\(title) summary: ", with: "")
             
-            var description = try doc.getElementsByClass("panel-story-info-description").text()
-            description = description.replacingOccurrences(of: "Description :", with: "")
-            let tempChapters = try doc.getElementsByClass("row-content-chapter").select("> li")
+            let tempChapters = try doc.select("div.chapter-list > div")
             var chapters: [MangaDetail.Chapter] = []
             
             var totalChapters = tempChapters.count
             
             try tempChapters.forEach { chapter in
-                let chapTitle = try chapter.select("> a").text()
-                let chapUrl = try chapter.select("> a").attr("href")
-                let chapDate = try chapter.select("span.chapter-time.text-nowrap").text()
+                let chapTitle = try chapter.select("span > a").text()
+                let chapUrl = try chapter.select("span > a").attr("href")
+                let chapDate = try chapter.select("> span:nth-of-type(3)").text()
                 chapters.append(MangaDetail.Chapter(chapUrl: chapUrl, chapTitle: chapTitle, chapDate: chapDate, chapNum: totalChapters))
                 totalChapters -= 1
 
@@ -198,7 +209,7 @@ final class MangaManager {
             }
             
             let doc: Document = try SwiftSoup.parse(html)
-            let pages = try doc.getElementsByClass("container-chapter-reader").select("> img.reader-content")
+            let pages = try doc.select("div.container-chapter-reader > img")
             var pageUrls: [String] = []
            try pages.forEach { page in
                let url = try page.attr("src")
@@ -212,41 +223,43 @@ final class MangaManager {
     }
     
     func getMangas(with title: String) async -> Result<[Manga], Error> {
-        
         let fetchTask = Task { () -> [Manga] in
-            
-            guard var url = URL(string: searchMangaUrl) else {
+            guard var url = URL(string: "https://www.nelomanga.net/search/story") else {
                 throw AppErrors.internalError
             }
-            
-            url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_ONE))
-            url.append(path: RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_PC_TWO))
+
             url.append(path: title.lowercased().replacingOccurrences(of: " ", with: "_"))
-            
-            let (data, _) = try await URLSession.shared.data(from: url)
+
+            var request = URLRequest(url: url)
+
+            MangaManager.defaultRequestHeaders.forEach { key, value in
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+
+            let (data, _) = try await URLSession.shared.data(for: request)
             guard let html = String(data: data, encoding: .utf8) else {
                 throw AppErrors.internalError
             }
-            
+
             let doc: Document = try SwiftSoup.parse(html)
-            let searchResults = try doc.getElementsByClass("search-story-item")
+            let searchResults = try doc.select("div.story_item")
             var mangas: [Manga] = []
-            try searchResults.forEach({ item in
-                let t = try item.select("> a")
-                let title = try t.attr("title")
-                let detailUrl = try t.attr("href")
-                let coverUrl = try item.select("img.img-loading").attr("src")
+            try searchResults.forEach { item in
+                let title = try item.select("h3.story_name > a").text()
+                let detailUrl = try item.select("a").attr("href")
+                let coverUrl = try item.select("a > img").attr("src")
                 mangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
-            })
+            }
+
             return mangas
         }
+
         let result = await fetchTask.result
         return result
-        
     }
     
     private func getRequiredRating(from rating: String) -> Int? {
-        let wordsToRemove = ["MangaNelo.com", "rate", ":", "/", "5", "-", "votes"]
+        let wordsToRemove = ["nelomanga.net", "rate", ":", "/", "-", "votes"]
         var stringArray = rating.components(separatedBy: " ")
         stringArray = stringArray.filter{ !wordsToRemove.contains($0) }
         if let ratingString = stringArray.first {
