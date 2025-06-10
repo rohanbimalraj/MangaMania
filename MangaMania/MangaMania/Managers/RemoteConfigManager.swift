@@ -7,33 +7,75 @@
 import FirebaseRemoteConfig
 import Foundation
 
-struct RemoteConfigManager {
+final class RemoteConfigManager {
     
-    private static var remoteConfig: RemoteConfig = {
-        
-        var remoteConfig = RemoteConfig.remoteConfig()
+    static let shared = RemoteConfigManager()
+    
+    private let remoteConfig: RemoteConfig
+    
+    // MARK: - Properties
+    private(set) var appStoreVersion: String = ""
+    private(set) var forceRequired: Bool = false
+    private(set) var appStoreURL: String = ""
+    private(set) var homeScreen: HomeScreen = .default
+    private(set) var detailScreen: DetailScreen = .default
+    private(set) var chapterScreen: ChapterScreen = .default
+    private(set) var searchScreen: SearchScreen = .default
+    
+    // MARK: - Init
+    private init() {
+        self.remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 3600.0
+        #if DEBUG
+        settings.minimumFetchInterval = 0.0
+        #endif
         remoteConfig.configSettings = settings
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
-        return remoteConfig
-    }()
+        
+        // Load initial values from defaults
+        loadValues()
+    }
     
-    static func configure(expirationDuration: TimeInterval = 3600.0) {
-        remoteConfig.fetch(withExpirationDuration: expirationDuration) { status, error in
+    // MARK: - Configure and Fetch
+    func configure(completion: @escaping () -> Void) {
+        remoteConfig.fetchAndActivate { [weak self] status, error in
             if let error = error {
-                print(error.localizedDescription)
-            }else {
-                remoteConfig.activate()
-                print("Successfully fetched remote config!!!!")
+                print("RemoteConfig fetchAndActivate error: \(error.localizedDescription)")
+                completion()
+            } else {
+                print("RemoteConfig fetchAndActivate status: \(status.rawValue)")
+                self?.loadValues()
+                completion()
             }
         }
     }
     
-    static func value(forKey key: String) -> String {
-        if let value = remoteConfig.configValue(forKey: key).stringValue {
-            return value
+    // MARK: - Decode helper
+    private func decode<T: Decodable>(forKey key: String) -> T? {
+        guard let jsonString = remoteConfig.configValue(forKey: key).stringValue,
+              let data = jsonString.data(using: .utf8) else {
+            print("Failed to get JSON string for key: \(key)")
+            return nil
         }
-        fatalError("Couldn't get remote config value")
+        
+        do {
+            return try JSONDecoder().decode(T.self, from: data)
+        } catch {
+            print("Decoding error for key: \(key): \(error)")
+            return nil
+        }
+    }
+    
+    // MARK: - Load all remote config values
+    private func loadValues() {
+        self.appStoreVersion = remoteConfig.configValue(forKey: "force_update_current_version").stringValue ?? ""
+        self.forceRequired = remoteConfig.configValue(forKey: "is_force_update_required").boolValue
+        self.appStoreURL = remoteConfig.configValue(forKey: "force_update_store_url").stringValue ?? ""
+        
+        self.homeScreen = decode(forKey: "home_screen") ?? .default
+        self.detailScreen = decode(forKey: "detail_screen") ?? .default
+        self.chapterScreen = decode(forKey: "chapter_screen") ?? .default
+        self.searchScreen = decode(forKey: "search_screen") ?? .default
     }
 }

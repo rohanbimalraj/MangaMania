@@ -22,7 +22,7 @@ extension UIApplication {
     }
 
     func openAppStore() {
-        let appStoreURL = RemoteConfigManager.value(forKey: RCKey.FORCE_UPDATE_STORE_URL)
+        let appStoreURL = RemoteConfigManager.shared.appStoreURL
         guard let url = URL(string: appStoreURL) else {
             return
         }

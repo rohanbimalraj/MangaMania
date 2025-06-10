@@ -29,8 +29,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        RemoteConfigManager.configure()
-        
+
         let cache = ImageCache.default
         // Limit memory cache size to 10 MB.
         cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10

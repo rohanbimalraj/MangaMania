@@ -13,11 +13,13 @@ extension AppRouterView {
         
         @Published var showSplash = true
         @Published var showUpdateAlert = false
+        @Published var configReady = false
+        private let remoteConfig = RemoteConfigManager.shared
         
         func checkForUpdate() {
             let currentVersion = "\(Bundle.appVersionBundle)(\(Bundle.appBuildBundle))"
-            let appStoreVersion = RemoteConfigManager.value(forKey: RCKey.FORCE_UPDATE_CURRENT_VERSION)
-            let forceRequired = RemoteConfigManager.value(forKey: RCKey.IS_FORCE_UPDATE_REQUIRED).boolValue
+            let appStoreVersion = remoteConfig.appStoreVersion//RemoteConfigManager.value(forKey: RCKey.FORCE_UPDATE_CURRENT_VERSION)
+            let forceRequired = remoteConfig.forceRequired//RemoteConfigManager.value(forKey: RCKey.IS_FORCE_UPDATE_REQUIRED).boolValue
             
             if forceRequired {
                 if appStoreVersion > currentVersion {

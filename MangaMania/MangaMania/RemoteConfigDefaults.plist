@@ -2,35 +2,54 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>tm_param_key</key>
-	<string>page</string>
-	<key>search_manga_pc_1</key>
-	<string>search</string>
-	<key>search_manga_pc_2</key>
-	<string>story</string>
 	<key>force_update_current_version</key>
 	<string>1.0.0(1)</string>
 	<key>force_update_store_url</key>
 	<string>https://www.apple.com/app-store/</string>
 	<key>is_force_update_required</key>
 	<string>false</string>
-	<key>tm_url</key>
-	<string>&quot;&quot;</string>
-	<key>search_manga_url</key>
-	<string>&quot;&quot;</string>
-	<key>tm_list_query</key>
-	<string>div.list-truyen-item-wrap</string>
-	<key>tm_detail_query</key>
-	<string>&gt; a</string>
-	<key>tm_title_query</key>
-	<string>img</string>
-	<key>tm_image_query</key>
-	<string>img</string>
-	<key>tm_detail_attr</key>
-	<string>href</string>
-	<key>tm_title_attr</key>
-	<string>alt</string>
-	<key>tm_image_attr</key>
-	<string>src</string>
+	<key>home_screen</key>
+	<string>{
+  &quot;url&quot;: &quot;&quot;,
+  &quot;param_key&quot;: &quot;page&quot;,
+  &quot;list_query&quot;: &quot;div.list-truyen-item-wrap&quot;,
+  &quot;detail_query&quot;: &quot;&gt; a&quot;,
+  &quot;detail_attr&quot;: &quot;href&quot;,
+  &quot;title_query&quot;: &quot;h3 &gt; a&quot;,
+  &quot;title_attr&quot;: &quot;title&quot;,
+  &quot;image_query&quot;: &quot;img&quot;,
+  &quot;image_attr&quot;: &quot;src&quot;
+}</string>
+	<key>detail_screen</key>
+	<string>{
+  &quot;image_query&quot;: &quot;div.thumbnail-wrap &gt; img&quot;,
+  &quot;image_attr&quot;: &quot;src&quot;,
+  &quot;title_query&quot;: &quot;h1&quot;,
+  &quot;info_query&quot;: &quot;div.info-wrap &gt; div&quot;,
+  &quot;info_label_query&quot;: &quot;&gt; p:nth-of-type(1)&quot;,
+  &quot;authors_query&quot;: &quot;&gt; p:nth-of-type(2)&quot;,
+  &quot;status_query&quot;: &quot;&gt; p:nth-of-type(2)&quot;,
+  &quot;updatedDate_query&quot;: &quot;&gt; p:nth-of-type(2)&quot;,
+  &quot;rating_query&quot;: &quot;em#rate_row_cmd&quot;,
+  &quot;description_query&quot;: &quot;div#contentBox&quot;,
+  &quot;d_replacement_text&quot;: &quot;\\(title) summary: &quot;,
+  &quot;chapters_query&quot;: &quot;div.chapter-list &gt; div&quot;,
+  &quot;chap_title_query&quot;: &quot;span &gt; a&quot;,
+  &quot;chap_url_query&quot;: &quot;span &gt; a&quot;,
+  &quot;chap_url_attr&quot;: &quot;href&quot;,
+  &quot;chap_date_query&quot;: &quot;&gt; span:nth-of-type(3)&quot;
+}</string>
+	<key>chapter_screen</key>
+	<string>{ &quot;pages_query&quot;: &quot;div.container-chapter-reader &gt; img&quot;, &quot;page_attr&quot;: &quot;src&quot; }</string>
+	<key>search_screen</key>
+	<string>{
+  &quot;url&quot;: &quot;https://www.nelomanga.net/search/story&quot;,
+  &quot;results_query&quot;: &quot;div.story_item&quot;,
+  &quot;title_query&quot;: &quot;h3.story_name &gt; a&quot;,
+  &quot;detail_query&quot;: &quot;a&quot;,
+  &quot;detail_attr&quot;: &quot;href&quot;,
+  &quot;image_query&quot;: &quot;a &gt; img&quot;,
+  &quot;image_attr&quot;: &quot;src&quot;
+}</string>
 </dict>
 </plist>

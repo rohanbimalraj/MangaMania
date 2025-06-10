@@ -51,22 +51,8 @@ struct MangaDetail {
 final class MangaManager {
     
     static let shared = MangaManager()
-
-    // MARK: - Remote config values for Top Manga Screen
-    private let tmUrl = RemoteConfigManager.value(forKey: RCKey.TM_URL)
-    private let tmParamKey = RemoteConfigManager.value(forKey: RCKey.TM_PARAM_KEY)
-    private let tmListQuery = RemoteConfigManager.value(forKey: RCKey.TM_LIST_QUERY)
     
-    private let tmDetailQuery = RemoteConfigManager.value(forKey: RCKey.TM_DETAIL_QUERY)
-    private let tmTitleQuery = RemoteConfigManager.value(forKey: RCKey.TM_TITLE_QUERY)
-    private let tmImageQuery = RemoteConfigManager.value(forKey: RCKey.TM_IMAGE_QUERY)
-    
-    private let tmDetailAttr = RemoteConfigManager.value(forKey: RCKey.TM_DETAIL_ATTR)
-    private let tmTitleAttr = RemoteConfigManager.value(forKey: RCKey.TM_TITLE_ATTR)
-    private let tmImageAttr = RemoteConfigManager.value(forKey: RCKey.TM_IMAGE_ATTR)
-
-    // MARK: - Remote config values for Search Screen
-    private let searchMangaUrl = RemoteConfigManager.value(forKey: RCKey.SEARCH_MANGA_URL)
+    private let remoteConfig = RemoteConfigManager.shared
     
     private static let defaultRequestHeaders: [String: String] = [
         "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"",
@@ -88,16 +74,17 @@ final class MangaManager {
         
     func getTopMangas(in page: Int) async -> Result<[Manga], Error> {
         
+        let homeScreen = remoteConfig.homeScreen
         let fetchTask = Task { () -> [Manga] in
             
-            guard var url = URL(string: tmUrl) else {
+            guard var url = URL(string: homeScreen.url) else {
                 throw AppErrors.internalError
             }
 
             if page != 1 {
                 url.append(queryItems:
                             [
-                                URLQueryItem(name: tmParamKey, value: String(page))
+                                URLQueryItem(name: homeScreen.paramKey, value: String(page))
                             ]
                 )
             }
@@ -109,13 +96,13 @@ final class MangaManager {
 
             let doc: Document = try SwiftSoup.parse(html)
             
-            let mangas = try doc.select(tmListQuery)
+            let mangas = try doc.select(homeScreen.listQuery)
             var topMangas: [Manga] = []
             
             try mangas.forEach { manga in
-                let detailUrl = try manga.select(tmDetailQuery).attr(tmDetailAttr)
-                let title = try manga.select(tmTitleQuery).attr(tmTitleAttr)
-                let coverUrl = try manga.select(tmImageQuery).attr(tmImageAttr)
+                let detailUrl = try manga.select(homeScreen.detailQuery).attr(homeScreen.detailAttr)
+                let title = try manga.select(homeScreen.titleQuery).attr(homeScreen.titleAttr)
+                let coverUrl = try manga.select(homeScreen.imageQuery).attr(homeScreen.imageAttr)
                 topMangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
             }
             
@@ -129,6 +116,7 @@ final class MangaManager {
     
     func getMangaDetail(from url: String) async -> Result<MangaDetail, Error> {
         
+        let detailScreen = remoteConfig.detailScreen
         let fetchTask = Task { () -> MangaDetail in
             
             guard let url = URL(string: url) else {
@@ -143,9 +131,9 @@ final class MangaManager {
             
             let doc: Document = try SwiftSoup.parse(html)
             
-            let mangaCover = try doc.select("div.thumbnail-wrap > img").attr("src")
-            let title = try doc.select("h1").text()
-            let elementArray = try doc.select("div.info-wrap > div")
+            let mangaCover = try doc.select(detailScreen.imageQuery).attr(detailScreen.imageAttr)
+            let title = try doc.select(detailScreen.titleQuery).text()
+            let elementArray = try doc.select(detailScreen.infoQuery)
             
             var authors = ""
             var status = ""
@@ -153,34 +141,34 @@ final class MangaManager {
             var rating = ""
             
             try elementArray.forEach { element in
-                let label = try element.select("> p:nth-of-type(1)").text()
+                let label = try element.select(detailScreen.infoLabelQuery).text()
                 switch label {
                 case "Author(s):":
-                    authors = try element.select("> p:nth-of-type(2)").text()
+                    authors = try element.select(detailScreen.authorsQuery).text()
                 case "Status:":
-                    status = try element.select("> p:nth-of-type(2)").text()
+                    status = try element.select(detailScreen.statusQuery).text()
                 case "Last updated:":
-                    updatedDate = try element.select("> p:nth-of-type(2)").text()
+                    updatedDate = try element.select(detailScreen.updatedDateQuery).text()
                 case "Rating:":
-                    rating = try element.select("em#rate_row_cmd").text()
+                    rating = try element.select(detailScreen.ratingQuery).text()
                 default:
                     break
                 }
             }
 
             
-            var description = try doc.select("div#contentBox").text()
+            var description = try doc.select(detailScreen.descriptionQuery).text()
             description = description.replacingOccurrences(of: "\(title) summary: ", with: "")
             
-            let tempChapters = try doc.select("div.chapter-list > div")
+            let tempChapters = try doc.select(detailScreen.chaptersQuery)
             var chapters: [MangaDetail.Chapter] = []
             
             var totalChapters = tempChapters.count
             
             try tempChapters.forEach { chapter in
-                let chapTitle = try chapter.select("span > a").text()
-                let chapUrl = try chapter.select("span > a").attr("href")
-                let chapDate = try chapter.select("> span:nth-of-type(3)").text()
+                let chapTitle = try chapter.select(detailScreen.chapTitleQuery).text()
+                let chapUrl = try chapter.select(detailScreen.chapUrlQuery).attr(detailScreen.chapUrlAttr)
+                let chapDate = try chapter.select(detailScreen.chapDateQuery).text()
                 chapters.append(MangaDetail.Chapter(chapUrl: chapUrl, chapTitle: chapTitle, chapDate: chapDate, chapNum: totalChapters))
                 totalChapters -= 1
 
@@ -197,6 +185,7 @@ final class MangaManager {
     
     func getMangaChapterPages(from url: String) async throws -> [String] {
         
+        let chapterScreen = remoteConfig.chapterScreen
         guard let url = URL(string: url) else {
             throw AppErrors.internalError
         }
@@ -209,10 +198,10 @@ final class MangaManager {
             }
             
             let doc: Document = try SwiftSoup.parse(html)
-            let pages = try doc.select("div.container-chapter-reader > img")
+            let pages = try doc.select(chapterScreen.pagesQuery)
             var pageUrls: [String] = []
            try pages.forEach { page in
-               let url = try page.attr("src")
+               let url = try page.attr(chapterScreen.pageAttr)
                 pageUrls.append(url)
             }
             return pageUrls
@@ -223,8 +212,10 @@ final class MangaManager {
     }
     
     func getMangas(with title: String) async -> Result<[Manga], Error> {
+        
+        let searchScreen = remoteConfig.searchScreen
         let fetchTask = Task { () -> [Manga] in
-            guard var url = URL(string: "https://www.nelomanga.net/search/story") else {
+            guard var url = URL(string: searchScreen.url) else {
                 throw AppErrors.internalError
             }
 
@@ -242,12 +233,12 @@ final class MangaManager {
             }
 
             let doc: Document = try SwiftSoup.parse(html)
-            let searchResults = try doc.select("div.story_item")
+            let searchResults = try doc.select(searchScreen.resultsQuery)
             var mangas: [Manga] = []
             try searchResults.forEach { item in
-                let title = try item.select("h3.story_name > a").text()
-                let detailUrl = try item.select("a").attr("href")
-                let coverUrl = try item.select("a > img").attr("src")
+                let title = try item.select(searchScreen.titleQuery).text()
+                let detailUrl = try item.select(searchScreen.detailQuery).attr(searchScreen.detailAttr)
+                let coverUrl = try item.select(searchScreen.imageQuery).attr(searchScreen.imageAttr)
                 mangas.append(Manga(title: title, coverUrl: coverUrl, detailsUrl: detailUrl))
             }
 

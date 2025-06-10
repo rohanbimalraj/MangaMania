@@ -14,12 +14,17 @@ struct AppRouterView: View {
     
     var body: some View {
         ZStack {
-            if vm.showSplash {
+            if vm.showSplash || vm.configReady == false {
                 SplashScreenView()
                 
             }else {
                 ContentView()
                     .transition(.opacity)
+            }
+        }
+        .onAppear {
+            RemoteConfigManager.shared.configure {
+                vm.configReady = true
             }
         }
         .onChange(of: scenePhase, perform: { newPhase in
