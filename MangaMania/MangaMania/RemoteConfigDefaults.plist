@@ -10,7 +10,7 @@
 	<string>false</string>
 	<key>home_screen</key>
 	<string>{
-  &quot;url&quot;: &quot;&quot;,
+  &quot;url&quot;: &quot;https://www.nelomanga.net/manga-list/hot-manga&quot;,
   &quot;param_key&quot;: &quot;page&quot;,
   &quot;list_query&quot;: &quot;div.list-truyen-item-wrap&quot;,
   &quot;detail_query&quot;: &quot;&gt; a&quot;,
