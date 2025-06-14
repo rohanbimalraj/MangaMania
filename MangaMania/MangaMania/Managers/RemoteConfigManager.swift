@@ -17,6 +17,7 @@ final class RemoteConfigManager {
     private(set) var appStoreVersion: String = ""
     private(set) var forceRequired: Bool = false
     private(set) var appStoreURL: String = ""
+    private(set) var ratingTriggerCount: Int = 21
     private(set) var homeScreen: HomeScreen = .default
     private(set) var detailScreen: DetailScreen = .default
     private(set) var chapterScreen: ChapterScreen = .default
@@ -72,6 +73,7 @@ final class RemoteConfigManager {
         self.appStoreVersion = remoteConfig.configValue(forKey: "force_update_current_version").stringValue ?? ""
         self.forceRequired = remoteConfig.configValue(forKey: "is_force_update_required").boolValue
         self.appStoreURL = remoteConfig.configValue(forKey: "force_update_store_url").stringValue ?? ""
+        self.ratingTriggerCount = remoteConfig.configValue(forKey: "rating_trigger_count").numberValue.intValue
         
         self.homeScreen = decode(forKey: "home_screen") ?? .default
         self.detailScreen = decode(forKey: "detail_screen") ?? .default

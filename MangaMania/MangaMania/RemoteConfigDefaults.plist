@@ -51,5 +51,7 @@
   &quot;image_query&quot;: &quot;a &gt; img&quot;,
   &quot;image_attr&quot;: &quot;src&quot;
 }</string>
+	<key>rating_trigger_count</key>
+	<integer>21</integer>
 </dict>
 </plist>

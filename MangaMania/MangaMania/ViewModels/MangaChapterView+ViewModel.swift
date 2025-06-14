@@ -14,6 +14,8 @@ extension MangaChapterView {
         
         @Published var isReviewRequested: Bool = false
         
+        private let triggerCount = RemoteConfigManager.shared.ratingTriggerCount
+        
         @AppStorage("scrollToBottomCount") private var scrollToBottomCount: Int = 0
         @AppStorage("lastReviewPromptVersion") private var lastReviewPromptVersion: String = ""
         @AppStorage("lastReviewPromptDate") private var lastReviewPromptDate: Double = 0
@@ -25,7 +27,7 @@ extension MangaChapterView {
             scrollToBottomCount += 1
             print("📈 Scroll to bottom count: \(scrollToBottomCount)")
 
-            if scrollToBottomCount == 3 {
+            if scrollToBottomCount == triggerCount {
                 isReviewRequested = true
 
                 // Record prompt data
