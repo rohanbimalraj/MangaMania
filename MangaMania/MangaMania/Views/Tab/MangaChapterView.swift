@@ -10,11 +10,6 @@ import SwiftUI
 
 struct MangaChapterView: View {
 
-    @AppStorage("scrollToBottomCount") private var scrollToBottomCount: Int = 0
-    @AppStorage("lastReviewPromptVersion") private var lastReviewPromptVersion: String = ""
-    @AppStorage("lastReviewPromptDate") private var lastReviewPromptDate: Double = 0
-    @AppStorage("canCountScrolls") private var canCountScrolls: Bool = true
-
     @EnvironmentObject private var topMangasRouter: TopMangasRouter
     @EnvironmentObject private var searchMangaRouter: SearchMangaRouter
     @EnvironmentObject private var myMangaMangaRouter: MyMangasRouter
@@ -23,6 +18,8 @@ struct MangaChapterView: View {
     @Environment(\.requestReview) private var requestReview
 
     @State private var pageUrls: [String] = []
+    
+    @StateObject private var vm = ViewModel()
     
     let chapterlUrl: String
     let tab: Tab
@@ -42,7 +39,7 @@ struct MangaChapterView: View {
                             .pinchToZoom()
                             .onAppear {
                                 if index == pageUrls.count - 1 {
-                                    handleScrollToBottom()
+                                    vm.handleScrollToBottom()
                                 }
                             }
                     }
@@ -53,7 +50,12 @@ struct MangaChapterView: View {
                 Task {
                     pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
                 }
-                evaluateReviewEligibility()
+                vm.evaluateReviewEligibility()
+            }
+            .onChange(of: vm.isReviewRequested) { newValue in
+                if newValue {
+                    requestReview()
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
@@ -79,41 +81,6 @@ struct MangaChapterView: View {
             .preferredColorScheme(.dark)
         }
         .background(.black)
-    }
-
-    private func handleScrollToBottom() {
-        guard canCountScrolls else { return }
-
-        scrollToBottomCount += 1
-        print("📈 Scroll to bottom count: \(scrollToBottomCount)")
-
-        if scrollToBottomCount == 1 {
-            requestReview()
-
-            // Record prompt data
-            lastReviewPromptDate = Date().timeIntervalSince1970
-            lastReviewPromptVersion = Bundle.appVersionBundle
-
-            // Reset everything after review
-            scrollToBottomCount = 0
-            canCountScrolls = false
-        }
-    }
-    
-    private func shouldPromptForReview() -> Bool {
-        let sixMonths: Double = 60 * 60 * 24 * 30 * 6
-        let now = Date().timeIntervalSince1970
-        let hasBeenSixMonths = now - lastReviewPromptDate >= sixMonths
-        let isNewVersion = lastReviewPromptVersion != Bundle.appVersionBundle
-
-        return hasBeenSixMonths || isNewVersion
-    }
-    
-    private func evaluateReviewEligibility() {
-        // This runs onAppear and allows scroll counting if enough time/version has passed
-        if shouldPromptForReview() {
-            canCountScrolls = true
-        }
     }
 }
 

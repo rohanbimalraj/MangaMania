@@ -32,9 +32,9 @@
 		C94AB9F52A8BB0520058BEEE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */; };
 		C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */; };
 		C94CD46C2A9BB79200B92A08 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */; };
+		C951B9052DFD9BFD005C779F /* MangaChapterView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C951B9042DFD9BEF005C779F /* MangaChapterView+ViewModel.swift */; };
 		C969C50F2A9C49F60092B41C /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = C969C50E2A9C49F60092B41C /* FirebaseRemoteConfig */; };
 		C969C5112A9C804E0092B41C /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */; };
-		C969C5132A9C82000092B41C /* RCKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5122A9C82000092B41C /* RCKey.swift */; };
 		C969C5152A9C83ED0092B41C /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */; };
 		C97093002A927E02005504FD /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97092FF2A927E02005504FD /* PinchToZoomView.swift */; };
 		C98543F32AE7ED74003DF477 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98543F22AE7ED74003DF477 /* NotificationManager.swift */; };
@@ -106,8 +106,8 @@
 		C94AB9F42A8BB0520058BEEE /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		C94AB9F62A8BD0940058BEEE /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		C94CD46B2A9BB79200B92A08 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		C951B9042DFD9BEF005C779F /* MangaChapterView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MangaChapterView+ViewModel.swift"; sourceTree = "<group>"; };
 		C969C5102A9C804E0092B41C /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
-		C969C5122A9C82000092B41C /* RCKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCKey.swift; sourceTree = "<group>"; };
 		C969C5142A9C83ED0092B41C /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		C97092FF2A927E02005504FD /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
 		C98543F22AE7ED74003DF477 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -330,7 +330,6 @@
 				C9A4DC252A8CDA7800A71270 /* DataControllers.swift */,
 				C9ACFDCB2A8F840D00AA1005 /* LoadingState.swift */,
 				C97092FF2A927E02005504FD /* PinchToZoomView.swift */,
-				C969C5122A9C82000092B41C /* RCKey.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -351,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A4DC1E2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift */,
+				C951B9042DFD9BEF005C779F /* MangaChapterView+ViewModel.swift */,
 				C9A4DC272A8CF3D300A71270 /* MangaDetailView+ViewModel.swift */,
 				C91AFAD72A8E248100307CFE /* MyMangaView+ViewModel.swift */,
 				C9ACFDC92A8F832A00AA1005 /* TopMangasView+ViewModel.swift */,
@@ -487,13 +487,13 @@
 				C9A4DC1F2A8C8A6400A71270 /* MangaSearchView+ViewModel.swift in Sources */,
 				C9242B5A2A889A72008613B7 /* LottieView.swift in Sources */,
 				C94AB9F72A8BD0940058BEEE /* UIApplication+Extension.swift in Sources */,
-				C969C5132A9C82000092B41C /* RCKey.swift in Sources */,
 				C997BBB92A9CCB2A00AB431B /* String+Extension.swift in Sources */,
 				C9893B132DF5F37200757488 /* DetailScreen.swift in Sources */,
 				C91AFAD82A8E248100307CFE /* MyMangaView+ViewModel.swift in Sources */,
 				C997BBC12A9CFF4600AB431B /* CustomLoaderView.swift in Sources */,
 				C907124F2A6D4E9100AC98E0 /* ContentView.swift in Sources */,
 				C939F9042A66D91100CF35D3 /* AppErrors.swift in Sources */,
+				C951B9052DFD9BFD005C779F /* MangaChapterView+ViewModel.swift in Sources */,
 				C94CD46C2A9BB79200B92A08 /* SplashScreenView.swift in Sources */,
 				C90712542A6D4FCF00AC98E0 /* TopMangasView.swift in Sources */,
 				C93112E52A86798C004FBB80 /* RatingView.swift in Sources */,
