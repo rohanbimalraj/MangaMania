@@ -30,28 +30,11 @@ struct MangaChapterView: View {
             
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    ForEach(pageUrls.indices, id: \.self) { index in
-                        KFImage(URL(string: pageUrls[index]))
-                            .requestModifier(MangaManager.shared.kfRequestModifier)
-                            .resizable()
-                            .placeholder({ _ in ProgressView() })
-                            .scaledToFill()
-                            .pinchToZoom()
-                            .onAppear {
-                                if index == pageUrls.count - 1 {
-                                    vm.handleScrollToBottom()
-                                }
-                            }
-                    }
+                    chapterView
                 }
             }
             .clipped()
-            .onAppear{
-                Task {
-                    pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
-                }
-                vm.evaluateReviewEligibility()
-            }
+            .onAppear(perform: onAppear)
             .onChange(of: vm.isReviewRequested) {
                 if vm.isReviewRequested {
                     requestReview()
@@ -87,5 +70,32 @@ struct MangaChapterView: View {
 struct MangaChapterView_Previews: PreviewProvider {
     static var previews: some View {
         MangaChapterView(chapterlUrl: "", tab: .topMangas)
+    }
+}
+
+private extension MangaChapterView {
+
+    @ViewBuilder
+    var chapterView: some View {
+        ForEach(pageUrls.indices, id: \.self) { index in
+            KFImage(URL(string: pageUrls[index]))
+                .requestModifier(MangaManager.shared.kfRequestModifier)
+                .resizable()
+                .placeholder({ _ in ProgressView() })
+                .scaledToFill()
+                .pinchToZoom()
+                .onAppear {
+                    if index == pageUrls.count - 1 {
+                        vm.handleScrollToBottom()
+                    }
+                }
+        }
+    }
+
+    func onAppear() {
+        Task {
+            pageUrls = try await MangaManager.shared.getMangaChapterPages(from: chapterlUrl)
+        }
+        vm.evaluateReviewEligibility()
     }
 }

@@ -20,47 +20,14 @@ struct MangaSearchView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            background
             VStack {
                 SearchBarView(searchText: $vm.searchText)
                 switch vm.loadingState {
                 case .idle:
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(vm.mangas) { manga in
-                                
-                                Button {
-                                    
-                                    searchMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? "", from: .searchMangas))
-                                    
-                                }label: {
-                                    KFImage(URL(string: manga.coverUrl ?? ""))
-                                        .requestModifier(MangaManager.shared.kfRequestModifier)
-                                        .memoryCacheExpiration(.expired)
-                                        .resizable()
-                                        .fade(duration: 0.5)
-                                        .placeholder({
-                                            Image("book-cover-placeholder")
-                                                .resizable()
-                                        })
-                                        .overlay {
-                                            LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top)
-                                            VStack {
-                                                Spacer()
-                                                Text(manga.title ?? "")
-                                                    .foregroundColor(.themeFour)
-                                                    .font(.custom(.medium, size: 17))
-                                                    .padding([.horizontal, .bottom])
-                                            }
-                                        }
-                                        .frame(height: 250)
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 20)
-                                        .padding(.top, 20)
-                                    
-                                }
-                            }
+                            mangaGridItems
                         }
                     }
                     .padding(.bottom, 90)
@@ -72,10 +39,7 @@ struct MangaSearchView: View {
                     CustomLoaderView(bottomPadding: 0)
                         .transition(.opacity)
                 case .error(let message):
-                    Text(message)
-                        .foregroundColor(.themeFour)
-                        .font(.custom(.bold, size: 25))
-                        .transition(.opacity)
+                    errorText(message)
                 }
                 Spacer()
             }
@@ -84,17 +48,12 @@ struct MangaSearchView: View {
         .navigationTitle("Search")
         .ignoresSafeArea(.keyboard)
         .preferredColorScheme(.dark)
-        .onAppear {
-            isVisible = true
-            isTabBarVisible.wrappedValue = true
-        }
+        .onAppear(perform: onAppear)
         .onChange(of: notificationManager.mangaUrl) {
             guard let mangaUrl = notificationManager.mangaUrl, isVisible else {return}
             searchMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .searchMangas))
         }
-        .onDisappear {
-            isVisible = false
-        }
+        .onDisappear(perform: onDisappear)
     }
 }
 
@@ -103,5 +62,39 @@ struct MangaSearchView_Previews: PreviewProvider {
         NavigationStack {
             MangaSearchView()
         }
+        .environmentObject(NotificationManager.shared)
+    }
+}
+
+private extension MangaSearchView {
+    
+    var background: some View {
+        LinearGradient(gradient: Gradient(colors: [.themeTwo, .themeOne]), startPoint: .top, endPoint: .bottom)
+            .ignoresSafeArea()
+    }
+
+    @ViewBuilder
+    var mangaGridItems: some View {
+        ForEach(vm.mangas) { manga in
+            MangaGridItemView(manga: manga) {
+                searchMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? "", from: .searchMangas))
+            }
+        }
+    }
+
+    func errorText(_ message: String) -> some View {
+        Text(message)
+            .foregroundColor(.themeFour)
+            .font(.custom(.bold, size: 25))
+            .transition(.opacity)
+    }
+
+    func onAppear() {
+        isVisible = true
+        isTabBarVisible.wrappedValue = true
+    }
+
+    func onDisappear() {
+        isVisible = false
     }
 }
