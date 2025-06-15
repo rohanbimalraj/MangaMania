@@ -85,6 +85,7 @@ private extension MangaDetailView {
                 }
                 .padding(.horizontal)
             }
+            .clipped()
             .navigationBarTitleDisplayMode(.inline)
             .transition(.opacity)
         }
