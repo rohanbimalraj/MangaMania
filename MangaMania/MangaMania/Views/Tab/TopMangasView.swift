@@ -58,6 +58,11 @@ struct TopMangasView: View {
                                 .cornerRadius(10)
                                 .padding(.horizontal, 20)
                                 .padding(.top, 20)
+                                .scrollTransition { content, phase in
+                                    content
+                                        .opacity(phase.isIdentity ? 1 : 0)
+                                        .scaleEffect(phase.isIdentity ? 1 : 0.8)
+                                }
                             
                         }
                     }
