@@ -27,7 +27,7 @@ struct AppRouterView: View {
                 vm.configReady = true
             }
         }
-        .onChange(of: scenePhase, perform: { newPhase in
+        .onChange(of: scenePhase) { oldPhase, newPhase in
             switch newPhase {
             case .active:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
@@ -36,7 +36,7 @@ struct AppRouterView: View {
             default:
                 break
             }
-        })
+        }
         .animation(.easeInOut(duration: 0.5), value: vm.showSplash)
         .alert("Update Available", isPresented: $vm.showUpdateAlert) {
             Button {

@@ -340,8 +340,8 @@ struct MangaDetailView: View {
         }
         .preferredColorScheme(.dark)
         .ignoresSafeArea(.keyboard)
-        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
-            guard let mangaUrl = mangaUrl, isVisible else {return}
+        .onChange(of: notificationManager.mangaUrl) {
+            guard let mangaUrl = notificationManager.mangaUrl, isVisible else {return}
             notificationManager.reset()
             guard (detailUrl != mangaUrl) else {return}
             switch tab {

@@ -88,8 +88,8 @@ struct TopMangasView: View {
             guard let mangaUrl = notificationManager.mangaUrl else {return}
             topMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
         }
-        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
-            guard let mangaUrl = mangaUrl, isVisible else {return}
+        .onChange(of: notificationManager.mangaUrl) {
+            guard let mangaUrl = notificationManager.mangaUrl, isVisible else { return }
             topMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .topMangas))
         }
         .onDisappear {

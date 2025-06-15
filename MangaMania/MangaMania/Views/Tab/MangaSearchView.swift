@@ -88,8 +88,8 @@ struct MangaSearchView: View {
             isVisible = true
             isTabBarVisible.wrappedValue = true
         }
-        .onChange(of: notificationManager.mangaUrl) { mangaUrl in
-            guard let mangaUrl = mangaUrl, isVisible else {return}
+        .onChange(of: notificationManager.mangaUrl) {
+            guard let mangaUrl = notificationManager.mangaUrl, isVisible else {return}
             searchMangaRouter.router.push(.mangaDetail(url: mangaUrl, from: .searchMangas))
         }
         .onDisappear {

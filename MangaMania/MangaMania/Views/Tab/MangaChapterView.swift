@@ -52,8 +52,8 @@ struct MangaChapterView: View {
                 }
                 vm.evaluateReviewEligibility()
             }
-            .onChange(of: vm.isReviewRequested) { newValue in
-                if newValue {
+            .onChange(of: vm.isReviewRequested) {
+                if vm.isReviewRequested {
                     requestReview()
                 }
             }
