@@ -30,40 +30,8 @@ struct TopMangasView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(vm.mangas) { manga in
-                        
-                        Button {
-                            
+                        MangaGridItemView(manga: manga) {
                             topMangaRouter.router.push(.mangaDetail(url: manga.detailsUrl ?? "", from: .topMangas))
-                            
-                        }label: {
-                            KFImage(URL(string: manga.coverUrl ?? ""))
-                                .requestModifier(MangaManager.shared.kfRequestModifier)
-                                .resizable()
-                                .fade(duration: 0.5)
-                                .placeholder({
-                                    Image("book-cover-placeholder")
-                                        .resizable()
-                                })
-                                .overlay {
-                                    LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .bottom, endPoint: .top)
-                                    VStack {
-                                        Spacer()
-                                        Text(manga.title ?? "")
-                                            .foregroundColor(.themeFour)
-                                            .font(.custom(.medium, size: 17))
-                                            .padding([.horizontal, .bottom])
-                                    }
-                                }
-                                .frame(height: 250)
-                                .cornerRadius(10)
-                                .padding(.horizontal, 20)
-                                .padding(.top, 20)
-                                .scrollTransition { content, phase in
-                                    content
-                                        .opacity(phase.isIdentity ? 1 : 0)
-                                        .scaleEffect(phase.isIdentity ? 1 : 0.8)
-                                }
-                            
                         }
                     }
                     
